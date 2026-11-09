@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="204" viewBox="0 0 320 204">
+  <defs>
+    <linearGradient id="glass" x1="0" x2="1">
+      <stop stop-color="#8a4d24"/>
+      <stop offset=".18" stop-color="#b5763c"/>
+      <stop offset=".55" stop-color="#9d5d2c"/>
+      <stop offset="1" stop-color="#64391f"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" x2="1">
+      <stop stop-color="#e4d3ac"/>
+      <stop offset=".32" stop-color="#f7ebcb"/>
+      <stop offset="1" stop-color="#e1c89d"/>
+    </linearGradient>
+  </defs>
+  <path d="M53 161c0-70 50-125 125-125 71 0 120 49 120 124v14H53z" fill="#396652"/>
+  <path d="M64 159c0-62 45-111 114-111 61 0 109 48 109 111" fill="none" stroke="#82a38a" stroke-opacity=".55" stroke-width="1.2"/>
+  <path d="M41 176h263M57 184h232" fill="none" stroke="#8ca68b" stroke-opacity=".55" stroke-linecap="round"/>
+  <ellipse cx="174" cy="175" rx="96" ry="10" fill="#173e32" fill-opacity=".65"/>
+  <g stroke="#c5b77e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M198 177c21-21 41-48 71-83M228 143c8-18 13-36 15-53m-1 41c14-9 29-13 45-16m-69 38c1-18-1-30-4-39m14 28c16-4 31-3 46-2m-10-40c8-14 13-21 22-27" stroke-width="1.8"/>
+    <path d="m231 135-4-20m10 7-1-19m8 11 6-18m7 7 6-13m-11 34 17-1m-12-4 20-10m-30 22 15 3m-40 13 15 3m-14-1-13-11m12 14-8-25m43-14 17-4m-7-10 13-11" stroke-width="1.2"/>
+  </g>
+  <path d="M116 89h102v68c0 13-19 21-51 21s-51-8-51-21z" fill="url(#glass)" stroke="#75431e" stroke-width="2"/>
+  <path d="M120 102v54c0 6 5 10 12 12m78-64v51" fill="none" stroke="#ecb86f" stroke-opacity=".55" stroke-linecap="round" stroke-width="2"/>
+  <ellipse cx="167" cy="89" rx="52" ry="15" fill="#7a4829"/>
+  <ellipse cx="167" cy="87" rx="48" ry="12" fill="#e8bf80" stroke="#bd8b54" stroke-width="2"/>
+  <ellipse cx="167" cy="87" rx="38" ry="7.5" fill="#f5d69c"/>
+  <path d="M167 87v-9" stroke="#584227" stroke-width="2" stroke-linecap="round"/>
+  <path d="M167 79c-11-3-6-15 2-23-1 5 5 9 4 15 0 3-2 7-6 8Z" fill="#f2c36c"/>
+  <path d="M167 78c-4-2-2-7 1-11 2 4 4 8-1 11Z" fill="#fff0c5"/>
+  <path d="M169 54c-12-9 8-16 0-26" fill="none" stroke="#c8d7b6" stroke-opacity=".75" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M126 111q41 7 82 0v43q-41 8-82 0Z" fill="url(#paper)"/>
+  <path d="M132 119q35 5 70 0v29q-35 5-70 0Z" fill="none" stroke="#94774a" stroke-opacity=".55" stroke-width=".8"/>
+  <text x="167" y="134" font-family="Georgia,serif" font-size="12" letter-spacing="3.2" text-anchor="middle" fill="#44331d">BRUMA</text>
+  <text x="167" y="145" font-family="Arial,sans-serif" font-size="6.4" letter-spacing="1.1" text-anchor="middle" fill="#44331d">CEDRO · 180 g</text>
+</svg>
