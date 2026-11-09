@@ -1,6 +1,6 @@
 # Finansi: datos ficticios de Taller Bruma
 
-Lucía Torres fabrica velas en Lima. Datos para el período **1–28 de octubre de 2026**. Los importes están en soles peruanos y no incluyen un modelo tributario. Los tres conceptos muestran el mismo ejemplo.
+Lucía Torres fabrica velas en Lima. Los importes de la maqueta están en soles peruanos y cubren el período **1–28 de octubre de 2026**. El caso se centra en el costo operativo y la caja registrada.
 
 | Indicador | Importe | Composición |
 | --- | ---: | --- |
@@ -31,3 +31,17 @@ La caja sigue el dinero registrado. El costo de lo vendido incluye trabajo propi
 Meta de ejemplo: 30%. Mínimo al costo actual: S/ 35.43; con costo S/ 26.80: S/ 38.29. La sugerencia de S/ 36 presupone el mismo costo y no anticipa cuántas unidades se venderán.
 
 **Muestra de actividad:** 28 oct, 2 Vela Cedro (S/ 64 cobrados por billetera); 27 oct, compra de cera (S/ 84 pagados); 26 oct, retiro personal (S/ 100); 25 oct, pedido para feria (S/ 160 pendiente). Son ejemplos incluidos en los totales, no el historial completo.
+
+## Datos añadidos para las pantallas del concepto B
+
+El lote de Cedro rinde 10 velas. Lleva 1.5 kg de cera (S/ 64), 100 ml de fragancia (S/ 28) y 10 juegos de frasco, mecha y empaque (S/ 64). Cinco horas a S/ 16 suman S/ 80 de trabajo y se asignan S/ 12 de gastos del lote. El total de S/ 248 equivale a S/ 24.80 por vela.
+
+| Catálogo | Costo unitario | Precio registrado | Ganancia estimada | Existencias terminadas |
+| --- | ---: | ---: | ---: | ---: |
+| Vela Cedro | S/ 24.80 | S/ 32.00 | S/ 7.20 | 12 |
+| Vela Lavanda | S/ 21.90 | S/ 34.00 | S/ 12.10 | 9 |
+| Vela Naranja | S/ 18.60 | S/ 28.00 | S/ 9.40 | 15 |
+
+El simulador parte de 20 velas Cedro a S/ 32 y costo de S/ 24.80. El resultado de referencia es S/ 144. Subir el precio a S/ 36 lo lleva a S/ 224. Subir solo el costo a S/ 26.80 lo lleva a S/ 104. Vender 30 al precio y costo de referencia lo lleva a S/ 216. A S/ 36 con costo de S/ 26.80, 20 ventas dejan S/ 184.
+
+En Mi dinero, las entradas son S/ 3,920 (cobros y aportes) y las salidas son S/ 2,370 (compras, gastos y retiros). Con S/ 1,090 de saldo inicial, el cierre es S/ 2,640.

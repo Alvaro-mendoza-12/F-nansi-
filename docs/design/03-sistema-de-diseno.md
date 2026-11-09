@@ -1,6 +1,6 @@
-# Finansi: sistema de diseño provisional
+# Finansi · Sistema de diseño
 
-El sistema se propone para comparar conceptos. Los colores y el tipo final se afinan tras elegir uno. El símbolo es una F abierta con un punto que marca el dato que permite decidir; funciona en un solo color como sello.
+Las doce pantallas aplican **B · Emprendedor Moderno**. El símbolo es una F abierta con un punto que señala el dato que permite decidir. Funciona en un solo color como sello. La tabla conserva las paletas que se compararon durante la exploración.
 
 | Token | A · Fintech Premium | B · Emprendedor Moderno | C · AI-First |
 | --- | --- | --- | --- |
@@ -11,7 +11,7 @@ El sistema se propone para comparar conceptos. Los colores y el tipo final se af
 | Acento informativo | Verde agua #E5F2EE | Ámbar pálido #F3E8C8 | Lila #B9A3FF |
 | Advertencia | Texto oscuro sobre ámbar claro | Texto oscuro sobre ámbar claro | Ámbar claro sobre ciruela |
 
-**Tipografía.** Manrope para titulares y cifras principales; Inter para texto, navegación y datos. B prueba Fraunces solo en el saludo y el saldo editorial. Cifras con ancho tabular donde se comparan; soles en formato local (S/ 3,480.00). Escala orientativa: 12 px para ayudas breves, 14 para interfaz, 16 para contenido, 20/24 para títulos de sección, 28/36 para títulos y 36/48 para el importe principal según ancho. Altura de línea 1.45–1.6 en texto.
+**Tipografía.** Fraunces identifica los encabezados de módulo y los importes destacados. Manrope se usa en títulos de componentes y cifras comparables. Inter sostiene el texto, la navegación y los datos. Las tablas alinean importes con cifras de ancho tabular y expresan la moneda como S/ 3,480.00. La escala va de ayudas breves de 11–12 px a 34–48 px para títulos de módulo, con tamaños mayores en Bienvenida.
 
 **Composición.** Base de 4 px: 4, 8, 12, 16, 20, 24, 32 y 40. Márgenes de 16–20 en teléfono y 32–40 en escritorio. Radios de 8–12 para controles y 14–20 para paneles. Bordes de 1 px para separar áreas; sombras suaves en la galería y superficies elevadas cuando expresen jerarquía. Contenido principal alineado a la izquierda; cantidades comparables alineadas a la derecha en tablas.
 

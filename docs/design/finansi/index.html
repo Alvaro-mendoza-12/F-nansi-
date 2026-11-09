@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bienvenida de Finansi con datos de ejemplo de Taller Bruma.">
+  <title>Bienvenida · Finansi</title>
+  <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../prototipo/estilos.css">
+  <link rel="stylesheet" href="maqueta.css">
+  <script src="maqueta.js" defer></script>
+</head>
+<body class="b demo demo-entry welcome" data-page="index">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="demo-header entry-header">
+    <div class="demo-header-inner"><a class="brand" href="index.html"><img src="../prototipo/img/marca.svg" width="36" height="36" alt=""><span>Finansi</span></a> <a class="action quiet" href="pantallas.html"><span>Explorar pantallas</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+  </header>
+  <main class="demo-main" id="contenido">
+    <section class="welcome-grid" aria-labelledby="welcome-title">
+      <div class="welcome-copy">
+        <span class="welcome-label"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c3 5 6 7 6 12a6 6 0 0 1-12 0c0-2 1-4 3-6 0 2 1 3 2 4 1-2 2-5 1-10Z"/></svg> Hecho para negocios como el tuyo</span>
+        <h1 id="welcome-title">Ponle precio a<br class="wide-break"> lo que haces.</h1>
+        <p>Cuenta tus materiales y tu tiempo. Calcula cuánto te cuesta producir, prueba un precio y ve cuánto te queda por cada venta.</p>
+        <div class="welcome-actions">
+          <a class="action primary" href="onboarding.html"><span>Calcular mi primer precio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a>
+          <a class="action secondary" href="inicio.html"><span>Ver el negocio de ejemplo</span></a>
+        </div>
+      </div>
+      <figure class="welcome-photo">
+        <img src="img/cedro.png" width="1448" height="1086" alt="">
+        <figcaption><span>Vela Cedro · Taller Bruma</span><strong>S/ 24.80 <small>de costo por vela</small></strong></figcaption>
+      </figure>
+    </section>
+    <section class="welcome-values" aria-label="Qué puedes hacer">
+      <div class="inline-note"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8m-8 4h8m-8 4h5"/></svg></span><div><strong>Cuenta tu trabajo</strong><p>Incluye materiales, minutos y gastos del lote.</p></div></div>
+      <div class="inline-note"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 12.5 12.5 20.6a2 2 0 0 1-2.8 0L3 14V3h11l6.6 6.7a2 2 0 0 1 0 2.8Z"/><circle cx="8" cy="8" r="1"/></svg></span><div><strong>Compara dos precios</strong><p>Ve cuánto te deja cada uno antes de decidir.</p></div></div>
+      <div class="inline-note"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg></span><div><strong>Ordena tu caja</strong><p>Separa lo que ganaste del dinero disponible.</p></div></div>
+    </section>
+  </main>
+
+  <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
+
+</body>
+</html>

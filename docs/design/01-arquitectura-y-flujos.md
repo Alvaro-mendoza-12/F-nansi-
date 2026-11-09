@@ -38,7 +38,7 @@ flowchart LR
 | Diagnóstico | Inicio y menú secundario | Hallazgo en Inicio y acceso en Más | Un hallazgo priorizado, datos que lo sustentan, siguiente paso |
 | Asistente Finansi | Menú secundario y ayuda contextual | Más y desde producto/diagnóstico | Alcance, consultas sugeridas, respuesta con datos y enlace |
 
-La calculadora y el simulador viven en el contexto de un producto. En un móvil, el detalle vuelve a la lista conservando el filtro; los accesos a una alerta conservan su material o producto. En escritorio, el detalle de costo puede abrir al lado del resumen. Las tres alternativas de Inicio prueban jerarquías distintas; su navegación es provisional.
+La calculadora y el simulador viven en el contexto de un producto. Las alertas enlazan al material o al producto correspondiente. La maqueta de B muestra el detalle de costo al lado del resumen en escritorio y lleva el resultado al primer plano en móvil. El asistente también tiene un acceso directo en la cabecera.
 
 ## Flujos principales
 
@@ -65,4 +65,4 @@ La calculadora y el simulador viven en el contexto de un producto. En un móvil,
 
 **Estados comunes.** Carga: mantener espacios y anunciar “Calculando” sin mostrar ceros provisionales. Vacío: indicar qué falta y dar una acción. Error de campo: explicar cómo corregir y conservar los valores. Error de guardado: mantener borrador y ofrecer reintento sin crear duplicados. Resultado parcial: indicar cobertura y evitar comparar períodos incompletos como si fueran equivalentes. Desactualizado: mostrar fecha de corte. Acciones de edición: confirmar solo cuando cambia un dato importante y mostrar el resultado.
 
-Estas son especificaciones de diseño. En esta entrega solo se prototipa Inicio; los mockups de los demás módulos se preparan tras aprobar un concepto visual.
+El recorrido aprobado reúne las doce pantallas y los estados que se pueden probar con los datos de Taller Bruma. [Prototipo y capturas del concepto B](05-prototipo-b.md).

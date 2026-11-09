@@ -1,6 +1,6 @@
 # Finansi: tres conceptos para Inicio
 
-Los tres usan el mismo [negocio de ejemplo](04-caso-demo.md), período e importes. Cambian la jerarquía, la composición y el énfasis de navegación. Abre la [galería navegable](prototipo/index.html) para comparar, o elige las imágenes PNG de referencia.
+Los tres usan el mismo negocio de ejemplo, período e importes. Cambian la jerarquía, la composición y el énfasis de navegación. El concepto elegido fue **B · Emprendedor Moderno**. [Prototipo aprobado](05-prototipo-b.md) · [Galería de la exploración inicial](prototipo/index.html) · [Datos de Taller Bruma](04-caso-demo.md).
 
 | Concepto | Escritorio, 1440 × 900 | Móvil, 390 × 844 | Pregunta que responde primero |
 | --- | --- | --- | --- |
@@ -32,8 +32,8 @@ El asistente abre con un hallazgo concreto, presenta costo y comparación de dos
 - **Debilidad:** puede dar demasiado peso al asistente con un negocio nuevo o sin registros. Requiere diseñar con cuidado el estado sin datos y hacer visible la caja.
 - **Justificación:** una superficie violeta oscura concentra conversación y evidencia; los importes mantienen alta legibilidad. Las consultas sugeridas son atajos a ejemplos en la maqueta.
 
-## Recomendación para aprobar
+## Decisión visual
 
-**B · Emprendedor Moderno.** Es la puerta de entrada más directa para el público inicial: caja primero, una decisión concreta y la identidad de su taller a la vista. La claridad numérica de A y la evidencia del diagnóstico de C son patrones que conviene conservar al desarrollar el concepto aprobado. Recomendación sujeta a elección del equipo; todavía no hay una dirección final.
+**B · Emprendedor Moderno.** Abre con la caja, da prioridad a una decisión y muestra la identidad del taller. Las pantallas desarrolladas a partir de esta elección incluyen el detalle numérico y los datos que sustentan el diagnóstico.
 
 Para revisar, intenta responder en cada propuesta: “¿Cuánto puedo gastar?”, “¿Cuál es mi ganancia estimada?” y “¿Por qué cambiaría el precio de Cedro?”. La mejor alternativa será la que permita contestar sin explicación externa.
