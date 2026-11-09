@@ -6,7 +6,7 @@ Finansi ayuda a quienes fabrican en lotes pequeños a calcular cuánto cuesta pr
 
 [Empezar en Bienvenida](docs/design/finansi/index.html) · [Galería navegable](docs/design/finansi/pantallas.html) · [Índice de las 24 capturas](docs/design/05-prototipo-b.md)
 
-Clona o descarga el repositorio y abre **docs/design/finansi/index.html** en el navegador. La maqueta funciona sin conexión con el caso ficticio de Taller Bruma. Puedes recorrer el alta de producto, probar escenarios de precio y explorar el registro de ventas y la caja.
+Abre **index.html** desde la raíz del repositorio. La misma entrada sirve para publicar la demo como sitio estático y para recorrerla sin conexión. Usa el caso ficticio de Taller Bruma para probar el alta de producto, los escenarios de precio, el registro de ventas y la caja.
 
 ## Investigación y diseño
 
