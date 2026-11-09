@@ -8,7 +8,9 @@
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../prototipo/estilos.css">
   <link rel="stylesheet" href="maqueta.css">
+  <link rel="stylesheet" href="mvp/flujo.css">
   <script src="maqueta.js" defer></script>
+  <script type="module" src="mvp/app.js"></script>
 </head>
 <body class="b demo demo-module " data-page="calculadora">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -26,46 +28,56 @@
     </div>
   </header>
   <main class="demo-main" id="contenido">
-    <div class="page-trail"><a class="back-link" href="productos.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7m-7 7h14"/></svg><span>Mis productos</span></a></div>
+    <noscript><p class="inline-note">Activa JavaScript para usar el catálogo y calcular precios.</p></noscript>
+    <div class="page-trail"><a class="back-link" href="productos.html" data-edit-link>← Mis productos</a></div>
     <div class="demo-heading">
-      <div><h1>Calculadora de precio</h1><p>Vela Cedro · Taller Bruma</p></div>
-      <div class="heading-actions"><span class="tag demo-tag neutral">Valores de ejemplo</span></div>
+      <div><h1>Calculadora de precio</h1><p data-product-context>De tu receta a un precio de venta.</p></div>
     </div>
-    <div class="calculator-grid" data-calculator>
+    <p class="form-error" data-load-error role="alert" hidden></p>
+    <section class="card dashboard-empty" data-missing hidden>
+      <h2>Abre una receta para calcular su precio</h2>
+      <p>Elige un producto del catálogo, crea uno nuevo o prueba los datos de Taller Bruma.</p>
+      <div class="form-actions">
+        <a class="action primary" href="productos.html">Mis productos</a>
+        <a class="action secondary" href="crear-producto.html">Crear producto</a>
+        <a class="action secondary" data-try-example href="?ejemplo=cedro">Probar Vela Cedro</a>
+      </div>
+    </section>
+    <div class="calculator-grid" data-pricing data-ready hidden>
       <section class="price-hero" aria-label="Resultado del cálculo">
-          <div class="price-top"><span>Precio sugerido por vela</span><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 12.5 12.5 20.6a2 2 0 0 1-2.8 0L3 14V3h11l6.6 6.7a2 2 0 0 1 0 2.8Z"/><circle cx="8" cy="8" r="1"/></svg></span></div>
-          <strong class="price-amount"><span class="amount"><span class="currency">S/</span> <span data-calc-value="price">36</span></span></strong>
-          <p><strong data-calc-value="margin">31.1%</strong> de margen con el costo elegido</p>
-          <div class="price-payoff"><span>Te quedaría por vela</span><strong data-calc-value="profit">S/ 11.20</strong></div>
+        <div class="price-top">Precio recomendado por unidad</div>
+        <strong class="price-amount"><span class="amount" data-value="recommendation">—</span></strong>
+        <p><strong data-value="resultMargin">—</strong> de margen al precio recomendado</p>
+        <div class="price-payoff"><span>Ganancia por unidad</span><strong data-value="profit">—</strong></div>
       </section>
       <section class="cost-panel card" aria-labelledby="cost-title">
-        <div class="product-strip">
-          <img src="img/cedro.png" width="1448" height="1086" alt=""><div><h2 id="cost-title">Costo por unidad</h2><p>Receta Vela Cedro · 10 velas por lote</p></div>
-        </div>
+        <h2 id="cost-title">Costo de la receta</h2>
         <dl class="brief-list cost-list">
-          <div><dt><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></span> Materiales y empaque</dt><dd data-calc-value="materials">S/ 15.60</dd></div>
-          <div><dt><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span> Trabajo <span class="cost-time" data-calc-value="time">(30 min)</span></dt><dd data-calc-value="labor">S/ 8.00</dd></div>
-          <div><dt><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8m-8 4h8m-8 4h5"/></svg></span> Gastos del lote asignados</dt><dd>S/ 1.20</dd></div>
-          <div class="brief-total"><dt>Costo completo</dt><dd data-calc-value="cost">S/ 24.80</dd></div>
+          <div><dt>Materiales del lote</dt><dd data-value="materials">—</dd></div>
+          <div><dt>Mano de obra del lote</dt><dd data-value="labor">—</dd></div>
+          <div><dt>Empaques del lote</dt><dd data-value="packaging">—</dd></div>
+          <div><dt>Otros gastos del lote</dt><dd data-value="other">—</dd></div>
+          <div class="brief-total"><dt>Costo total del lote</dt><dd data-value="lot">—</dd></div>
+          <div><dt>Unidades producidas</dt><dd data-value="count">—</dd></div>
+          <div class="brief-total"><dt>Costo por unidad</dt><dd data-value="unit">—</dd></div>
         </dl>
-        <div class="cost-controls">
-          <label class="form-field"><span>Prueba un cambio de costo</span><select name="costo" data-calc-cost><option value="actual">Costo actual</option><option value="cera">La cera cuesta S/ 2 más por vela</option><option value="tiempo">Trabajo 15 minutos más por vela</option></select></label>
-          <label class="form-field"><span>Meta de margen</span><select name="margen" data-calc-margin><option value="25">25%</option><option value="30" selected>30%</option></select></label>
-        </div>
-        <details class="explain-details">
-          <summary>Cómo se calcula <svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p data-calc-value="formula">Para una meta de 30%, divide S/ 24.80 entre 0.70 y redondea hacia arriba al céntimo. El margen es la parte del precio que queda después de cubrir el costo.</p>
-        </details>
       </section>
-        <section class="price-context card">
-          <dl class="brief-list">
-            <div><dt>Precio registrado</dt><dd>S/ 32.00</dd></div>
-            <div><dt>Precio mínimo para tu meta</dt><dd data-calc-value="minimum">S/ 35.43</dd></div>
-          </dl>
-          <p>La sugerencia redondea el mínimo al siguiente sol entero.</p>
-          <a class="action primary" href="simulador.html"><span>Explorar escenarios de precio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a>
-        </section>
-      <p class="sr-only" data-calc-announcement aria-live="polite"></p>
+      <section class="price-context card">
+        <form data-margin-form novalidate>
+          <label class="form-field">
+            <span>Margen objetivo (%)</span>
+            <input name="margin" type="text" inputmode="decimal" required maxlength="6">
+            <small>El margen es la ganancia como porcentaje del precio de venta.</small>
+          </label>
+          <p class="form-error" data-error role="alert" hidden></p>
+          <p>El mínimo se redondea hacia arriba al céntimo para alcanzar tu meta.</p>
+          <p class="inline-note" data-zero-cost hidden>Con costo cero, elige un precio positivo en el comparador para obtener el margen.</p>
+          <div class="form-actions">
+            <button type="submit" class="action primary">Comparar precios</button>
+            <a class="action quiet" href="crear-producto.html" data-edit-link>Editar receta</a>
+          </div>
+        </form>
+      </section>
     </div>
   </main>
   <nav class="demo-bottom" aria-label="Navegación móvil">

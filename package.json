@@ -1,0 +1,13 @@
+{
+  "name": "finansi",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "test": "node --test tests/precios.test.mjs",
+    "test:e2e": "node tests/recorrido.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "1.65.0"
+  }
+}

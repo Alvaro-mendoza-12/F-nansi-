@@ -8,7 +8,9 @@
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../prototipo/estilos.css">
   <link rel="stylesheet" href="maqueta.css">
+  <link rel="stylesheet" href="mvp/flujo.css">
   <script src="maqueta.js" defer></script>
+  <script type="module" src="mvp/app.js"></script>
 </head>
 <body class="b demo demo-module " data-page="crear-producto">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -26,70 +28,139 @@
     </div>
   </header>
   <main class="demo-main" id="contenido">
-    <div class="page-trail"><a class="back-link" href="productos.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7m-7 7h14"/></svg><span>Mis productos</span></a></div>
+    <noscript><p class="inline-note">Activa JavaScript para usar el catálogo y calcular precios.</p></noscript>
+    <div class="page-trail"><a class="back-link" href="productos.html">← Mis productos</a></div>
     <div class="demo-heading">
-      <div><h1>Crear producto</h1><p>Arma una receta para saber cuánto cuesta cada unidad.</p></div>
-
+      <div><h1 data-recipe-title>Crear producto</h1><p>Calcula cuánto cuesta cada unidad de tu lote.</p></div>
+      <div class="heading-actions"><a class="action secondary" href="crear-producto.html?ejemplo=cedro" data-example-link>Usar receta de ejemplo</a></div>
     </div>
-    <div class="wizard-grid">
+    <p class="form-error" data-load-error role="alert" hidden></p>
+    <p class="inline-note" data-example-notice hidden>Estás editando una copia de la receta de Taller Bruma. Se agrega a Mis productos al confirmar su precio.</p>
+    <div class="wizard-grid" data-ready hidden>
       <div>
-        <ol class="wizard-steps" aria-label="Pasos para crear el producto">
+        <ol class="wizard-steps" aria-label="Pasos de la receta">
           <li data-step-label="datos" aria-current="step"><span>1</span><b>Datos</b></li>
           <li data-step-label="materiales"><span>2</span><b>Materiales</b></li>
           <li data-step-label="trabajo"><span>3</span><b>Trabajo</b></li>
         </ol>
-        <form class="wizard-form" data-wizard data-next="calculadora.html" novalidate>
-
-      <section class="wizard-panel card" data-step="datos" aria-labelledby="step-datos">
-        <h2 id="step-datos" tabindex="-1">Dale un nombre a tu producto</h2>
-        <p class="panel-lede">Empieza con un lote de ejemplo de Taller Bruma.</p>
-
-          <label class="form-field"><span>Nombre del producto</span><input name="producto" value="Vela Cedro" required maxlength="60"></label>
-          <div class="form-row"><label class="form-field"><span>Unidades por lote</span><input name="unidades" type="number" min="1" max="1000" step="1" value="10" required><small>Cuenta las unidades listas para vender.</small></label><label class="form-field"><span>Categoría (opcional)</span><select name="categoria"><option>Aromáticas</option><option>Cítricas</option><option>Sin categoría</option></select></label></div>
-
-        <div class="form-actions"><button type="button" class="action primary" data-go-step="materiales"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg><span>Continuar a materiales</span></button></div>
-      </section>
-
-      <section class="wizard-panel card" data-step="materiales" aria-labelledby="step-materiales" hidden>
-        <h2 id="step-materiales" tabindex="-1">¿Qué lleva tu lote?</h2>
-        <p class="panel-lede">Aquí ves lo que usas para fabricar las 10 velas del ejemplo.</p>
-        <ul class="recipe-list">
-        <li><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></span><div><strong>Cera de soya</strong><span>1.5 kg por lote</span></div><b>S/ 64.00</b></li>
-        <li><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c2 4 6 7 6 11a6 6 0 0 1-12 0c0-4 4-7 6-11z"/><path d="M9 14a3 3 0 0 0 3 3"/></svg></span><div><strong>Fragancia de cedro</strong><span>100 ml por lote</span></div><b>S/ 28.00</b></li>
-        <li><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg></span><div><strong>Frasco, mecha y empaque</strong><span>10 juegos por lote</span></div><b>S/ 64.00</b></li>
-        </ul>
-        <div class="recipe-total"><span>Total de materiales del lote</span><strong>S/ 156.00</strong></div>
-        <button type="button" class="action secondary" data-open-dialog="material-dialog"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Añadir material</span></button>
-        <div class="form-actions"><button type="button" class="action secondary" data-go-step="datos"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7m-7 7h14"/></svg><span>Atrás</span></button><button type="button" class="action primary" data-go-step="trabajo"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg><span>Continuar a trabajo</span></button></div>
-      </section>
-
-      <section class="wizard-panel card" data-step="trabajo" aria-labelledby="step-trabajo" hidden>
-        <h2 id="step-trabajo" tabindex="-1">Cuenta tu tiempo y los gastos del lote</h2>
-        <p class="panel-lede">Incluye el tiempo que dedicas a fabricar y empacar.</p>
-
-          <div class="form-row"><label class="form-field"><span>Horas por lote</span><input name="horas" type="number" min="0" step="0.25" value="5" required></label><label class="form-field"><span>Valor de una hora en soles</span><span class="input-with-unit"><span aria-hidden="true">S/</span><input name="valor_hora" value="16.00" inputmode="decimal" type="number" min="0.01" step="0.01" required></span></label></div>
-          <label class="form-field"><span>Gastos asignados al lote en soles</span><span class="input-with-unit"><span aria-hidden="true">S/</span><input name="indirectos" value="12.00" inputmode="decimal" type="number" min="0.01" step="0.01" required></span><small>Por ejemplo, la electricidad que usas al producir.</small></label>
-          <div class="inline-note"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><strong>5 horas para 10 velas</strong><p>En este ejemplo son 30 minutos de trabajo por unidad.</p></div></div>
-
-        <div class="form-actions"><button type="button" class="action secondary" data-go-step="materiales"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7m-7 7h14"/></svg><span>Atrás</span></button><button type="submit" class="action primary"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg><span>Ver costo y precio</span></button></div>
-      </section>
+        <form class="wizard-form" data-recipe novalidate>
+          <section class="wizard-panel card" data-step="datos" aria-labelledby="step-datos">
+            <h2 id="step-datos" tabindex="-1">Dale un nombre a tu producto</h2>
+            <p class="panel-lede">Define cuántas unidades quedan listas para vender en un lote.</p>
+            <label class="form-field">
+              <span>Nombre del producto</span>
+              <input name="productName" type="text" required maxlength="60" placeholder="Ej. Vela Cedro">
+            </label>
+            <div class="form-row">
+              <label class="form-field">
+                <span>Unidades por lote</span>
+                <input name="yieldUnits" type="text" inputmode="numeric" required maxlength="7">
+              </label>
+              <label class="form-field"><span>Categoría (opcional)</span><input name="category" maxlength="40" placeholder="Ej. Velas"></label>
+            </div>
+            <div class="form-actions"><button type="button" class="action primary" data-go-step="materiales">Continuar a materiales</button></div>
+          </section>
+          <section class="wizard-panel card" data-step="materiales" aria-labelledby="step-materiales" hidden>
+            <h2 id="step-materiales" tabindex="-1">¿Qué lleva tu lote?</h2>
+            <p class="panel-lede">Indica cuánto usas y cuánto pagaste por la compra de cada material.</p>
+            <p class="empty-message" data-empty-materials>Añade un material para empezar.</p>
+            <ul class="recipe-list editable-recipe" data-material-list></ul>
+            <template data-material-template>
+              <li>
+                <div><strong data-material-name></strong><span data-material-quantity></span></div>
+                <b data-material-cost></b>
+                <div class="material-actions">
+                  <button type="button" class="action quiet" data-edit-material>Editar</button>
+                  <button type="button" class="action quiet danger" data-remove-material>Quitar</button>
+                </div>
+              </li>
+            </template>
+            <div class="recipe-total"><span>Total de materiales del lote</span><strong data-value="materials">—</strong></div>
+            <button type="button" class="action secondary" data-add-material>Añadir material</button>
+            <div class="form-actions">
+              <button type="button" class="action secondary" data-go-step="datos">Atrás</button>
+              <button type="button" class="action primary" data-go-step="trabajo">Continuar a trabajo</button>
+            </div>
+          </section>
+          <section class="wizard-panel card" data-step="trabajo" aria-labelledby="step-trabajo" hidden>
+            <h2 id="step-trabajo" tabindex="-1">Cuenta tu tiempo y los gastos del lote</h2>
+            <p class="panel-lede">Escribe 0 en los costos que no apliquen.</p>
+            <div class="form-row">
+              <label class="form-field">
+                <span>Minutos de trabajo por lote</span>
+                <input name="minutes" type="text" inputmode="numeric" value="0" required maxlength="7">
+              </label>
+              <label class="form-field">
+                <span>Valor de una hora en soles</span>
+                <input name="hourlyRate" type="text" inputmode="decimal" value="0" required maxlength="16">
+              </label>
+            </div>
+            <div class="form-row">
+              <label class="form-field">
+                <span>Empaques del lote en soles</span>
+                <input name="packaging" type="text" inputmode="decimal" value="0" required maxlength="16">
+              </label>
+              <label class="form-field">
+                <span>Otros gastos del lote en soles</span>
+                <input name="other" type="text" inputmode="decimal" value="0" required maxlength="16">
+              </label>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="action secondary" data-go-step="materiales">Atrás</button>
+              <button type="submit" class="action primary">Ver costo y precio</button>
+            </div>
+          </section>
+          <p class="form-error" data-error role="alert" hidden></p>
         </form>
       </div>
-      <aside class="recipe-aside card">
-        <img src="img/cedro.png" width="1448" height="1086" alt="">
+      <aside class="recipe-aside card" aria-labelledby="recipe-summary">
         <div class="recipe-aside-copy">
-          <span class="tag demo-tag neutral">Receta de ejemplo</span>
-          <h2>Vela Cedro</h2>
-          <p>Un lote de 10 velas aromáticas de 180 g.</p>
+          <span class="tag demo-tag neutral">Tu borrador</span>
+          <h2 id="recipe-summary">Resumen de la receta</h2>
           <dl class="brief-list">
-            <div><dt>Materiales</dt><dd>S/ 156.00</dd></div>
-            <div><dt>Trabajo</dt><dd>S/ 80.00</dd></div>
-            <div><dt>Gastos del lote</dt><dd>S/ 12.00</dd></div>
-            <div class="brief-total"><dt>Costo estimado por vela</dt><dd>S/ 24.80</dd></div>
+            <div><dt>Materiales del lote</dt><dd data-value="materials">—</dd></div>
+            <div><dt>Mano de obra del lote</dt><dd data-value="labor">—</dd></div>
+            <div><dt>Empaques del lote</dt><dd data-value="packaging">—</dd></div>
+            <div><dt>Otros gastos del lote</dt><dd data-value="other">—</dd></div>
+            <div class="brief-total"><dt>Costo total del lote</dt><dd data-value="lot">—</dd></div>
+            <div class="brief-total"><dt>Costo por unidad</dt><dd data-value="unit">—</dd></div>
           </dl>
         </div>
       </aside>
     </div>
+    <dialog class="demo-dialog" data-material-dialog aria-labelledby="mvp-material-title">
+      <div class="dialog-head"><div><h2 id="mvp-material-title">Añadir material</h2><p>Finansi prorratea el precio de compra según lo que usas en el lote.</p></div></div>
+      <form data-material-form novalidate>
+        <label class="form-field">
+          <span>Nombre del material</span>
+          <input name="materialName" type="text" required maxlength="60" placeholder="Ej. Cera">
+        </label>
+        <div class="form-row">
+          <label class="form-field">
+            <span>Cantidad usada en el lote</span>
+            <input name="used" type="text" inputmode="decimal" value="1" required maxlength="15">
+          </label>
+          <label class="form-field"><span>Unidad usada</span><select name="usedUnit"><option value="unidad">Unidades</option><option value="g">g</option><option value="kg">kg</option><option value="ml">ml</option><option value="l">L</option><option value="cm">cm</option><option value="m">m</option></select></label>
+        </div>
+        <div class="form-row">
+          <label class="form-field">
+            <span>Cantidad comprada</span>
+            <input name="bought" type="text" inputmode="decimal" value="1" required maxlength="15">
+          </label>
+          <label class="form-field"><span>Unidad de compra</span><select name="boughtUnit"><option value="unidad">Unidades</option><option value="g">g</option><option value="kg">kg</option><option value="ml">ml</option><option value="l">L</option><option value="cm">cm</option><option value="m">m</option></select></label>
+        </div>
+        <label class="form-field">
+          <span>Costo de la compra en soles</span>
+          <input name="purchaseCost" type="text" inputmode="decimal" required maxlength="16">
+        </label>
+        <p class="recipe-total"><span>Costo de este material en el lote</span><strong data-material-preview>—</strong></p>
+        <p class="form-error" data-error role="alert" hidden></p>
+        <div class="form-actions">
+          <button type="button" class="action secondary" data-close-dialog>Cancelar</button>
+          <button type="submit" class="action primary">Aplicar material</button>
+        </div>
+      </form>
+    </dialog>
   </main>
   <nav class="demo-bottom" aria-label="Navegación móvil">
     <a href="inicio.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Inicio</span></a><a href="productos.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg><span>Productos</span></a><a href="ventas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg><span>Ventas</span></a>
@@ -99,15 +170,5 @@
     </details>
   </nav>
   <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
-  <dialog class="demo-dialog" id="material-dialog" aria-labelledby="material-dialog-title">
-    <div class="dialog-head"><div><h2 id="material-dialog-title">Añadir material</h2><p>Registra el formato de compra para usar su costo en una receta.</p></div><button class="icon-button" type="button" aria-label="Cerrar" data-close-dialog><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
-    <form data-dialog-form data-message="Vista previa de material. 2 kg de cera por S/ 85.34 equivalen a S/ 42.67 por kg.">
-      <label class="form-field"><span>Nombre del material</span><input name="material" value="Cera de soya" required maxlength="48"></label><div class="form-row"><label class="form-field"><span>Cantidad comprada</span><input name="cantidad" type="number" min="0.01" step="0.01" value="2" required></label><label class="form-field"><span>Unidad</span><select name="unidad"><option>kg</option><option>g</option><option>ml</option><option>unidad</option></select></label></div><label class="form-field"><span>Precio de compra en soles</span><span class="input-with-unit"><span aria-hidden="true">S/</span><input name="precio" value="85.34" inputmode="decimal" type="number" min="0.01" step="0.01" required></span><small>Ejemplo de equivalencia: S/ 42.67 por kg.</small></label>
-      <div class="form-actions">
-        <button type="button" class="action secondary" data-close-dialog><span>Cancelar</span></button>
-        <button type="submit" class="action primary"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Ver ejemplo</span></button>
-      </div>
-    </form>
-  </dialog>
 </body>
 </html>

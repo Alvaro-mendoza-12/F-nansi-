@@ -8,12 +8,14 @@
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../prototipo/estilos.css">
   <link rel="stylesheet" href="maqueta.css">
+  <link rel="stylesheet" href="mvp/flujo.css">
   <script src="maqueta.js" defer></script>
+  <script type="module" src="mvp/app.js"></script>
 </head>
 <body class="b demo demo-entry setup" data-page="onboarding">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
   <header class="demo-header entry-header">
-    <div class="demo-header-inner"><a class="brand" href="index.html"><img src="../prototipo/img/marca.svg" width="36" height="36" alt=""><span>Finansi</span></a> <a class="action quiet" href="inicio.html"><span>Ver el ejemplo</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+    <div class="demo-header-inner"><a class="brand" href="index.html"><img src="../prototipo/img/marca.svg" width="36" height="36" alt=""><span>Finansi</span></a> <a class="action quiet" href="inicio.html?modo=ejemplo"><span>Ver el ejemplo</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
   </header>
   <main class="demo-main" id="contenido">
     <div class="setup-grid">
@@ -22,11 +24,11 @@
         <ol class="setup-steps" aria-label="Configuración inicial"><li aria-current="step"><span>1</span> Tu negocio</li><li><span>2</span> Tu primer producto</li></ol>
         <h1>Cuéntanos de tu negocio</h1>
         <p>Con el nombre y la moneda basta para empezar tu primer cálculo.</p>
-        <form class="setup-fields" data-next="crear-producto.html">
-          <label class="form-field"><span>Nombre del negocio</span><input name="negocio" value="Taller Bruma" required maxlength="60" autocomplete="organization"></label>
+        <form class="setup-fields" data-onboarding>
+          <label class="form-field"><span>Nombre del negocio</span><input name="business" placeholder="Ej. Mi taller" required maxlength="60" autocomplete="organization" disabled></label>
           <label class="form-field"><span>Moneda</span><select name="moneda"><option value="PEN">PEN · Sol peruano</option></select></label>
           <label class="form-field"><span>¿Qué haces? (opcional)</span><select name="actividad"><option>Velas y artesanía</option><option>Repostería</option><option>Accesorios</option><option>Otro</option><option>Elegir más adelante</option></select></label>
-          <div class="form-actions"><button type="submit" class="action primary"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg><span>Ir a mi primer producto</span></button></div>
+          <p class="form-error" data-error role="alert" hidden></p><div class="form-actions"><button type="submit" class="action primary" disabled><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg><span>Ir a mi primer producto</span></button></div>
         </form>
       </section>
       <aside class="setup-aside">
@@ -37,6 +39,7 @@
           <span class="tag demo-tag neutral">Ejemplo guiado</span>
           <h2>Una vela a la vez</h2>
           <p>Prueba con Taller Bruma. Su primera receta te muestra qué cuenta en el costo y cómo elegir un precio.</p>
+          <a class="action secondary" href="crear-producto.html?ejemplo=cedro">Abrir la receta de ejemplo</a>
         </div>
       </aside>
     </div>

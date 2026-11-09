@@ -8,7 +8,9 @@
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../prototipo/estilos.css">
   <link rel="stylesheet" href="maqueta.css">
+  <link rel="stylesheet" href="mvp/flujo.css">
   <script src="maqueta.js" defer></script>
+  <script type="module" src="mvp/app.js"></script>
 </head>
 <body class="b demo demo-module " data-page="productos">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -26,11 +28,55 @@
     </div>
   </header>
   <main class="demo-main" id="contenido">
+    <noscript><p class="inline-note">Activa JavaScript para usar el catálogo y calcular precios.</p></noscript>
     <div class="demo-heading">
-      <div><h1>Mis productos</h1><p>Revisa el costo y lo que te deja cada vela.</p></div>
-      <div class="heading-actions"><a class="action primary" href="crear-producto.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Crear producto</span></a></div>
+      <div><h1>Mis productos</h1><p data-catalog-subtitle>Tus recetas y precios guardados en este navegador.</p></div>
+      <div class="heading-actions">
+        <a class="action primary" href="crear-producto.html">Crear producto</a>
+        <a class="action secondary" href="?modo=ejemplo" data-catalog-switch>Ver catálogo de ejemplo</a>
+      </div>
     </div>
-    <section data-collection aria-labelledby="catalog-title">
+    <p class="form-error" data-load-error role="alert" hidden></p>
+    <p class="inline-note" role="status" data-catalog-status hidden></p>
+    <section data-saved-catalog aria-labelledby="saved-products">
+      <h2 id="saved-products" class="sr-only">Productos guardados</h2>
+      <div class="catalog-grid" data-product-list></div>
+      <section class="dashboard-empty card" data-catalog-empty hidden>
+        <h2>Tu catálogo empieza con una receta</h2>
+        <p>Guarda un producto después de comparar precios y lo encontrarás aquí al volver.</p>
+        <a class="action primary" href="crear-producto.html">Crear mi primer producto</a>
+      </section>
+    </section>
+    <template data-product-template>
+      <article class="card saved-product">
+        <div class="product-head">
+          <div><p data-category></p><h3 data-name></h3></div>
+          <span class="tag demo-tag neutral" data-price-status></span>
+        </div>
+        <dl class="product-values">
+          <div><dt>Costo unitario</dt><dd data-cost></dd></div>
+          <div><dt>Precio guardado</dt><dd data-price></dd></div>
+          <div><dt>Ganancia por unidad</dt><dd data-profit></dd></div>
+        </dl>
+        <div class="product-foot">
+          <a class="action secondary" data-open-product>Editar receta</a>
+          <button class="action quiet danger" type="button" data-delete-product>Eliminar</button>
+        </div>
+      </article>
+    </template>
+    <dialog class="demo-dialog" data-delete-dialog aria-labelledby="delete-title">
+      <div class="dialog-head"><div><h2 id="delete-title">Eliminar producto</h2><p data-delete-description></p></div></div>
+      <form data-delete-form>
+        <p class="form-error" data-error role="alert" hidden></p>
+        <div class="form-actions">
+          <button type="button" class="action secondary" data-close-dialog>Cancelar</button>
+          <button type="submit" class="action primary">Confirmar eliminación</button>
+        </div>
+      </form>
+    </dialog>
+    <div data-example-catalog hidden>
+      <p class="inline-note">Catálogo ficticio de Taller Bruma</p>
+      <section data-collection aria-labelledby="catalog-title">
       <h2 id="catalog-title" class="sr-only">Catálogo de Taller Bruma</h2>
       <div class="filter-bar">
         <label class="search-field"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><span class="sr-only">Buscar productos</span><input type="search" placeholder="Buscar productos" data-search></label>
@@ -50,7 +96,7 @@
               <div><dt>Precio</dt><dd>S/ 32.00</dd></div>
               <div><dt>Ganancia est.</dt><dd>S/ 7.20</dd></div>
             </dl>
-            <div class="product-foot"><span>12 en stock</span><a class="action quiet" href="calculadora.html"><span>Revisar precio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a></div>
+            <div class="product-foot"><span>12 en stock</span><a class="action quiet" href="calculadora.html?ejemplo=cedro"><span>Revisar precio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a></div>
           </div>
         </article>
   <article class="product-card card" data-item="aromaticas" data-search-text="Vela Lavanda Aromática · 180 g" aria-labelledby="producto-lavanda">
@@ -80,6 +126,7 @@
       </div>
       <p class="empty-message card" data-empty role="status" hidden>No encontramos productos. Prueba con otro nombre o cambia de categoría.</p>
     </section>
+    </div>
   </main>
   <nav class="demo-bottom" aria-label="Navegación móvil">
     <a href="inicio.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Inicio</span></a><a href="productos.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg><span>Productos</span></a><a href="ventas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg><span>Ventas</span></a>

@@ -8,7 +8,9 @@
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../prototipo/estilos.css">
   <link rel="stylesheet" href="maqueta.css">
+  <link rel="stylesheet" href="mvp/flujo.css">
   <script src="maqueta.js" defer></script>
+  <script type="module" src="mvp/app.js"></script>
 </head>
 <body class="b demo demo-module full-dashboard" data-page="inicio">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -26,7 +28,39 @@
     </div>
   </header>
   <main class="demo-main" id="contenido">
-    <div data-dashboard="ejemplo"><div class="page-heading" id="inicio"><div><h1>Hola, Lucía.</h1><p>Esto está pasando en Taller Bruma.</p></div><p class="period"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/></svg><span>1–28 oct 2026</span></p></div>
+    <noscript><p class="inline-note">Activa JavaScript para consultar tus datos guardados.</p></noscript>
+    <p class="form-error" role="alert" data-load-error hidden></p>
+    <section data-dashboard="real" hidden>
+      <div class="page-heading">
+        <div><h1 data-business-title>Mi taller</h1><p>Productos y ventas guardados en este navegador.</p></div>
+        <div class="heading-actions"><a class="action secondary" href="?modo=ejemplo">Ver Taller Bruma de ejemplo</a></div>
+      </div>
+      <div class="b-overview">
+        <section class="b-cash" aria-labelledby="real-cash-title">
+          <div>
+            <h2 id="real-cash-title">Cobros de ventas</h2>
+            <strong class="b-balance"><span class="amount" data-value="received">—</span></strong>
+            <p>Importe de las ventas marcadas como cobradas</p>
+            <a class="action light-link" href="ventas.html">Ver mis ventas →</a>
+          </div>
+          <img class="bruma-art" src="../prototipo/img/vela-cedro.svg" alt="" width="320" height="204">
+        </section>
+        <dl class="b-kpis mvp-kpis">
+          <div class="stat"><dt>Ventas registradas</dt><dd class="amount" data-value="sold">—</dd></div>
+          <div class="stat"><dt>Por cobrar</dt><dd class="amount" data-value="pending">—</dd></div>
+          <div class="stat"><dt>Ganancia bruta estimada</dt><dd class="amount" data-value="grossProfit">—</dd></div>
+        </dl>
+        <section class="b-diagnosis card" aria-labelledby="real-catalog-title">
+          <div class="b-note-label"><span>Mis productos</span></div>
+          <h2 id="real-catalog-title"><span data-value="products">0</span> en el catálogo</h2>
+          <p>Calcula cuánto cuesta producir cada unidad y guarda un precio que cubra tu costo.</p>
+          <div class="b-note-end"><a class="action primary" href="crear-producto.html">Crear producto</a><a class="action quiet" href="productos.html">Abrir catálogo</a></div>
+        </section>
+      </div>
+      <div class="inline-note real-dashboard-note" data-dashboard-empty hidden>Registra una venta de un producto guardado para ver tus primeros importes.</div>
+      <p class="inline-note real-dashboard-note">La ganancia bruta estimada resta el costo de receta de cada unidad vendida. Los cobros se muestran por separado.</p>
+    </section>
+    <div data-dashboard="ejemplo" hidden><p class="inline-note example-view">Taller Bruma es un negocio ficticio. <a class="action quiet" href="inicio.html">Ver mi negocio</a></p><div class="page-heading" id="inicio"><div><h1>Hola, Lucía.</h1><p>Esto está pasando en Taller Bruma.</p></div><p class="period"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/></svg><span>1–28 oct 2026</span></p></div>
     <div class="b-overview">
       <section class="b-cash" aria-labelledby="cash-title">
         <div><h2 id="cash-title">Dinero disponible</h2><strong class="b-balance"><span class="amount"><span class="currency">S/</span> 2,640</span></strong><p>Tu caja al 28 de octubre</p><a class="action light-link" href="mi-dinero.html">Ver mi dinero<svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a></div>
@@ -38,7 +72,7 @@
         <div class="b-note-label"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg></span> <a href="diagnostico.html">Diagnóstico de tu taller</a></div>
         <h2 id="diagnostico-title">Tu Vela Cedro puede dejarte más</h2>
         <p>Hoy te quedan <strong>S/ 7.20 por vela</strong>. Con el mismo costo, a S/ 36 te quedarían S/ 11.20.</p>
-        <div class="b-note-end"><a class="action primary" href="calculadora.html">Revisar precio<svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><span class="tag tag-warn"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.2 4.8 2.9 18A1.3 1.3 0 0 0 4 20h16a1.3 1.3 0 0 0 1.1-2L13.8 4.8a2 2 0 0 0-3.6 0Z"/><path d="M12 9v4m0 3v.1"/></svg> Margen bajo</span></div>
+        <div class="b-note-end"><a class="action primary" href="calculadora.html?ejemplo=cedro">Revisar precio<svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><span class="tag tag-warn"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.2 4.8 2.9 18A1.3 1.3 0 0 0 4 20h16a1.3 1.3 0 0 0 1.1-2L13.8 4.8a2 2 0 0 0-3.6 0Z"/><path d="M12 9v4m0 3v.1"/></svg> Margen bajo</span></div>
       </section>
     </div>
     <div class="b-lower">
@@ -65,7 +99,7 @@
         <nav class="b-quick card" aria-label="Accesos rápidos">
           <h2>Lo que haces seguido</h2>
           <a href="ventas.html"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg></span><span>Ver ventas<small>Consulta los cobros del taller</small></span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-          <a href="simulador.html"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18M7 15l4-5 4 2 5-6"/></svg></span><span>Probar otro precio<small>Compara cuánto te quedaría</small></span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+          <a href="simulador.html?ejemplo=cedro"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18M7 15l4-5 4 2 5-6"/></svg></span><span>Probar otro precio<small>Compara cuánto te quedaría</small></span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
         </nav>
     <section class="activity card" id="ventas" aria-labelledby="activity-title">
   <div class="card-head"><div><h2 id="activity-title">Actividad reciente</h2><p>Una muestra de los últimos movimientos</p></div><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
@@ -79,7 +113,7 @@
       <p>Cuando registres una venta, verás aquí lo vendido, lo cobrado y cuánto te quedó. Puedes empezar por calcular un precio.</p>
       <div class="welcome-actions">
         <a class="action primary" href="crear-producto.html"><span>Crear mi primer producto</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a>
-        <a class="action secondary" href="inicio.html"><span>Ver el ejemplo completo</span></a>
+        <a class="action secondary" href="inicio.html?modo=ejemplo"><span>Ver el ejemplo completo</span></a>
       </div>
     </section>
   </main>

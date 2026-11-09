@@ -1,0 +1,63 @@
+.form-error {
+  padding: 10px 12px;
+  margin-block: 10px;
+  border: 1px solid #ecc9bb;
+  border-radius: 9px;
+  background: #fff3ec;
+  color: #7c3026;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.demo [aria-invalid="true"] { border-color: #a23d31; }
+.demo .action:disabled { opacity: .6; cursor: default; }
+.demo .action.danger { color: #8d392e; }
+.demo .profile-name { max-width: 116px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.demo [data-example-notice], .demo [data-catalog-status], .demo [data-example-catalog] > .inline-note { margin-block: 0 14px; }
+.wizard-panel .empty-message { padding: 8px 0; font-size: 13px; }
+.editable-recipe li { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; }
+.editable-recipe .material-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 5px; }
+.editable-recipe .material-actions button { font-size: 12px; }
+.editable-recipe li b { white-space: normal; overflow-wrap: anywhere; text-align: right; }
+.demo [data-material-dialog] .recipe-total { padding-block: 6px; }
+.demo [data-material-dialog] .form-error { margin-block: 0; }
+.recipe-aside .brief-list dd, .cost-panel .brief-list dd { flex: 0 1 auto; overflow-wrap: anywhere; }
+.price-hero .amount { white-space: normal; overflow-wrap: anywhere; }
+.price-hero .price-amount { font-size: clamp(35px, 6vw, 58px); }
+.price-context .form-field { max-width: 330px; }
+.scenario-controls > .form-row, .scenario-controls > .form-field { margin-bottom: 12px; }
+.scenario-result .compare-table { table-layout: fixed; }
+.scenario-result .compare-table th, .scenario-result .compare-table td { overflow-wrap: anywhere; }
+.scenario-result .brief-list dd { flex: 0 1 auto; overflow-wrap: anywhere; }
+.price-choice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 14px 0 6px;
+  padding: 8px 10px 2px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+}
+.price-choice legend { padding-inline: 4px; font-weight: 650; font-size: 13px; }
+.price-choice label { display: flex; align-items: center; gap: 6px; min-height: 44px; cursor: pointer; }
+.price-choice input { accent-color: var(--accent); }
+.saved-product { min-width: 0; padding: 15px; }
+.saved-product [data-name] { overflow-wrap: anywhere; }
+.saved-product .product-values dd { white-space: normal; overflow-wrap: anywhere; }
+.saved-product .product-foot { justify-content: flex-start; padding-top: 7px; }
+.saved-product .product-foot .action { font-size: 12px !important; padding-inline: 8px; }
+.saved-product .product-head p { overflow-wrap: anywhere; }
+.saved-product .product-head > div { min-width: 0; }
+.real-dashboard-note { margin-top: 12px; }
+.example-view, [data-sales-status] { margin-bottom: 12px; }
+[data-dashboard="real"] h1, [data-dashboard="real"] .b-balance .amount,
+.mvp-kpis .amount, [data-sale-list] .record-name strong, [data-sale-list] .record-amount {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+[data-sale-list] [data-collect] { display: inline-flex; margin-top: 3px; padding-inline: 5px; }
+
+@media (min-width: 700px) {
+  .editable-recipe li { grid-template-columns: minmax(0, 1fr) auto auto; }
+  .editable-recipe .material-actions { grid-column: auto; }
+}

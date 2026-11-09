@@ -8,7 +8,9 @@
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../prototipo/estilos.css">
   <link rel="stylesheet" href="maqueta.css">
+  <link rel="stylesheet" href="mvp/flujo.css">
   <script src="maqueta.js" defer></script>
+  <script type="module" src="mvp/app.js"></script>
 </head>
 <body class="b demo demo-module " data-page="simulador">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -26,46 +28,70 @@
     </div>
   </header>
   <main class="demo-main" id="contenido">
-    <div class="page-trail"><a class="back-link" href="calculadora.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7m-7 7h14"/></svg><span>Calculadora</span></a></div>
+    <noscript><p class="inline-note">Activa JavaScript para usar el catálogo y calcular precios.</p></noscript>
+    <div class="page-trail"><a class="back-link" href="calculadora.html" data-calculator-link>← Calculadora</a></div>
     <div class="demo-heading">
-      <div><h1>Simulador de precios</h1><p>Compara un cambio para Vela Cedro antes de decidir.</p></div>
-      <div class="heading-actions"><span class="tag demo-tag neutral">Escenarios de ejemplo</span></div>
+      <div><h1>Simulador de precios</h1><p data-product-context>Compara dos precios para el mismo producto.</p></div>
     </div>
-    <div class="scenario-grid" data-simulator>
-      <section class="scenario-controls card">
-        <fieldset>
-          <legend>¿Qué quieres probar?</legend>
-          <div class="scenario-options">
-            <label><input type="radio" name="escenario" value="precio" checked><span><strong>Subir el precio</strong><small>S/ 36 por vela</small></span></label>
-            <label><input type="radio" name="escenario" value="cera"><span><strong>Cera más cara</strong><small>+ S/ 2 por unidad</small></span></label>
-            <label><input type="radio" name="escenario" value="cantidad"><span><strong>Vender más</strong><small>30 velas al mismo precio</small></span></label>
-            <label><input type="radio" name="escenario" value="precio-cera"><span><strong>Cambiar precio y costo</strong><small>S/ 36 y cera + S/ 2</small></span></label>
-          </div>
-        </fieldset>
-        <div class="inline-note"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8v.1"/></svg></span><div><strong>Punto de partida</strong><p>20 velas a S/ 32.00. Cada una cuesta S/ 24.80.</p></div></div>
+    <p class="form-error" data-load-error role="alert" hidden></p>
+    <section class="card dashboard-empty" data-missing hidden>
+      <h2>Abre una receta para calcular su precio</h2>
+      <p>Elige un producto del catálogo, crea uno nuevo o prueba los datos de Taller Bruma.</p>
+      <div class="form-actions">
+        <a class="action primary" href="productos.html">Mis productos</a>
+        <a class="action secondary" href="crear-producto.html">Crear producto</a>
+        <a class="action secondary" data-try-example href="?ejemplo=cedro">Probar Vela Cedro</a>
+      </div>
+    </section>
+    <form class="scenario-grid" data-comparison data-ready novalidate hidden>
+      <section class="scenario-controls card" aria-labelledby="compare-inputs">
+        <h2 id="compare-inputs">Prueba dos precios</h2>
+        <p class="panel-lede">El costo por unidad es <strong data-value="unit">—</strong>.</p>
+        <div class="form-row">
+          <label class="form-field">
+            <span>Precio A en soles</span>
+            <input name="priceA" type="text" inputmode="decimal" required maxlength="16">
+          </label>
+          <label class="form-field">
+            <span>Precio B en soles</span>
+            <input name="priceB" type="text" inputmode="decimal" required maxlength="16">
+          </label>
+        </div>
+        <label class="form-field">
+          <span>Unidades que esperas vender</span>
+          <input name="salesUnits" type="text" inputmode="numeric" required maxlength="7">
+        </label>
+        <p class="form-error" data-error role="alert" hidden></p>
+        <p class="inline-note warning" data-loss-warning role="status" hidden></p>
+        <p class="panel-lede">Cada escenario usa la misma cantidad de ventas.</p>
       </section>
       <section class="scenario-result card" aria-labelledby="scenario-title">
-        <div class="scenario-result-head"><div><h2 id="scenario-title">Ganancia estimada</h2><p>Resultado de todas las unidades del escenario</p></div><span class="tag demo-tag good" data-sim-value="delta">S/ 80 más</span></div>
-        <div class="scenario-chart" aria-hidden="true">
-          <div><span>Actual</span><div class="bar-track"><i class="bar-base" style="--level: 57.6%"></i></div><b>S/ 144</b></div>
-          <div><span>Simulado</span><div class="bar-track"><i class="bar-scenario" data-sim-bar style="--level: 89.6%"></i></div><b data-sim-value="total">S/ 224</b></div>
-          <div class="scenario-scale"><span>S/ 0</span><span>S/ 125</span><span>S/ 250</span></div>
-        </div>
+        <div class="scenario-result-head"><div><h2 id="scenario-title">Ganancia estimada</h2><p>Importes por unidad y para todas las ventas.</p></div></div>
         <table class="compare-table">
-          <caption class="sr-only">Comparación del precio registrado y el escenario de ejemplo</caption>
-          <thead><tr><th scope="col">Detalle</th><th scope="col">Actual</th><th scope="col">Simulado</th></tr></thead>
+          <caption class="sr-only">Comparación de precios</caption>
+          <thead><tr><th scope="col">Detalle</th><th scope="col">Precio A</th><th scope="col">Precio B</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Unidades</th><td>20</td><td data-sim-value="units">20</td></tr>
-            <tr><th scope="row">Precio por unidad</th><td>S/ 32.00</td><td data-sim-value="price">S/ 36.00</td></tr>
-            <tr><th scope="row">Costo por unidad</th><td>S/ 24.80</td><td data-sim-value="cost">S/ 24.80</td></tr>
-            <tr><th scope="row">Margen</th><td>22.5%</td><td data-sim-value="margin">31.1%</td></tr>
-            <tr class="compare-total"><th scope="row">Ganancia</th><td>S/ 144</td><td data-sim-value="total">S/ 224</td></tr>
+            <tr><th scope="row">Precio por unidad</th><td data-value="priceA">—</td><td data-value="priceB">—</td></tr>
+            <tr><th scope="row">Ganancia unitaria</th><td data-value="profitA">—</td><td data-value="profitB">—</td></tr>
+            <tr><th scope="row">Margen</th><td data-value="marginA">—</td><td data-value="marginB">—</td></tr>
+            <tr class="compare-total"><th scope="row">Ganancia total</th><td data-value="totalA">—</td><td data-value="totalB">—</td></tr>
           </tbody>
         </table>
-        <p class="scenario-note" data-sim-value="note">Con el costo y la cantidad actuales, vender a S/ 36 te dejaría S/ 80 más.</p>
+        <dl class="brief-list">
+          <div><dt>Diferencia por unidad (B − A)</dt><dd data-value="difference">—</dd></div>
+          <div><dt>Diferencia total (B − A)</dt><dd data-value="totalDifference">—</dd></div>
+        </dl>
+        <p class="scenario-note" data-explanation aria-live="polite">Ingresa dos precios para ver la diferencia.</p>
+        <fieldset class="price-choice">
+          <legend>Elige el precio que quieres guardar</legend>
+          <label><input type="radio" name="chosen" value="A"> Precio A</label>
+          <label><input type="radio" name="chosen" value="B"> Precio B</label>
+        </fieldset>
+        <div class="form-actions"><button type="submit" class="action primary" disabled>Guardar producto</button></div>
+        <p class="panel-lede">Tu receta y el precio elegido se guardan en este navegador. Cada dispositivo tiene su propio catálogo.</p>
+        <p class="form-error" data-save-error role="alert" hidden></p>
       </section>
-      <p class="sr-only" data-sim-announcement aria-live="polite"></p>
-    </div>
+    </form>
   </main>
   <nav class="demo-bottom" aria-label="Navegación móvil">
     <a href="inicio.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Inicio</span></a><a href="productos.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg><span>Productos</span></a><a href="ventas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg><span>Ventas</span></a>
