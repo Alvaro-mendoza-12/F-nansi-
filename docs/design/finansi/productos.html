@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Mis productos de Finansi con datos de ejemplo de Taller Bruma.">
+  <meta name="description" content="Consulta y edita tus recetas y precios guardados en Finansi.">
   <title data-i18n="title.products">Mis productos · Finansi</title>
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <script src="mvp/tema-inicial.js"></script>
@@ -21,7 +21,6 @@
       <div><h1 data-i18n="ui.myProducts">Mis productos</h1><p data-catalog-subtitle data-i18n="catalog.intro">Tus recetas y precios guardados en este navegador.</p></div>
       <div class="heading-actions">
         <a class="action primary" href="crear-producto.html" data-i18n="ui.create">Crear producto</a>
-        <a class="action secondary" href="?modo=ejemplo" data-catalog-switch data-i18n="ui.catalogExample">Ver catálogo de ejemplo</a>
       </div>
     </div>
     <p class="form-error" data-load-error role="alert" hidden></p>
@@ -63,62 +62,7 @@
         </div>
       </form>
     </dialog>
-    <div data-example-catalog hidden>
-      <p class="inline-note">Catálogo ficticio de Taller Bruma</p>
-      <section data-collection aria-labelledby="catalog-title">
-      <h2 id="catalog-title" class="sr-only">Catálogo de Taller Bruma</h2>
-      <div class="filter-bar">
-        <label class="search-field"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><span class="sr-only">Buscar productos</span><input type="search" placeholder="Buscar productos" data-search></label>
-        <div class="filter-group" role="group" aria-label="Categoría">
-          <button type="button" data-filter="todos" aria-pressed="true">Todos</button>
-          <button type="button" data-filter="aromaticas" aria-pressed="false">Aromáticas</button>
-          <button type="button" data-filter="citricas" aria-pressed="false">Cítricas</button>
-        </div>
-      </div>
-      <div class="catalog-grid">
-        <article class="product-card card" data-item="aromaticas" data-search-text="Vela Cedro Aromática · 180 g" aria-labelledby="producto-cedro">
-          <figure class="product-photo"><img src="img/cedro.png" width="1448" height="1086" alt=""></figure>
-          <div class="product-copy">
-            <div class="product-head"><div><p>Aromática · 180 g</p><h3 id="producto-cedro">Vela Cedro</h3></div><span class="tag demo-tag warning"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.2 4.8 2.9 18A1.3 1.3 0 0 0 4 20h16a1.3 1.3 0 0 0 1.1-2L13.8 4.8a2 2 0 0 0-3.6 0Z"/><path d="M12 9v4m0 3v.1"/></svg> Margen bajo</span></div>
-            <dl class="product-values">
-              <div><dt>Costo</dt><dd>S/ 24.80</dd></div>
-              <div><dt>Precio</dt><dd>S/ 32.00</dd></div>
-              <div><dt>Ganancia est.</dt><dd>S/ 7.20</dd></div>
-            </dl>
-            <div class="product-foot"><span>12 en stock</span><a class="action quiet" href="calculadora.html?ejemplo=cedro"><span>Revisar precio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a></div>
-          </div>
-        </article>
-  <article class="product-card card" data-item="aromaticas" data-search-text="Vela Lavanda Aromática · 180 g" aria-labelledby="producto-lavanda">
-          <figure class="product-photo"><img src="img/lavanda.png" width="1448" height="1086" alt=""></figure>
-          <div class="product-copy">
-            <div class="product-head"><div><p>Aromática · 180 g</p><h3 id="producto-lavanda">Vela Lavanda</h3></div><span class="tag demo-tag good"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Cumple la meta</span></div>
-            <dl class="product-values">
-              <div><dt>Costo</dt><dd>S/ 21.90</dd></div>
-              <div><dt>Precio</dt><dd>S/ 34.00</dd></div>
-              <div><dt>Ganancia est.</dt><dd>S/ 12.10</dd></div>
-            </dl>
-            <details class="product-detail"><summary><span>9 en stock</span><span>Ver margen <svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></summary><p>Margen estimado de <strong>35.6%</strong> al precio registrado. Meta del taller: 30%.</p></details>
-          </div>
-        </article>
-  <article class="product-card card" data-item="citricas" data-search-text="Vela Naranja Cítrica · 140 g" aria-labelledby="producto-naranja">
-          <figure class="product-photo"><img src="img/naranja.png" width="1448" height="1086" alt=""></figure>
-          <div class="product-copy">
-            <div class="product-head"><div><p>Cítrica · 140 g</p><h3 id="producto-naranja">Vela Naranja</h3></div><span class="tag demo-tag good"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Cumple la meta</span></div>
-            <dl class="product-values">
-              <div><dt>Costo</dt><dd>S/ 18.60</dd></div>
-              <div><dt>Precio</dt><dd>S/ 28.00</dd></div>
-              <div><dt>Ganancia est.</dt><dd>S/ 9.40</dd></div>
-            </dl>
-            <details class="product-detail"><summary><span>15 en stock</span><span>Ver margen <svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></summary><p>Margen estimado de <strong>33.6%</strong> al precio registrado. Meta del taller: 30%.</p></details>
-          </div>
-        </article>
-      </div>
-      <p class="empty-message card" data-empty role="status" hidden>No encontramos productos. Prueba con otro nombre o cambia de categoría.</p>
-    </section>
-    </div>
   </main>
   <nav data-shared-bottom></nav>
-  <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
-
 </body>
 </html>

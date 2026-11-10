@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Crear producto de Finansi con datos de ejemplo de Taller Bruma.">
+  <meta name="description" content="Registra los materiales, la mano de obra y los gastos de tus productos en Finansi.">
   <title data-i18n="title.recipe">Receta del producto · Finansi</title>
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <script src="mvp/tema-inicial.js"></script>
@@ -23,7 +23,7 @@
       <div class="heading-actions"><a class="action secondary" href="crear-producto.html?ejemplo=cedro" data-example-link data-i18n="ui.exampleLink">Usar receta de ejemplo</a></div>
     </div>
     <p class="form-error" data-load-error role="alert" hidden></p>
-    <p class="inline-note" data-example-notice hidden data-i18n="ui.exampleNotice">Estás editando una copia de la receta de Taller Bruma en PEN.</p>
+    <p class="inline-note" data-example-notice hidden data-i18n="ui.exampleNotice">Esta receta de ejemplo usa PEN. Solo se añade a tus productos cuando eliges Guardar producto.</p>
     <div class="wizard-grid" data-ready hidden>
       <div>
         <ol class="wizard-steps" aria-label="Pasos de la receta" data-i18n-aria-label="ui.recipeSteps">
@@ -166,6 +166,5 @@
     </dialog>
   </main>
   <nav data-shared-bottom></nav>
-  <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
 </body>
 </html>

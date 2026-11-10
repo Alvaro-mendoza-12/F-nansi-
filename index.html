@@ -3,15 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Demo de Finansi para pequeños productores.">
-  <meta http-equiv="refresh" content="0; url=./docs/design/finansi/index.html">
-  <title>Finansi · Demo</title>
-  <link rel="icon" href="./docs/design/prototipo/img/marca.svg" type="image/svg+xml">
+  <meta name="description" data-i18n-content="welcome.description" content="Calcula cuánto cuesta fabricar tus productos, compara precios de venta y descubre cuánto puedes ganar.">
+  <title data-i18n="welcome.title">Finansi · Costos y precios para tu negocio</title>
+  <link rel="icon" href="docs/design/prototipo/img/marca.svg" type="image/svg+xml">
+  <script src="docs/design/finansi/mvp/tema-inicial.js"></script>
+  <link rel="stylesheet" href="docs/design/prototipo/estilos.css">
+  <link rel="stylesheet" href="docs/design/finansi/maqueta.css">
+  <script type="module" src="docs/design/finansi/mvp/app.js"></script>
 </head>
-<body>
-  <main>
-    <h1>Finansi</h1>
-    <p><a href="./docs/design/finansi/index.html">Abrir la demo de Finansi</a></p>
+<body class="b demo demo-entry welcome" data-page="index">
+  <a class="skip-link" href="#contenido" data-i18n="ui.skip">Saltar al contenido</a>
+  <header class="demo-header entry-header">
+    <div class="demo-header-inner">
+      <a class="brand" href="./"><img src="docs/design/prototipo/img/marca.svg" width="36" height="36" alt=""><span>Finansi</span></a>
+      <a class="action quiet" href="docs/design/finansi/inicio.html" data-i18n="welcome.openHome">Ir a Inicio</a>
+    </div>
+  </header>
+  <main class="demo-main" id="contenido" tabindex="-1">
+    <section class="welcome-grid" aria-labelledby="welcome-title">
+      <div class="welcome-copy">
+        <span class="welcome-label" data-i18n="welcome.greeting">Bienvenido a Finansi</span>
+        <h1 id="welcome-title" data-i18n="welcome.headline">Ponle precio a lo que haces.</h1>
+        <p data-i18n="welcome.description">Calcula cuánto cuesta fabricar tus productos, compara precios de venta y descubre cuánto puedes ganar.</p>
+        <div class="welcome-actions">
+          <a class="action primary" href="docs/design/finansi/onboarding.html"><span data-i18n="ui.firstPrice">Calcular mi primer precio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a>
+          <a class="action secondary" href="docs/design/finansi/crear-producto.html?ejemplo=cedro" data-i18n="ui.trySample">Probar con una receta de ejemplo</a>
+        </div>
+      </div>
+      <figure class="welcome-photo">
+        <img src="docs/design/finansi/img/cedro.webp" width="1448" height="1086" alt="" decoding="async">
+        <figcaption><span data-i18n="welcome.caption">Vela de cedro · Receta editable de ejemplo</span></figcaption>
+      </figure>
+    </section>
+    <section class="welcome-values" aria-label="Qué puedes hacer" data-i18n-aria-label="welcome.features">
+      <div class="inline-note"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8m-8 4h8m-8 4h5"/></svg></span><div><strong data-i18n="welcome.cost">Calcula tu costo</strong><p data-i18n="welcome.costDetail">Incluye materiales, trabajo y gastos del lote.</p></div></div>
+      <div class="inline-note"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 12.5 12.5 20.6a2 2 0 0 1-2.8 0L3 14V3h11l6.6 6.7a2 2 0 0 1 0 2.8Z"/><circle cx="8" cy="8" r="1"/></svg></span><div><strong data-i18n="nav.compare">Compara precios</strong><p data-i18n="welcome.compareDetail">Revisa cuánto te deja cada precio antes de elegir.</p></div></div>
+      <div class="inline-note"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z M8 9V7a4 4 0 1 1 8 0v2"/></svg></span><div><strong data-i18n="welcome.sales">Registra tus ventas</strong><p data-i18n="welcome.salesDetail">Consulta qué cobraste y qué está pendiente.</p></div></div>
+    </section>
   </main>
 </body>
 </html>

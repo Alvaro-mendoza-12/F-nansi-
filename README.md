@@ -1,63 +1,43 @@
 # Finansi
 
-Finansi ayuda a quienes fabrican en lotes pequeños a calcular lo que cuesta producir cada unidad, probar precios de venta y guardar el precio que elijan. La aplicación conserva el concepto visual **B · Emprendedor Moderno**.
+Finansi ayuda a pequeños productores a calcular cuánto les cuesta fabricar un lote, comparar precios y elegir cuánto cobrar. Puedes guardar recetas, registrar ventas y consultar los cobros pendientes desde el mismo navegador. El diseño usa el concepto **B · Emprendedor Moderno**.
 
-[Probar Finansi en GitHub Pages](https://alvaro-mendoza-12.github.io/F-nansi-/) · [Video narrado en inglés](https://alvaro-mendoza-12.github.io/F-nansi-/docs/icehacks/finansi-demo.mp4?v=3) · [Entrega para IceHacks](docs/icehacks/entrega.md)
+[Aplicación pública](https://alvaro-mendoza-12.github.io/F-nansi-/) · [Repositorio](https://github.com/Alvaro-mendoza-12/F-nansi-) · [Video aprobado de 2:18](https://alvaro-mendoza-12.github.io/F-nansi-/docs/icehacks/finansi-demo.mp4?v=3) · [Entrega para IceHacks](docs/icehacks/entrega.md)
 
-## Prueba de tres minutos
+## Primer recorrido
 
-1. Abre la demo y elige **Calcular mi primer precio**. Ponle nombre al negocio y crea un producto de 2 unidades por lote.
-2. Añade dos materiales con costos consumidos de S/ 12 y S/ 8. Puedes usar una unidad comprada y consumida por material. En **Trabajo**, registra 60 minutos a S/ 15 la hora y S/ 5 de empaques.
-3. Abre **Ver costo y precio**. El lote cuesta S/ 40 y cada unidad cuesta S/ 20. Prueba un margen de 20 % para obtener S/ 25, un recargo de 20 % para obtener S/ 24 o evalúa un precio manual de S/ 30.
-4. Compara S/ 25 y S/ 30 con 3 ventas. Quedan S/ 5 o S/ 10 por unidad. Elige **Precio B** y pulsa **Guardar producto**.
-5. Recarga **Productos** y abre la receta guardada. Puedes editarla o eliminarla con confirmación. Desde **Ventas** puedes registrar una venta y reflejar el cobro en **Inicio**.
+1. Elige **Calcular mi primer precio**, ponle nombre a tu negocio y crea un producto de dos unidades por lote.
+2. Añade materiales por S/ 12 y S/ 8. Registra 60 minutos a S/ 15 por hora y S/ 5 de empaque. El lote cuesta S/ 40 y cada unidad S/ 20.
+3. Prueba un margen del 20 % para obtener S/ 25, un recargo del 20 % para obtener S/ 24 o un precio manual de S/ 30 para ver una ganancia de S/ 10 por unidad.
+4. Compara dos precios, elige uno y guarda el producto. Recarga **Productos** para recuperarlo y registra una venta desde **Ventas**.
 
-Para empezar con datos ya cargados, elige **Abrir la receta de ejemplo** en la pantalla de configuración. Las vistas ficticias de Taller Bruma están separadas de tus registros. La copia editable solo se añade a tu catálogo si confirmas un precio y la guardas.
+**Probar con una receta de ejemplo** abre una vela editable en PEN con el mismo motor de cálculo. La receta solo entra en tu catálogo cuando eliges un precio y la guardas.
 
-## Alcance
+## Funciones y límites
 
-- Las recetas incluyen cantidades compradas y consumidas, unidades compatibles, mano de obra, empaques y otros gastos del lote.
-- JavaScript calcula los costos, márgenes, recargos y ganancias con fracciones exactas de céntimo. Redondea los importes al mostrarlos y los precios derivados por margen o recargo hacia arriba al céntimo.
-- IndexedDB guarda negocio, catálogo y ventas en transacciones del navegador. Cada venta conserva el costo por unidad de su receta al registrarla. Inicio distingue ventas registradas, cobros, pendientes y ganancia bruta estimada.
-- Los datos pertenecen al perfil y al sitio donde se guardaron. En **Configuración** puedes elegir idioma, país y moneda, apariencia y método de cálculo. Desde allí puedes descargar y restaurar copias JSON del negocio, el catálogo y las ventas. La moneda queda fija mientras haya productos o ventas guardados.
-- Inventario, Mi dinero, Diagnóstico y el Asistente Finansi muestran ejemplos de Taller Bruma. La conversación del asistente tiene respuestas preparadas. OpenRouter queda para una fase posterior.
+- **Inicio** muestra ventas registradas, cobros, pendientes y ganancia bruta estimada a partir de tus registros. **Productos** permite crear, editar y eliminar recetas con confirmación.
+- **Calcular precio** incluye materiales, cantidades compradas y usadas, mano de obra, empaque, otros gastos y unidades producidas. **Comparar precios** evalúa dos precios, una cantidad de ventas y advierte cuando el precio queda por debajo del costo.
+- **Ventas** registra cobros recibidos y pendientes. Cada venta conserva el costo unitario del momento en que la registraste, incluso si luego editas o eliminas la receta.
+- **Configuración** permite elegir ES/EN, tema claro u oscuro, método preferido y país/moneda. Se admiten Perú (PEN), Estados Unidos (USD), México (MXN), Colombia (COP) y España (EUR). El negocio conserva su moneda mientras tenga productos o ventas. Restaurar una copia de otra moneda reemplaza los datos tras confirmación y conserva los importes de la copia.
+- **Datos locales.** Tu información se guarda en este navegador. Exporta una copia JSON para trasladarla o protegerla. La ganancia estimada usa los costos registrados. El alcance cubre precios y ventas, con almacenamiento por navegador y una moneda por negocio.
 
-Codex ayudó a implementar y probar el MVP. Las imágenes ilustrativas se generaron con OpenAI y la voz en inglés del video se sintetizó localmente con Kokoro. El motor de costos y las explicaciones del comparador usan reglas deterministas. [Guion en español](docs/icehacks/guion-es.md) · [Subtítulos en inglés](docs/icehacks/finansi-en.srt) · [Materiales de edición](docs/icehacks/produccion-video.md).
+## Arquitectura y herramientas
+
+HTML, CSS y módulos JavaScript se sirven en GitHub Pages sin compilación. [El motor de precios](docs/design/finansi/mvp/precios.js) conserva costos como fracciones exactas de céntimo. [La capa de almacenamiento](docs/design/finansi/mvp/almacen.js) usa transacciones de IndexedDB. [El módulo de respaldos](docs/design/finansi/mvp/respaldo.js) valida las copias antes de restaurarlas. `Intl.NumberFormat` da formato a los importes y `localStorage` guarda las preferencias de la interfaz.
+
+ChatGPT ayudó a organizar requisitos. OpenAI Codex asistió en la implementación, pruebas y documentación. Las ilustraciones se generaron con OpenAI y la narración inglesa con Kokoro de forma local. FFmpeg se usó para producir el video. El cálculo financiero se ejecuta mediante reglas deterministas en el navegador. [Créditos y materiales del video](docs/icehacks/produccion-video.md)
 
 ## Desarrollo y pruebas
 
-Necesitas Node.js 20 o superior y npm. El sitio usa HTML, CSS y JavaScript sin paso de compilación.
-
-```sh
-npm ci
-npm run dev
-```
-
-Abre [la demo local](http://127.0.0.1:4173/). Para las pruebas en navegador, usa Google Chrome instalado, configura `FINANSI_CHROME` con la ruta a otro ejecutable Chromium o instala Chromium con `npx playwright-core install chromium`.
+Con Node.js 20 o superior, ejecuta `npm ci` y `npm run dev`. Abre [Finansi local](http://127.0.0.1:4173/). Las pruebas de navegador usan Chrome o Chromium. Puedes indicar su ruta con `FINANSI_CHROME`. Usa `FINANSI_AXE` para pasar la ruta de `axe.min.js` y `FINANSI_EVIDENCE` para guardar capturas e informes.
 
 ```sh
 npm test
 npm run test:e2e
 npm run test:navigation
 npm run test:display
-npm run test:e2e -- https://alvaro-mendoza-12.github.io/F-nansi-/
-npm run test:navigation -- https://alvaro-mendoza-12.github.io/F-nansi-/
 ```
 
-Las pruebas de navegador usan perfiles temporales. En PowerShell puedes usar `npm.cmd` y `npx.cmd`.
+Los tres comandos de navegador aceptan `-- https://alvaro-mendoza-12.github.io/F-nansi-/` para repetir el recorrido público en perfiles aislados. En PowerShell se puede usar `npm.cmd`. [Auditoría final](docs/design/09-auditoria-final.md)
 
-El recorrido de navegación comprueba también el flujo completo en inglés, el teclado, la continuidad del borrador desde el menú y la exportación/restauración sin sustituir precios ni métodos históricos. Para auditar accesibilidad, configura `FINANSI_AXE` con una copia local de `axe.min.js`; sin esa variable, axe se omite. `FINANSI_EVIDENCE` guarda capturas y resultados JSON. [Evidencia y límites de la revisión de Fase 4](docs/design/evidencia/fase4/README.md).
-
-La cabecera permite cambiar ES/EN y elegir tema con el sol o la luna. La traducción incluye las 14 pantallas, sus demostraciones, diálogos y capturas de galería. El modo inicial tiene fondo blanco; el oscuro usa fondos neutros y acentos verdes. Idioma y tema se conservan al navegar y recargar. `npm run test:display` verifica ambos idiomas y temas en 160 estados a 390 y 1440 px, además de la cabecera a 320 px. [Revisión de idioma y temas](docs/design/07-idioma-y-temas.md).
-
-## Investigación y diseño
-
-- [Mercado peruano y siete plataformas comparadas](docs/research/01-mercado-y-competencia.md).
-- [Referencias de UX, interfaz y accesibilidad](docs/research/02-ux-ui.md).
-- [Diferenciación y alcance del MVP](docs/research/03-diferenciacion-y-mvp.md).
-- [Arquitectura y flujos](docs/design/01-arquitectura-y-flujos.md).
-- [Navegación, métodos de cálculo y verificación de Fase 4](docs/design/06-fase-4-navegacion-y-precios.md).
-- [Sistema visual](docs/design/03-sistema-de-diseno.md) y [caso de Taller Bruma](docs/design/04-caso-demo.md).
-- [Prototipo aprobado de Fase 1](https://github.com/Alvaro-mendoza-12/F-nansi-/tree/d821aee/docs/design/finansi) y [sus 24 capturas](docs/design/05-prototipo-b.md).
-
-Las fuentes Inter, Manrope y Fraunces se distribuyen con sus [licencias](docs/design/prototipo/fonts/).
+Las [capturas históricas](docs/design/05-prototipo-b.md), el [prototipo original](https://github.com/Alvaro-mendoza-12/F-nansi-/tree/d821aee/docs/design/finansi) y la [investigación](docs/research/01-mercado-y-competencia.md) documentan el proceso de diseño. Las fuentes Inter, Manrope y Fraunces incluyen sus [licencias](docs/design/prototipo/fonts/).

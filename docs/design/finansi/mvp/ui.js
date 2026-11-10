@@ -108,16 +108,16 @@ function newDraft(example, workspace) {
     recipe: { yieldUnits: '', materials: [], minutes: '0', hourlyRate: '0', packaging: '0', other: '0' }
   };
   if (example) {
-    draft.name = 'Vela Cedro';
-    draft.category = 'Velas';
+    draft.name = t('recipe.sampleName');
+    draft.category = t('recipe.sampleCategory');
     draft.pricing.value = '30';
     draft.price = '32.00';
     draft.recipe = {
       yieldUnits: '10', minutes: '300', hourlyRate: '16.00', packaging: '36.00', other: '12.00',
       materials: [
-        { name: 'Cera de soya', used: '1.5', usedUnit: 'kg', bought: '1.5', boughtUnit: 'kg', purchaseCost: '64.00' },
-        { name: 'Fragancia de cedro', used: '100', usedUnit: 'ml', bought: '100', boughtUnit: 'ml', purchaseCost: '28.00' },
-        { name: 'Frasco y mecha', used: '10', usedUnit: 'unidad', bought: '10', boughtUnit: 'unidad', purchaseCost: '28.00' }
+        { name: t('recipe.sampleWax'), used: '1.5', usedUnit: 'kg', bought: '1.5', boughtUnit: 'kg', purchaseCost: '64.00' },
+        { name: t('recipe.sampleScent'), used: '100', usedUnit: 'ml', bought: '100', boughtUnit: 'ml', purchaseCost: '28.00' },
+        { name: t('recipe.sampleJar'), used: '10', usedUnit: 'unidad', bought: '10', boughtUnit: 'unidad', purchaseCost: '28.00' }
       ]
     };
   }

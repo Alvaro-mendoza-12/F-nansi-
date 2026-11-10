@@ -161,6 +161,17 @@ async function exercise(browser, width) {
     await card.waitFor();
     assert.equal(await card.locator('[data-price]').innerText(), 'PEN 30.00');
 
+    await destination(page, 'ventas', compact);
+    await button(page, 'Dark mode').click();
+    await activate(page, button(page, 'Record sale'));
+    const sale = page.getByRole('dialog', { name: 'Record sale' });
+    await sale.getByLabel('Units sold').fill('2');
+    await sale.getByLabel('Payment status').selectOption('pending');
+    await audit(page, width + ' px · EN · Dark sale form');
+    await activate(page, button(sale, 'Save sale'));
+    await page.getByText('Sale recorded as pending payment.', { exact: true }).waitFor();
+    assert.equal(await value(page, 'pending'), 'PEN 60.00');
+
     await page.goto(new URL('configuracion.html', app).href);
     await page.locator('[data-settings]').waitFor();
     assert.ok(await countrySelect.isDisabled(), 'La moneda queda fija después de guardar un producto');
@@ -172,12 +183,16 @@ async function exercise(browser, width) {
     const backup = JSON.parse(backupText);
     assert.deepEqual(backup.products[0].pricing, { method: 'manual', value: '30' });
     assert.equal(backup.products[0].price, '30.00');
+    assert.deepEqual(backup.sales[0].unitCost, { numerator: '2000', denominator: '1' });
     await page.getByLabel('Preferred pricing method').selectOption('markup');
     await page.reload();
     assert.equal(await page.getByLabel('Preferred pricing method').inputValue(), 'markup');
 
     // Restaurar conserva los valores del producto y no sustituye preferencias del dispositivo.
     const restore = page.getByRole('dialog', { name: 'Replace saved data' });
+    await page.locator('[data-import-file]').setInputFiles({ name: 'invalid.json', mimeType: 'application/json', buffer: Buffer.from('{}') });
+    await page.locator('[data-backup-error]').waitFor();
+    assert.equal(await restore.isVisible(), false);
     if (otherCurrencyBackup) {
       await page.locator('[data-import-file]').setInputFiles({ name: 'finansi-us.json', mimeType: 'application/json', buffer: otherCurrencyBackup });
       await restore.getByText(/The backup uses USD and your current business uses PEN/).waitFor();
@@ -194,6 +209,9 @@ async function exercise(browser, width) {
     await activate(page, button(restore, 'Replace data'));
     await page.getByText('Data restored. The business currency is PEN.').waitFor();
     assert.equal(await page.getByLabel('Preferred pricing method').inputValue(), 'markup');
+    await destination(page, 'ventas', compact);
+    await page.locator('[data-sale-list] tr').waitFor();
+    assert.equal(await value(page, 'pending'), 'PEN 60.00');
     await destination(page, 'productos', compact);
     await card.waitFor();
     assert.equal(await card.locator('[data-price]').innerText(), 'PEN 30.00');
@@ -223,7 +241,8 @@ async function exercise(browser, width) {
     results.push({ width, language: 'en', passed: true, errors, checks: [
       'keyboard navigation and visible focus', 'recipe validation from primary navigation',
       'draft continuity through calculator and comparison', 'manual price, margin and markup',
-      'preferred method after reload', 'JSON export and confirmed restore', 'historical method and price',
+      'preferred method after reload', 'JSON export, validation and confirmed restore', 'historical method and price',
+      'record and restore a pending sale with its historical unit cost in English dark mode',
       'open a saved product from both pricing tools', 'keep the manually entered alternative price',
       ...(width === 390 ? ['PEN, USD, MXN, COP and EUR formatting in settings', 'cross-currency backup warning and cancellation'] : [])
     ] });

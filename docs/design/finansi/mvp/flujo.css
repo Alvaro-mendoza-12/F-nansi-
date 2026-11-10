@@ -11,7 +11,12 @@
 
 .demo [aria-invalid="true"] { border-color: #a23d31; }
 .demo .action:disabled { opacity: .6; cursor: default; }
-.demo .action.danger { color: light-dark(#8d392e, #ffc5b8); }
+.demo .action.danger {
+  color: light-dark(#8d392e, #ffc5b8);
+  background: light-dark(#fff2ee, #492e29);
+  border-color: light-dark(#a95343, #cd8b7f);
+}
+.demo .action.danger:hover { background: light-dark(#ffe4da, #59382f); }
 .demo [data-example-notice], .demo [data-catalog-status], .demo [data-example-catalog] > .inline-note { margin-block: 0 14px; }
 .wizard-panel .empty-message { padding: 8px 0; font-size: 13px; }
 .editable-recipe li { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; }

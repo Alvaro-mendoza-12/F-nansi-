@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" data-i18n-content="ui.settingsIntro" content="Gestiona la moneda del negocio y guarda una copia de tus datos.">
   <title data-i18n="title.settings">Configuración · Finansi</title>
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <script src="mvp/tema-inicial.js"></script>
@@ -65,7 +66,7 @@
       </section>
       <section class="card settings-card" aria-labelledby="settings-backup">
         <h2 id="settings-backup" data-i18n="ui.backups">Copias de seguridad</h2>
-        <p data-i18n="ui.backupIntro">Tus registros se guardan en este navegador. Si borras los datos del sitio o cambias de dispositivo, necesitarás una copia para recuperarlos.</p>
+        <p data-i18n="ui.backupIntro">Tu información se guarda en este navegador. Exporta una copia para trasladarla o protegerla.</p>
         <div class="form-actions">
           <button type="button" class="action primary" data-export data-i18n="ui.download">Descargar copia JSON</button>
           <button type="button" class="action secondary" data-import data-i18n="ui.restore">Restaurar desde JSON</button>
@@ -89,6 +90,5 @@
     </dialog>
   </main>
   <nav data-shared-bottom></nav>
-  <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
 </body>
 </html>

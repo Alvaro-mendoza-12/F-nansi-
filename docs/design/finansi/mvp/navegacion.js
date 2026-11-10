@@ -8,14 +8,7 @@ const groups = {
     ['ventas', 'sales', 'M4 7h16l1 14H3z M8 9V7a4 4 0 1 1 8 0v2']
   ],
   tools: [['simulador', 'compare', 'M5 4v16h15 M9 16v-4m4 4V8m4 8V5']],
-  business: [
-    ['inventario', 'inventory', 'm12 3 9 5-9 5-9-5z M3 12l9 5 9-5 M3 16l9 5 9-5', true],
-    ['mi-dinero', 'money', 'M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5', true],
-    ['diagnostico', 'diagnosis', 'M3 12h4l3-7 4 14 3-7h4', true],
-    ['asistente', 'assistant', 'M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6', true]
-  ],
-  settings: [['configuracion', 'settings', 'M4 6h16M4 12h16M4 18h16M8 3v6m8 0v6m-6 0v6']],
-  examples: [['pantallas', 'screens', 'M4 4h6v6H4z M14 4h6v6h-6z M4 14h6v6H4z M14 14h6v6h-6z']]
+  settings: [['configuracion', 'settings', 'M4 6h16M4 12h16M4 18h16M8 3v6m8 0v6m-6 0v6']]
 };
 
 function icon(path) {
@@ -31,10 +24,10 @@ export function mountNavigation() {
   const current = page === 'crear-producto' ? 'productos' : page;
   const secondary = Object.entries(groups).filter(([name]) => name !== 'principal');
   const label = (key) => '<span data-i18n="nav.' + key + '">' + t('nav.' + key) + '</span>';
-  const links = (items) => items.map(([route, key, path, demo]) => {
+  const links = (items) => items.map(([route, key, path]) => {
     const selected = route === current ? ' aria-current="' + (route === page ? 'page' : 'location') + '"' : '';
     return '<a href="' + route + '.html" data-destination="' + route + '"' + selected + '>' +
-      icon(path) + label(key) + (demo ? '<small data-i18n="nav.demo">Demo</small>' : '') + '</a>';
+      icon(path) + label(key) + '</a>';
   });
   const sections = (entries) => entries.map(([name, items]) =>
     '<div class="app-nav-group"><p>' + label(name) + '</p><ul>' +

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Calculadora de precio de Finansi con datos de ejemplo de Taller Bruma.">
+  <meta name="description" content="Calcula el costo de tu receta y evalúa su precio de venta con Finansi.">
   <title data-i18n="title.calculator">Calculadora de precio · Finansi</title>
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <script src="mvp/tema-inicial.js"></script>
@@ -19,7 +19,7 @@
     <noscript><p class="inline-note" data-i18n="ui.noScript">Activa JavaScript para usar el catálogo y calcular precios.</p></noscript>
     <div class="page-trail"><a class="back-link" href="productos.html" data-pricing-back data-i18n="ui.backProducts">← Mis productos</a></div>
     <div class="demo-heading">
-      <div><h1 data-i18n="ui.calcTitle">Calculadora de precio</h1><p data-product-context>De tu receta a un precio de venta.</p></div>
+      <div><h1 data-i18n="ui.calcTitle">Calculadora de precio</h1><p data-product-context data-i18n="ui.calcIntro">De tu receta a un precio de venta.</p></div>
     </div>
     <p class="form-error" data-load-error role="alert" hidden></p>
     <section class="card dashboard-empty" data-missing hidden>
@@ -32,7 +32,7 @@
       <div class="form-actions">
         <a class="action primary" href="productos.html" data-catalog-fallback data-i18n="ui.myProducts">Mis productos</a>
         <a class="action secondary" href="crear-producto.html" data-i18n="ui.create">Crear producto</a>
-        <a class="action secondary" data-try-example href="?ejemplo=cedro" data-i18n="ui.trySample">Probar Vela Cedro</a>
+        <a class="action secondary" href="crear-producto.html?ejemplo=cedro" data-i18n="ui.trySample">Probar con una receta de ejemplo</a>
       </div>
     </section>
     <div class="calculator-grid" data-pricing data-ready hidden>
@@ -109,7 +109,6 @@
     </div>
   </main>
   <nav data-shared-bottom></nav>
-  <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
 
 </body>
 </html>

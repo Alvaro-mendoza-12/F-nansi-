@@ -1,12 +1,14 @@
 # Revisión de idioma y temas
 
+Esta revisión documenta la versión de Fase 4. La [auditoría final](09-auditoria-final.md) describe las pantallas publicadas actualmente. El [generador de capturas de galería](https://github.com/Alvaro-mendoza-12/F-nansi-/blob/3a81fd4/scripts/capturar-galeria.mjs) pertenece a la revisión histórica.
+
 La revisión del 10 de noviembre de 2026 corrige dos problemas que quedaban visibles en la portada: EN cambiaba solo parte de la interfaz y el título conservaba un verde oscuro sobre el fondo oscuro.
 
 ## Cambios
 
 - Se añadieron 334 traducciones editoriales para completar las 14 pantallas de Finansi: bienvenida, configuración inicial, inicio, productos, receta, calculadora, comparador, ventas, inventario, dinero, diagnóstico, asistente, ajustes y galería. Incluyen textos de ejemplo, respuestas preparadas del asistente, títulos, ayudas, diálogos, etiquetas y atributos accesibles.
 - Los textos de las pantallas heredadas se registran una sola vez desde el HTML inicial. Se traducen sus nodos de texto sin reemplazar iconos, enlaces ni énfasis. Los datos que el usuario añade después no se traducen. Los valores internos de las opciones se conservan al cambiar su etiqueta para evitar alterar categorías de negocio guardadas.
-- La galería dispone de 24 capturas nuevas en inglés, en móvil y escritorio. Sus imágenes y enlaces PNG cambian con el idioma; las capturas originales en español se conservan. `node scripts/capturar-galeria.mjs` permite regenerar las versiones inglesas con datos ficticios.
+- La galería de esa versión disponía de 24 capturas nuevas en inglés, en móvil y escritorio. Las capturas en ambos idiomas se conservan como evidencia histórica.
 - ES/EN y los botones de sol y luna se agrupan en la cabecera. Cada botón indica su estado y tiene nombre accesible y ayuda al pasar el puntero. En móvil la acción de explorar pantallas ocupa una segunda fila para mantener los controles cómodos y legibles.
 - El valor inicial del tema es claro, con fondo blanco incluso si el dispositivo prefiere oscuro. El tema oscuro usa fondos neutros, texto claro y acentos verdes del concepto B. Las preferencias explícitas existentes, incluido seguir al dispositivo desde Configuración, se respetan. La cabecera y Configuración comparten la misma preferencia persistente.
 - El tema se aplica antes de cargar los estilos. Se corrigieron el color del título de bienvenida, los avisos de cobros pendientes, los encabezados de tabla, el asistente y la galería para que utilicen los colores del tema.

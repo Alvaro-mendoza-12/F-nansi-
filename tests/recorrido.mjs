@@ -63,17 +63,39 @@ async function exercise(browser, viewport) {
   page.setDefaultTimeout(publicUrl ? 30000 : 12000);
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
-  page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+  page.on('console', (message) => { if (message.type() === 'error') errors.push(`${message.location().url} ${message.text()}`); });
   page.on('response', (response) => {
     if (response.url().startsWith(home.href) && response.status() >= 400) {
       errors.push(response.status() + ' ' + response.url());
     }
   });
   try {
+    if (viewport.width === 390) {
+      await open(page, home.href);
+      await link(page, 'Probar con una receta de ejemplo').click();
+      await page.locator('[data-example-notice]').waitFor();
+      await page.getByLabel('Nombre del producto').fill('Receta de práctica');
+      await button(page, 'Continuar a materiales').click();
+      await button(page, 'Continuar a trabajo').click();
+      await page.getByLabel('Empaques del lote en soles').fill('38');
+      await button(page, 'Ver costo y precio').click();
+      await page.locator('[data-pricing]').waitFor();
+      assert.equal(await value(page, 'unit'), 'S/ 25.00');
+      await open(page, route('productos.html'));
+      await page.locator('[data-catalog-empty]').waitFor();
+      assert.equal(await page.locator('[data-product-id]').count(), 0);
+      await open(page, route('ventas.html'));
+      await page.locator('[data-create-for-sale]').waitFor();
+      assert.equal(await value(page, 'sold'), 'S/ 0.00');
+      assert.equal(await button(page, 'Registrar venta').isVisible(), false);
+      await page.locator('[data-create-for-sale]').click();
+      await page.getByLabel('Nombre del producto').waitFor();
+      assert.equal(await page.getByLabel('Nombre del producto').inputValue(), '');
+    }
     const started = performance.now();
     await open(page, home.href);
-    await page.waitForURL(route('index.html'), { waitUntil: 'domcontentloaded' });
     await button(page, 'Modo claro').waitFor();
+    assert.equal(page.url(), home.href, 'La portada debe permanecer en la raíz');
     await link(page, 'Calcular mi primer precio').click();
     await page.getByLabel('Nombre del negocio').fill('Taller de prueba');
     await button(page, 'Ir a mi primer producto').click();
@@ -251,10 +273,9 @@ async function exercise(browser, viewport) {
     await button(page.getByRole('dialog', { name: 'Eliminar producto' }), 'Confirmar eliminación').click();
     await newProduct.waitFor({ state: 'detached' });
 
-    await link(page, 'Ver catálogo de ejemplo').click();
-    await page.getByText('Catálogo ficticio de Taller Bruma').first().waitFor();
-    assert.equal(await card.count(), 0);
-    await link(page, 'Ver mis productos').click();
+    await open(page, route('productos.html?modo=ejemplo'));
+    await card.waitFor();
+    assert.equal(await card.count(), 1, 'El enlace antiguo abre el catálogo real');
     await link(page, 'Editar receta de Producto de prueba').click();
     await page.getByRole('heading', { name: 'Editar producto' }).waitFor();
     const recoverySeconds = (performance.now() - started) / 1000;
@@ -303,6 +324,9 @@ async function exercise(browser, viewport) {
     const sale = page.getByRole('dialog', { name: 'Registrar venta' });
     await sale.waitFor();
     assert.equal(await sale.getByLabel('Precio por unidad en soles').inputValue(), '30.00');
+    await sale.getByLabel('Unidades vendidas').fill('0');
+    await button(sale, 'Guardar venta').click();
+    await sale.locator('[name="quantity"][aria-invalid="true"]').waitFor();
     await sale.getByLabel('Unidades vendidas').fill('2');
     await sale.getByLabel('Estado del pago').selectOption('pending');
     await button(sale, 'Guardar venta').click();
@@ -320,10 +344,17 @@ async function exercise(browser, viewport) {
     assert.equal(await value(page, 'received'), 'S/ 0.00');
     assert.equal(await value(page, 'pending'), 'S/ 60.00');
     assert.equal(await value(page, 'grossProfit'), 'S/ 18.00');
-    for (const file of ['inventario', 'mi-dinero', 'diagnostico', 'asistente', 'pantallas']) {
-      await open(page, route(file + '.html'));
-      if (file !== 'pantallas') await page.locator('.demo-disclosure').waitFor();
-      await noOverflow(page, file);
+    if (viewport.width === 390) {
+      for (const [file, destination] of Object.entries({
+        inventario: route('productos.html'), 'mi-dinero': route('inicio.html'),
+        diagnostico: route('calculadora.html'), asistente: route('inicio.html'), pantallas: home.href, index: home.href
+      })) {
+        await open(page, route(file + '.html'));
+        await page.waitForURL(destination, { waitUntil: 'domcontentloaded' });
+      }
+      await open(page, route('inicio.html?modo=ejemplo'));
+      await page.locator('[data-dashboard="real"]').waitFor();
+      assert.equal(await value(page, 'sold'), 'S/ 60.00');
     }
     await noOverflow(page, 'Inicio');
 
@@ -332,6 +363,23 @@ async function exercise(browser, viewport) {
     await page.getByText('Registraste un cobro de S/ 60.00.').waitFor();
     assert.equal(await value(page, 'received'), 'S/ 60.00');
     assert.equal(await value(page, 'pending'), 'S/ 0.00');
+
+    await open(page, route('productos.html'));
+    await link(page, 'Editar receta de Producto de prueba').click();
+    await button(page, 'Continuar a materiales').click();
+    await button(page, 'Continuar a trabajo').click();
+    await page.getByLabel('Empaques del lote en soles').fill('7');
+    await button(page, 'Ver costo y precio').click();
+    await page.locator('[data-pricing]').waitFor();
+    assert.equal(await value(page, 'unit'), 'S/ 22.00');
+    await button(page, 'Comparar precios').click();
+    await page.getByRole('radio', { name: 'Precio A', exact: true }).check();
+    await button(page, 'Guardar producto').click();
+    await page.getByText('Guardaste «Producto de prueba» a S/ 30.00 por unidad.').waitFor();
+    assert.equal(await card.locator('[data-cost]').innerText(), 'S/ 22.00');
+    await open(page, route('inicio.html'));
+    await page.locator('[data-dashboard="real"]').waitFor();
+    assert.equal(await value(page, 'grossProfit'), 'S/ 18.00', 'Editar un producto conserva el costo histórico de sus ventas');
 
     await open(page, route('productos.html'));
     await button(page, 'Eliminar Producto de prueba').click();
@@ -360,7 +408,8 @@ async function exercise(browser, viewport) {
       'C: cost 20, manual price 30, profit 10, margin 33.33%, markup 50%',
       'D: preference persists after reload', 'E: historical method and price preserved',
       'F: responsive journey without horizontal overflow', 'G: Spanish and English navigation',
-      'invalid inputs, loss warning, comparison, save and recover', 'sales and payment collection'
+      'invalid inputs, loss warning, comparison, save and recover', 'sales, historical cost and payment collection',
+      ...(viewport.width === 390 ? ['editable example uses real calculation and does not create records', 'retired links redirect to functional screens'] : [])
     ] });
     console.log(viewport.width + ' px · receta recuperada en ' + recoverySeconds.toFixed(1) +
       ' s de prueba automatizada · tres métodos, preferencias, navegación ES/EN, ventas y recuperación verificados');

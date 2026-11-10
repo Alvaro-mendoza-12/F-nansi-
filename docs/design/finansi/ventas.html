@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ventas de Finansi con datos de ejemplo de Taller Bruma.">
-  <title>Ventas · Finansi</title>
+  <meta name="description" content="Registra ventas y consulta sus cobros en Finansi.">
+  <title data-i18n="title.sales">Ventas · Finansi</title>
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <script src="mvp/tema-inicial.js"></script>
   <link rel="stylesheet" href="../prototipo/estilos.css">
@@ -22,8 +22,8 @@
       <div class="demo-heading">
         <div><h1 data-i18n="nav.sales">Ventas</h1><p data-i18n="ui.salesIntro">Registra una venta con un producto de tu catálogo.</p></div>
         <div class="heading-actions">
-          <button class="action primary" type="button" data-start-sale data-i18n="ui.startSale">Registrar venta</button>
-          <a class="action secondary" href="?modo=ejemplo" data-i18n="ui.sampleSales">Ver ventas de ejemplo</a>
+          <button class="action primary" type="button" data-start-sale data-i18n="ui.startSale" hidden>Registrar venta</button>
+          <a class="action primary" href="crear-producto.html" data-create-for-sale data-i18n="ui.create" hidden>Crear producto</a>
         </div>
       </div>
       <p class="inline-note" role="status" data-sales-status hidden></p>
@@ -71,77 +71,7 @@
         </div>
       </form>
     </dialog>
-    <div data-example-sales hidden>
-      <p class="inline-note example-view">Ventas ficticias de Taller Bruma. <a class="action quiet" href="ventas.html">Ver mis ventas</a></p>
-    <div class="demo-heading">
-      <div><h1 data-i18n="nav.sales">Ventas</h1><p>Consulta lo que vendiste y qué cobros siguen pendientes.</p></div>
-      <div class="heading-actions"><span class="demo-date"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/></svg><span>1–28 oct 2026</span></span><button type="button" class="action primary" data-open-dialog="venta-dialog"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="ui.startSale">Registrar venta</span></button></div>
-    </div>
-    <dl class="metrics-strip">
-      <div class="metric">
-      <dt><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg></span><span>Ventas confirmadas</span></dt>
-      <dd><span class="amount"><span class="currency">S/</span> 3,480</span></dd><dd class="metric-detail">Incluye ventas pendientes</dd>
-    </div>
-      <div class="metric">
-      <dt><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg></span><span>Cobrado</span></dt>
-      <dd><span class="amount"><span class="currency">S/</span> 3,320</span></dd><dd class="metric-detail">Dinero que ya entró</dd>
-    </div>
-      <div class="metric">
-      <dt><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span data-i18n="ui.pending">Por cobrar</span></dt>
-      <dd><span class="amount"><span class="currency">S/</span> 160</span></dd><dd class="metric-detail">Un pedido para feria</dd>
-    </div>
-    </dl>
-    <section class="record-panel card" data-collection aria-labelledby="sales-history">
-      <div class="record-header"><div><h2 id="sales-history">Historial de ventas</h2><p>Muestra de los registros de octubre</p></div><div class="filter-group" role="group" aria-label="Estado de cobro">
-          <button type="button" data-filter="todos" aria-pressed="true">Todas</button>
-          <button type="button" data-filter="cobrado" aria-pressed="false" data-i18n="ui.collected">Cobradas</button>
-          <button type="button" data-filter="pendiente" aria-pressed="false">Pendientes</button>
-        </div></div>
-      <table class="record-table sales-table">
-          <caption class="sr-only">Ventas recientes de Taller Bruma</caption>
-          <thead><tr><th scope="col">Venta</th><th scope="col">Medio de pago</th><th scope="col" data-i18n="ui.amount">Importe</th><th scope="col">Estado</th></tr></thead>
-          <tbody>
-          <tr data-item="cobrado">
-            <th scope="row"><div class="record-name"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg></span><div><strong>Vela Cedro × 2</strong><span>V-024 · 28 oct</span></div></div></th>
-            <td class="record-meta">Billetera digital</td>
-            <td class="record-amount">S/ 64.00</td>
-            <td class="record-status"><span class="tag demo-tag good"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Cobrado</span></td>
-          </tr>
-          <tr data-item="cobrado">
-            <th scope="row"><div class="record-name"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg></span><div><strong>Vela Lavanda × 3</strong><span>V-023 · 26 oct</span></div></div></th>
-            <td class="record-meta">Transferencia</td>
-            <td class="record-amount">S/ 102.00</td>
-            <td class="record-status"><span class="tag demo-tag good"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Cobrado</span></td>
-          </tr>
-          <tr data-item="pendiente">
-            <th scope="row"><div class="record-name"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg></span><div><strong>Pedido para feria · Cedro × 5</strong><span>V-022 · 25 oct</span></div></div></th>
-            <td class="record-meta">Por definir</td>
-            <td class="record-amount">S/ 160.00</td>
-            <td class="record-status"><span class="tag demo-tag warning"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Por cobrar</span></td>
-          </tr>
-          <tr data-item="cobrado">
-            <th scope="row"><div class="record-name"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg></span><div><strong>Vela Naranja × 1</strong><span>V-021 · 23 oct</span></div></div></th>
-            <td class="record-meta">Efectivo</td>
-            <td class="record-amount">S/ 28.00</td>
-            <td class="record-status"><span class="tag demo-tag good"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Cobrado</span></td>
-          </tr>
-          </tbody>
-        </table>
-    </section>
-    <div class="inline-note"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8v.1"/></svg></span><div><strong>¿Cuándo aparece una venta en caja?</strong><p>El dinero entra en Mi dinero cuando marcas el cobro como recibido.</p></div></div>
-    </div>
   </main>
   <nav data-shared-bottom></nav>
-  <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
-  <dialog class="demo-dialog" id="venta-dialog" aria-labelledby="venta-dialog-title">
-    <div class="dialog-head"><div><h2 id="venta-dialog-title" data-i18n="ui.startSale">Registrar venta</h2><p>Revisa el producto y el estado de cobro en esta venta de ejemplo.</p></div><button class="icon-button" type="button" aria-label="Cerrar" data-close-dialog><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
-    <form data-dialog-form data-message="Vista previa lista." data-dialog-preview="venta">
-      <label class="form-field"><span data-i18n="ui.product">Producto</span><select name="producto"><option>Vela Cedro</option><option>Vela Lavanda</option><option>Vela Naranja</option></select></label><div class="form-row"><label class="form-field"><span data-i18n="ui.quantity">Cantidad</span><input name="cantidad" type="number" min="1" step="1" value="2" required></label><label class="form-field"><span>Precio unitario en soles</span><span class="input-with-unit"><span aria-hidden="true">S/</span><input name="precio" value="32.00" inputmode="decimal" type="number" min="0.01" step="0.01" required></span></label></div><label class="form-field"><span>Fecha</span><input name="fecha" type="date" value="2026-10-28" required></label><div class="form-row"><label class="form-field"><span>Medio de pago</span><select name="medio"><option>Billetera digital</option><option>Efectivo</option><option>Transferencia</option><option>Por definir</option></select></label><label class="form-field"><span>Estado de cobro</span><select name="cobro"><option value="cobrado">Cobrado</option><option value="pendiente" data-i18n="ui.paymentPending">Pendiente</option></select></label></div>
-      <div class="form-actions">
-        <button type="button" class="action secondary" data-close-dialog><span data-i18n="ui.cancel">Cancelar</span></button>
-        <button type="submit" class="action primary"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Ver resultado de ejemplo</span></button>
-      </div>
-    </form>
-  </dialog>
 </body>
 </html>

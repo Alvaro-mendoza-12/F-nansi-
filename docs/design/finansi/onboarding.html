@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Configura tu negocio de Finansi con datos de ejemplo de Taller Bruma.">
-  <title>Configura tu negocio · Finansi</title>
+  <meta name="description" content="Configura tu negocio y su moneda para empezar a calcular precios con Finansi.">
+  <title data-i18n="title.onboarding">Configura tu negocio · Finansi</title>
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <script src="mvp/tema-inicial.js"></script>
   <link rel="stylesheet" href="../prototipo/estilos.css">
@@ -15,20 +15,20 @@
 <body class="b demo demo-entry setup" data-page="onboarding">
   <a class="skip-link" href="#contenido" data-i18n="ui.skip">Saltar al contenido</a>
   <header class="demo-header entry-header">
-    <div class="demo-header-inner"><a class="brand" href="index.html"><img src="../prototipo/img/marca.svg" width="36" height="36" alt=""><span>Finansi</span></a> <a class="action quiet" href="inicio.html?modo=ejemplo"><span>Ver el ejemplo</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+    <div class="demo-header-inner"><a class="brand" href="../../../"><img src="../prototipo/img/marca.svg" width="36" height="36" alt=""><span>Finansi</span></a></div>
   </header>
   <main class="demo-main" id="contenido" tabindex="-1">
     <div class="setup-grid">
       <section class="setup-form">
-        <a class="back-link" href="index.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7m-7 7h14"/></svg><span>Bienvenida</span></a>
-        <ol class="setup-steps" aria-label="Configuración inicial"><li aria-current="step"><span>1</span> Tu negocio</li><li><span>2</span> Tu primer producto</li></ol>
-        <h1>Cuéntanos de tu negocio</h1>
-        <p>Elige el país y la moneda para empezar tu primer cálculo.</p>
+        <a class="back-link" href="../../../" data-i18n="setup.back">← Bienvenida</a>
+        <ol class="setup-steps" aria-label="Configuración inicial" data-i18n-aria-label="setup.steps"><li aria-current="step"><span>1</span> <b data-i18n="ui.business">Tu negocio</b></li><li><span>2</span> <b data-i18n="setup.firstProduct">Tu primer producto</b></li></ol>
+        <h1 data-i18n="setup.title">Cuéntanos de tu negocio</h1>
+        <p data-i18n="setup.intro">Elige el país y la moneda para empezar tu primer cálculo.</p>
         <form class="setup-fields" data-onboarding novalidate>
-          <label class="form-field"><span data-i18n="ui.businessName">Nombre del negocio</span><input name="business" placeholder="Ej. Mi taller" required maxlength="60" autocomplete="organization" disabled></label>
+          <label class="form-field"><span data-i18n="ui.businessName">Nombre del negocio</span><input name="business" placeholder="Ej. Mi taller" data-i18n-placeholder="setup.businessExample" required maxlength="60" autocomplete="organization" disabled></label>
           <label class="form-field"><span data-i18n="business.location">País y moneda</span><select name="country" aria-describedby="onboarding-currency-help" disabled></select></label>
           <p id="onboarding-currency-help" class="panel-lede" data-currency-help></p>
-          <label class="form-field"><span>¿Qué haces? (opcional)</span><select name="actividad"><option>Velas y artesanía</option><option>Repostería</option><option>Accesorios</option><option>Otro</option><option>Elegir más adelante</option></select></label>
+          <label class="form-field"><span data-i18n="setup.activity">¿Qué haces? (opcional)</span><select name="actividad"><option value="Velas y artesanía" data-i18n="setup.crafts">Velas y artesanía</option><option value="Repostería" data-i18n="setup.baking">Repostería</option><option value="Accesorios" data-i18n="setup.accessories">Accesorios</option><option value="Otro" data-i18n="setup.other">Otro</option><option value="Elegir más adelante" data-i18n="setup.later">Elegir más adelante</option></select></label>
           <p class="form-error" data-error role="alert" hidden></p><div class="form-actions"><button type="submit" class="action primary" disabled><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg><span data-i18n="ui.toProduct">Ir a mi primer producto</span></button></div>
         </form>
       </section>
@@ -37,16 +37,15 @@
           <img src="../prototipo/img/vela-cedro.svg" width="320" height="204" alt="">
         </div>
         <div>
-          <span class="tag demo-tag neutral">Ejemplo guiado</span>
-          <h2>Una vela a la vez</h2>
-          <p>Prueba con Taller Bruma. Su primera receta te muestra qué cuenta en el costo y cómo elegir un precio.</p>
-          <a class="action secondary" href="crear-producto.html?ejemplo=cedro">Abrir la receta de ejemplo</a>
+          <span class="tag demo-tag neutral" data-i18n="setup.optional">Opcional</span>
+          <h2 data-i18n="setup.sample">Una receta para practicar</h2>
+          <p data-i18n="setup.sampleDetail">Edita la receta de una vela y prueba precios. Solo se añade a tus productos cuando eliges Guardar producto.</p>
+          <a class="action secondary" href="crear-producto.html?ejemplo=cedro" data-i18n="ui.trySample">Probar con una receta de ejemplo</a>
         </div>
       </aside>
     </div>
   </main>
 
-  <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
 
 </body>
 </html>

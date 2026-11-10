@@ -1,90 +1,12 @@
 <!doctype html>
-<html lang="es-PE">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Asistente Finansi de Finansi con datos de ejemplo de Taller Bruma.">
-  <title>Asistente Finansi · Finansi</title>
+  <meta name="robots" content="noindex">
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
-  <script src="mvp/tema-inicial.js"></script>
-  <link rel="stylesheet" href="../prototipo/estilos.css">
-  <link rel="stylesheet" href="maqueta.css">
-  <script type="module" src="mvp/app.js"></script>
+  <meta http-equiv="refresh" content="0; url=inicio.html">
+  <title>Finansi</title>
 </head>
-<body class="b demo demo-module " data-page="asistente">
-  <a class="skip-link" href="#contenido" data-i18n="ui.skip">Saltar al contenido</a>
-  <header data-shared-header></header>
-  <main class="demo-main" id="contenido" tabindex="-1">
-    <p class="inline-note demo-disclosure" data-i18n="nav.sampleNotice">Demostración con datos ficticios de Taller Bruma.</p>
-    <div class="demo-heading">
-      <div><h1>Asistente Finansi</h1><p>Respuestas preparadas sobre el caso ficticio de Taller Bruma.</p></div>
-      <div class="heading-actions"><span class="tag demo-tag neutral">Conversación de ejemplo</span></div>
-    </div>
-    <div class="assistant-layout" data-assistant>
-      <section class="chat-panel card" aria-labelledby="chat-title">
-        <div class="chat-head"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg></span><div><h2 id="chat-title">Conversación con Finansi</h2><p>Taller Bruma · Datos al 28 oct 2026</p></div></div>
-        <div class="chat-thread" aria-live="polite" aria-atomic="true">
-          <div class="chat-turn" data-answer="precio">
-            <p class="user-bubble"><span class="sr-only">Lucía pregunta. </span>¿Me conviene cobrar S/ 36 por la Vela Cedro?</p>
-            <div class="assistant-message">
-              <div class="reply-by"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg></span><strong>Finansi</strong></div>
-              <h3>Con S/ 36 alcanzarías tu meta de margen</h3>
-              <p>Tu costo por vela es <strong>S/ 24.80</strong>. Si vendes a S/ 36 y mantienes ese costo, te quedarían <strong>S/ 11.20 por vela</strong>. Es un margen de 31.1%, por encima de tu meta de 30%.</p>
-              <div class="reply-source"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15 15 9m-3-2 2-2a3.5 3.5 0 0 1 5 5l-2 2m-5 5-2 2a3.5 3.5 0 0 1-5-5l2-2"/></svg><span>Receta Vela Cedro · Costo y precio al 28 oct</span></div>
-              <a class="action secondary" href="calculadora.html?ejemplo=cedro"><span>Ver el cálculo</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a>
-            </div>
-          </div>
-          <div class="chat-turn" data-answer="cera" hidden>
-            <p class="user-bubble"><span class="sr-only">Lucía pregunta. </span>¿Y si la cera me cuesta S/ 2 más por vela?</p>
-            <div class="assistant-message">
-              <div class="reply-by"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg></span><strong>Finansi</strong></div>
-              <h3>A S/ 36 quedarías por debajo de tu meta</h3>
-              <p>Tu costo subiría a <strong>S/ 26.80</strong>. Con un precio de S/ 36, te quedarían <strong>S/ 9.20 por vela</strong> y un margen de 25.6%. Para llegar al 30%, el mínimo sería S/ 38.29.</p>
-              <div class="reply-source"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15 15 9m-3-2 2-2a3.5 3.5 0 0 1 5 5l-2 2m-5 5-2 2a3.5 3.5 0 0 1-5-5l2-2"/></svg><span>Vela Cedro · Escenario de cera + S/ 2 por unidad</span></div>
-              <a class="action secondary" href="simulador.html?ejemplo=cedro"><span>Abrir comparador de ejemplo</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a>
-            </div>
-          </div>
-          <div class="chat-turn" data-answer="caja" hidden>
-            <p class="user-bubble"><span class="sr-only">Lucía pregunta. </span>¿Por qué mi ganancia y mi dinero disponible son distintos?</p>
-            <div class="assistant-message">
-              <div class="reply-by"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg></span><strong>Finansi</strong></div>
-              <h3>Son dos formas de mirar tu negocio</h3>
-              <p>Los <strong>S/ 1,170</strong> de ganancia estimada salen de las ventas menos los costos y gastos. Los <strong>S/ 2,640</strong> de caja incluyen tu saldo inicial, lo que ya cobraste y los movimientos personales. Quedan S/ 160 por cobrar.</p>
-              <div class="reply-source"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15 15 9m-3-2 2-2a3.5 3.5 0 0 1 5 5l-2 2m-5 5-2 2a3.5 3.5 0 0 1-5-5l2-2"/></svg><span>Mi dinero y ventas · 1–28 oct 2026</span></div>
-              <a class="action secondary" href="mi-dinero.html"><span>Ver los movimientos</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a>
-            </div>
-          </div>
-          <div class="chat-turn" data-answer="demanda" hidden>
-            <p class="user-bubble"><span class="sr-only">Lucía pregunta. </span>¿Cuántas velas voy a vender en noviembre?</p>
-            <div class="assistant-message">
-              <div class="reply-by"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg></span><strong>Finansi</strong></div>
-              <h3>Para estimar tus ventas futuras faltan datos</h3>
-              <p>Tienes una receta y registros de octubre. Para explorar la ganancia con distintas ventas, prueba una cantidad en el simulador.</p>
-              <div class="reply-source"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15 15 9m-3-2 2-2a3.5 3.5 0 0 1 5 5l-2 2m-5 5-2 2a3.5 3.5 0 0 1-5-5l2-2"/></svg><span>Datos registrados · Taller Bruma</span></div>
-              <a class="action secondary" href="simulador.html?ejemplo=cedro"><span>Probar cantidades en el comparador</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a>
-            </div>
-          </div>
-        </div>
-        <div class="chat-prompts">
-          <h3>Prueba otra pregunta</h3>
-          <div class="prompt-list">
-            <button type="button" data-question="precio" aria-pressed="true">¿Me conviene cobrar S/ 36?</button>
-            <button type="button" data-question="cera" aria-pressed="false">¿Y si sube la cera?</button>
-            <button type="button" data-question="caja" aria-pressed="false">¿Por qué ganancia y caja son distintas?</button>
-            <button type="button" data-question="demanda" aria-pressed="false">¿Cuánto voy a vender?</button>
-          </div>
-        </div>
-      </section>
-      <aside class="context-card card" aria-labelledby="context-title">
-        <div class="card-head"><div><h2 id="context-title">Datos del taller</h2><p>Resumen del ejemplo</p></div><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8m-8 4h8m-8 4h5"/></svg></span></div>
-        <div class="context-product"><img src="img/cedro.png" width="1448" height="1086" alt=""><div><strong>Vela Cedro</strong><span>Receta de 10 velas</span></div></div>
-        <dl class="brief-list"><div><dt>Costo por vela</dt><dd>S/ 24.80</dd></div><div><dt>Precio registrado</dt><dd>S/ 32.00</dd></div><div><dt>Meta de margen</dt><dd>30%</dd></div></dl>
-        <a class="action quiet" href="diagnostico.html"><span>Ver diagnóstico</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a>
-      </aside>
-    </div>
-  </main>
-  <nav data-shared-bottom></nav>
-  <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
-
-</body>
+<body><main><h1>Finansi</h1><p><a href="inicio.html">Abrir Finansi</a></p></main></body>
 </html>

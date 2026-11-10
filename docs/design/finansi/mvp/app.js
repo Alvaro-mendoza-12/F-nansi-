@@ -1,4 +1,3 @@
-import '../maqueta.js';
 import { deleteProduct, getWorkspace, listProducts, saveBusiness } from './almacen.js';
 import { mountSettings } from './configuracion.js';
 import { localize, mountLanguage, setBusinessLocale, t } from './idioma.js';
@@ -38,16 +37,6 @@ function mountOnboarding(workspace) {
 }
 
 async function mountCatalog(workspace) {
-  const toggle = document.querySelector('[data-catalog-switch]');
-  if (query.get('modo') === 'ejemplo') {
-    document.querySelector('[data-example-catalog]').hidden = false;
-    document.querySelector('[data-saved-catalog]').hidden = true;
-    localize(document.querySelector('[data-catalog-subtitle]'), () => t('catalog.example'));
-    toggle.href = 'productos.html';
-    localize(toggle, () => t('catalog.mine'));
-    return;
-  }
-
   const list = document.querySelector('[data-product-list]');
   const template = document.querySelector('[data-product-template]');
   const empty = document.querySelector('[data-catalog-empty]');
@@ -141,11 +130,14 @@ applyAppearance();
 mountNavigation();
 mountLanguage();
 mountAppearance();
+for (const button of document.querySelectorAll('[data-close-dialog]')) {
+  button.addEventListener('click', () => button.closest('dialog').close());
+}
 try {
   if (Object.hasOwn(pages, page)) {
     const workspace = await getWorkspace();
     setBusinessLocale(workspace);
-    if (query.get('modo') !== 'ejemplo') updateProfile(workspace);
+    updateProfile(workspace);
     await pages[page](workspace, updateProfile);
   }
 } catch (error) {

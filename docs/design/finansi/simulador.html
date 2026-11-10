@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Simulador de precios de Finansi con datos de ejemplo de Taller Bruma.">
+  <meta name="description" content="Compara precios y su ganancia estimada con Finansi.">
   <title data-i18n="title.comparison">Simulador de precios · Finansi</title>
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <script src="mvp/tema-inicial.js"></script>
@@ -32,7 +32,7 @@
       <div class="form-actions">
         <a class="action primary" href="productos.html" data-catalog-fallback data-i18n="ui.myProducts">Mis productos</a>
         <a class="action secondary" href="crear-producto.html" data-i18n="ui.create">Crear producto</a>
-        <a class="action secondary" data-try-example href="?ejemplo=cedro" data-i18n="ui.trySample">Probar Vela Cedro</a>
+        <a class="action secondary" href="crear-producto.html?ejemplo=cedro" data-i18n="ui.trySample">Probar con una receta de ejemplo</a>
       </div>
     </section>
     <form class="scenario-grid" data-comparison data-ready novalidate hidden>
@@ -74,7 +74,7 @@
           <div><dt data-i18n="ui.unitDiff">Diferencia por unidad (B − A)</dt><dd data-value="difference">—</dd></div>
           <div><dt data-i18n="ui.totalDiff">Diferencia total (B − A)</dt><dd data-value="totalDifference">—</dd></div>
         </dl>
-        <p class="scenario-note" data-explanation aria-live="polite">Ingresa dos precios para ver la diferencia.</p>
+        <p class="scenario-note" data-explanation data-i18n="price.enter" aria-live="polite">Ingresa dos precios para ver la diferencia.</p>
         <p class="panel-lede" data-i18n="ui.compareMath">El margen divide la ganancia entre el precio. El recargo la divide entre el costo y solo se calcula si el costo es mayor que cero.</p>
         <fieldset class="price-choice">
           <legend data-i18n="ui.saveChoice">Elige el precio que quieres guardar</legend>
@@ -89,7 +89,6 @@
     </form>
   </main>
   <nav data-shared-bottom></nav>
-  <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
 
 </body>
 </html>

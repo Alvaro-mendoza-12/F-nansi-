@@ -1,7 +1,7 @@
 import { collectSale, listProducts, listSales, recordSale } from './almacen.js';
 import { addAmounts, formatMoney, InputError, money, priceResult, ratio, recipeCost } from './precios.js';
 import { dateText, errorText, localize, numberText, t } from './idioma.js';
-import { bindCurrencyLabels, query, showError, showMessage, values } from './ui.js';
+import { bindCurrencyLabels, showError, showMessage, values } from './ui.js';
 
 function saleResult(sale) {
   const quantity = BigInt(sale.quantity);
@@ -27,11 +27,6 @@ function totals(records, currency) {
 }
 
 export async function mountDashboard(workspace) {
-  if (query.get('modo') === 'ejemplo' || query.get('estado') === 'nuevo') {
-    const selected = query.get('modo') === 'ejemplo' ? 'ejemplo' : 'nuevo';
-    document.querySelector('[data-dashboard="' + selected + '"]').hidden = false;
-    return;
-  }
   const section = document.querySelector('[data-dashboard="real"]');
   const [records, products] = await Promise.all([listSales(workspace), listProducts(workspace)]);
   values(section, { ...totals(records, workspace.currency), products: () => numberText(products.length) });
@@ -41,20 +36,23 @@ export async function mountDashboard(workspace) {
 }
 
 export async function mountSales(workspace) {
-  if (query.get('modo') === 'ejemplo') {
-    document.querySelector('[data-example-sales]').hidden = false;
-    return;
-  }
   const section = document.querySelector('[data-real-sales]');
   const dialog = document.querySelector('[data-real-sale-dialog]');
   const form = dialog.querySelector('form');
   const submit = form.querySelector('[type="submit"]');
   const opener = section.querySelector('[data-start-sale]');
+  const create = section.querySelector('[data-create-for-sale]');
   const list = section.querySelector('[data-sale-list]');
   const template = section.querySelector('[data-sale-template]');
   const status = section.querySelector('[data-sales-status]');
   let products = [];
   bindCurrencyLabels(form, workspace.currency);
+
+  async function refreshProducts() {
+    products = await listProducts(workspace);
+    opener.hidden = products.length === 0;
+    create.hidden = products.length > 0;
+  }
 
   async function render() {
     const records = await listSales(workspace);
@@ -120,7 +118,7 @@ export async function mountSales(workspace) {
   opener.addEventListener('click', async () => {
     opener.disabled = true;
     try {
-      products = await listProducts(workspace);
+      await refreshProducts();
       if (!products.length) {
         showMessage(status, () => t('sale.needsProduct'));
         return;
@@ -155,6 +153,6 @@ export async function mountSales(workspace) {
       submit.disabled = false;
     }
   });
-  await render();
+  await Promise.all([render(), refreshProducts()]);
   section.hidden = false;
 }

@@ -1,13 +1,11 @@
 import { messages } from './mensajes.js';
 import { copy } from './copias.js';
-import { content } from './contenido.js';
 
 export const countries = Object.freeze({ PE: 'PEN', US: 'USD', MX: 'MXN', CO: 'COP', ES: 'EUR' });
 export const defaultCountry = 'PE';
 export const defaultCurrency = countries[defaultCountry];
 const languageKey = 'finansi:language';
 const bindings = new WeakMap();
-const editorialBindings = new WeakMap();
 const numberFormats = new Map();
 const dates = new Map();
 
@@ -21,8 +19,7 @@ let country = defaultCountry;
 let currency = defaultCurrency;
 
 export function t(key, params = {}) {
-  const pair = Object.hasOwn(messages, key) ? messages[key] : copy[key] ??
-    (Object.hasOwn(content, key) ? [key, content[key]] : undefined);
+  const pair = Object.hasOwn(messages, key) ? messages[key] : Object.hasOwn(copy, key) ? copy[key] : undefined;
   return (pair?.[language === 'en' ? 1 : 0] ?? key).replace(/\{(\w+)\}/g, (match, name) =>
     Object.hasOwn(params, name) ? String(params[name]) : match);
 }
@@ -107,39 +104,10 @@ export function localize(element, render, attribute = '') {
 }
 
 export function translate(root) {
-  // Captura solo el HTML editorial inicial. Nunca recorre de nuevo los datos que inserta el usuario.
-  if (!editorialBindings.has(root)) {
-    const entries = [];
-    for (const option of root.querySelectorAll('option:not([value])')) option.value = option.textContent;
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-    while (walker.nextNode()) {
-      const node = walker.currentNode;
-      if (node.parentElement?.closest('script,style,noscript,[data-i18n],[data-localized],[data-currency-label]')) continue;
-      const original = node.textContent;
-      const source = original.trim();
-      if (Object.hasOwn(content, source)) entries.push(() => {
-        if (root.contains(node)) node.textContent = language === 'en' ? original.replace(source, content[source]) : original;
-      });
-    }
-    for (const element of root.querySelectorAll('*')) {
-      for (const attribute of ['aria-label', 'placeholder', 'title', 'alt']) {
-        const source = element.getAttribute(attribute);
-        if (element.hasAttribute('data-i18n-' + attribute) || !Object.hasOwn(content, source)) continue;
-        entries.push(() => element.setAttribute(attribute, language === 'en' ? content[source] : source));
-      }
-    }
-    for (const element of root.querySelectorAll('img[src^="../mockups/b/"], a[href^="../mockups/b/"]')) {
-      const attribute = element.tagName === 'IMG' ? 'src' : 'href';
-      const original = element.getAttribute(attribute);
-      entries.push(() => element.setAttribute(attribute, language === 'en' ? original.replace('../mockups/b/', '../mockups/b/en/') : original));
-    }
-    editorialBindings.set(root, entries);
-  }
-  for (const render of editorialBindings.get(root)) render();
   for (const element of root.querySelectorAll('[data-i18n]')) {
     element.textContent = t(element.dataset.i18n);
   }
-  for (const attribute of ['aria-label', 'placeholder', 'title', 'alt']) {
+  for (const attribute of ['aria-label', 'placeholder', 'title', 'alt', 'content']) {
     const marker = 'data-i18n-' + attribute;
     for (const element of root.querySelectorAll('[' + marker + ']')) {
       element.setAttribute(attribute, t(element.getAttribute(marker)));
