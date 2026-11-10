@@ -1,0 +1,134 @@
+{
+  "root": "https://alvaro-mendoza-12.github.io/F-nansi-/",
+  "commit": "ebb867945849c08012fe62e5c4d805098a66fab1",
+  "workflow": "https://github.com/Alvaro-mendoza-12/F-nansi-/actions/runs/42821391336",
+  "conclusion": "success",
+  "checks": [
+    {
+      "file": "docs/design/finansi/mvp/almacen.js",
+      "status": 200,
+      "matches": true,
+      "sha256": "65627d8fced3e62f44c1fc9a5f17b674933f2aacebaf6efb36c2b6d21d910c88"
+    },
+    {
+      "file": "docs/design/finansi/mvp/app.js",
+      "status": 200,
+      "matches": true,
+      "sha256": "700cd33c786c56e42a6b0c56efe3ee983f34bcfca708507067538908c4acff0c"
+    },
+    {
+      "file": "docs/design/finansi/mvp/configuracion.js",
+      "status": 200,
+      "matches": true,
+      "sha256": "e968b45122833fc38a8328b363709505a06df479d6811d29255f17ef590b5d65"
+    },
+    {
+      "file": "docs/design/finansi/mvp/copias.js",
+      "status": 200,
+      "matches": true,
+      "sha256": "627183d1652e6e817ea8f1bf748faecc4549d8578b202d3c72fbc010fde0a5c2"
+    },
+    {
+      "file": "docs/design/finansi/mvp/flujo.css",
+      "status": 200,
+      "matches": true,
+      "sha256": "5642db4c8a3cc235f529975c65a8b870679d1585e7a83baa00bc1d48066e9103"
+    },
+    {
+      "file": "docs/design/finansi/mvp/idioma.js",
+      "status": 200,
+      "matches": true,
+      "sha256": "21593471e9ed16859e6316992dd1c4db0a099aece12144e6e18c786148700817"
+    },
+    {
+      "file": "docs/design/finansi/mvp/mensajes.js",
+      "status": 200,
+      "matches": true,
+      "sha256": "7069640577f9eb2386dd7e2ff0caad887794f02e9259718f23fd19be0da80473"
+    },
+    {
+      "file": "docs/design/finansi/mvp/navegacion.js",
+      "status": 200,
+      "matches": true,
+      "sha256": "9e3ddd9177f65086ede8f8c43fe323c64c445737c924661609ac028b13eff4cc"
+    },
+    {
+      "file": "docs/design/finansi/mvp/precios.js",
+      "status": 200,
+      "matches": true,
+      "sha256": "1102396f58ca5e8d1cbcfd871c70bf475836bf1403dd3a8fd0b1cc58a0fdea06"
+    },
+    {
+      "file": "docs/design/finansi/mvp/preferencias.js",
+      "status": 200,
+      "matches": true,
+      "sha256": "bdb91ee065f950ff04211d23d97058a707b6902600447f8010253ee5ec31b89d"
+    },
+    {
+      "file": "docs/design/finansi/mvp/recetas.js",
+      "status": 200,
+      "matches": true,
+      "sha256": "07fabb38d7e0d9659d0134e92473febce638e27fb93cd3d49cf97ecea319f134"
+    },
+    {
+      "file": "docs/design/finansi/mvp/respaldo.js",
+      "status": 200,
+      "matches": true,
+      "sha256": "1bee300956d6af6e01c97364ae25f903435ca3293ea6874bfe4257c0230cf416"
+    },
+    {
+      "file": "docs/design/finansi/mvp/ui.js",
+      "status": 200,
+      "matches": true,
+      "sha256": "a8aee324c7e6783d29797cd393302740fcb5f8868287e60a93c1809142a9ff94"
+    },
+    {
+      "file": "docs/design/finansi/mvp/ventas.js",
+      "status": 200,
+      "matches": true,
+      "sha256": "c33d9907d5329fdea99742f702c569172de92d4bffb80e172d5d4f1f3c949f34"
+    },
+    {
+      "file": "docs/design/finansi/calculadora.html",
+      "status": 200,
+      "matches": true,
+      "sha256": "c3dd9da5ca2a2e035ddf265fa89ce19f60330e6e28e65bc0d2633f0755937a55"
+    },
+    {
+      "file": "docs/design/finansi/crear-producto.html",
+      "status": 200,
+      "matches": true,
+      "sha256": "57f487be59e3b6cca55f98c63c7c5a1553384b78ed79b593fd583dc3397242b3"
+    },
+    {
+      "file": "docs/design/finansi/simulador.html",
+      "status": 200,
+      "matches": true,
+      "sha256": "0b8c516b10719ea62992711f36359212858ee07f9d7118384b3ef97702dbba53"
+    },
+    {
+      "file": "docs/design/finansi/productos.html",
+      "status": 200,
+      "matches": true,
+      "sha256": "ebe73e4ba856b91064e85b8e322c07008644117812ef770a841b3f3c005f9030"
+    },
+    {
+      "file": "docs/design/finansi/configuracion.html",
+      "status": 200,
+      "matches": true,
+      "sha256": "7d964cf283bb9bd8e8ee5aff7631d12157ac644ce5d668c11b46db8753fff00f"
+    },
+    {
+      "file": "docs/design/finansi/ventas.html",
+      "status": 200,
+      "matches": true,
+      "sha256": "bb5665175306ab17d8b6533f7875bd6ae300e7abb5f4022f0c32197fed009f76"
+    },
+    {
+      "file": "docs/design/finansi/inicio.html",
+      "status": 200,
+      "matches": true,
+      "sha256": "f61d0a09bad0fdf19e21a4a38464d855f286b6d97ed91842cb41443a827b3f25"
+    }
+  ]
+}

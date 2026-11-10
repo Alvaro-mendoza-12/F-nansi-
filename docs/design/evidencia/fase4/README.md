@@ -55,3 +55,9 @@ WCAG 2.2 AA es el objetivo de revisión. Axe y el recorrido de teclado no acredi
 Las preferencias son del navegador y no forman parte de la copia del negocio. Los datos requieren exportación para trasladarse a otro dispositivo. Algunas pantallas históricas de demostración continúan en español. Inventario, Mi dinero, Diagnóstico y Asistente siguen identificados como demostraciones.
 
 La investigación, fórmulas, estructura de navegación y evaluación de las diez heurísticas se encuentran en el [informe de Fase 4](../../06-fase-4-navegacion-y-precios.md).
+
+## Verificación pública
+
+La [demo pública de Finansi](https://alvaro-mendoza-12.github.io/F-nansi-/) superó los mismos dos recorridos a 390, 768 y 1440 px, con cero infracciones en los 29 estados auditados. Se verificaron 21 archivos HTML, JavaScript y CSS: todos respondieron HTTP 200 y sus hashes SHA-256 coincidieron con el código funcional del commit [`ebb8679`](https://github.com/Alvaro-mendoza-12/F-nansi-/commit/ebb867945849c08012fe62e5c4d805098a66fab1), normalizando únicamente finales de línea. GitHub confirmó el [despliegue satisfactorio de ese commit](https://github.com/Alvaro-mendoza-12/F-nansi-/actions/runs/42821391336).
+
+Evidencia obtenida sobre la URL pública: [publicación y hashes](publicacion.json), [recorrido principal](recorrido-publico.json) y [navegación en inglés](navegacion-publica.json). El commit posterior que registra estos resultados solo añade documentación y evidencia; no modifica el código auditado.

@@ -1,0 +1,100 @@
+{
+  "url": "https://alvaro-mendoza-12.github.io/F-nansi-/",
+  "results": [
+    {
+      "width": 390,
+      "language": "en",
+      "passed": true,
+      "errors": [],
+      "checks": [
+        "keyboard navigation and visible focus",
+        "recipe validation from primary navigation",
+        "draft continuity through calculator and comparison",
+        "manual price, margin and markup",
+        "preferred method after reload",
+        "JSON export and confirmed restore",
+        "historical method and price"
+      ]
+    },
+    {
+      "width": 768,
+      "language": "en",
+      "passed": true,
+      "errors": [],
+      "checks": [
+        "keyboard navigation and visible focus",
+        "recipe validation from primary navigation",
+        "draft continuity through calculator and comparison",
+        "manual price, margin and markup",
+        "preferred method after reload",
+        "JSON export and confirmed restore",
+        "historical method and price"
+      ]
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "passed": true,
+      "errors": [],
+      "checks": [
+        "keyboard navigation and visible focus",
+        "recipe validation from primary navigation",
+        "draft continuity through calculator and comparison",
+        "manual price, margin and markup",
+        "preferred method after reload",
+        "JSON export and confirmed restore",
+        "historical method and price"
+      ]
+    }
+  ],
+  "audits": [
+    {
+      "state": "390 px · EN · Material dialog",
+      "violations": []
+    },
+    {
+      "state": "390 px · EN · Calculator",
+      "violations": []
+    },
+    {
+      "state": "390 px · EN · Comparison",
+      "violations": []
+    },
+    {
+      "state": "390 px · EN · Restore confirmation",
+      "violations": []
+    },
+    {
+      "state": "768 px · EN · Material dialog",
+      "violations": []
+    },
+    {
+      "state": "768 px · EN · Calculator",
+      "violations": []
+    },
+    {
+      "state": "768 px · EN · Comparison",
+      "violations": []
+    },
+    {
+      "state": "768 px · EN · Restore confirmation",
+      "violations": []
+    },
+    {
+      "state": "1440 px · EN · Material dialog",
+      "violations": []
+    },
+    {
+      "state": "1440 px · EN · Calculator",
+      "violations": []
+    },
+    {
+      "state": "1440 px · EN · Comparison",
+      "violations": []
+    },
+    {
+      "state": "1440 px · EN · Restore confirmation",
+      "violations": []
+    }
+  ]
+}

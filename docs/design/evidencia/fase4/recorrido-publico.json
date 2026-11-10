@@ -1,0 +1,123 @@
+{
+  "url": "https://alvaro-mendoza-12.github.io/F-nansi-/",
+  "journeys": [
+    {
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "checks": [
+        "A: cost 20, margin 20%, price 25, profit 5",
+        "B: cost 20, markup 20%, price 24, profit 4",
+        "C: cost 20, manual price 30, profit 10, margin 33.33%, markup 50%",
+        "D: preference persists after reload",
+        "E: historical method and price preserved",
+        "F: responsive journey without horizontal overflow",
+        "G: Spanish and English navigation",
+        "invalid inputs, loss warning, comparison, save and recover",
+        "sales and payment collection"
+      ]
+    },
+    {
+      "width": 768,
+      "passed": true,
+      "errors": [],
+      "checks": [
+        "A: cost 20, margin 20%, price 25, profit 5",
+        "B: cost 20, markup 20%, price 24, profit 4",
+        "C: cost 20, manual price 30, profit 10, margin 33.33%, markup 50%",
+        "D: preference persists after reload",
+        "E: historical method and price preserved",
+        "F: responsive journey without horizontal overflow",
+        "G: Spanish and English navigation",
+        "invalid inputs, loss warning, comparison, save and recover",
+        "sales and payment collection"
+      ]
+    },
+    {
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "checks": [
+        "A: cost 20, margin 20%, price 25, profit 5",
+        "B: cost 20, markup 20%, price 24, profit 4",
+        "C: cost 20, manual price 30, profit 10, margin 33.33%, markup 50%",
+        "D: preference persists after reload",
+        "E: historical method and price preserved",
+        "F: responsive journey without horizontal overflow",
+        "G: Spanish and English navigation",
+        "invalid inputs, loss warning, comparison, save and recover",
+        "sales and payment collection"
+      ]
+    }
+  ],
+  "audits": [
+    {
+      "state": "390 px · Receta",
+      "violations": []
+    },
+    {
+      "state": "390 px · Calculadora",
+      "violations": []
+    },
+    {
+      "state": "390 px · Comparador",
+      "violations": []
+    },
+    {
+      "state": "390 px · Más",
+      "violations": []
+    },
+    {
+      "state": "390 px · Configuración oscura",
+      "violations": []
+    },
+    {
+      "state": "390 px · Ventas",
+      "violations": []
+    },
+    {
+      "state": "768 px · Receta",
+      "violations": []
+    },
+    {
+      "state": "768 px · Calculadora",
+      "violations": []
+    },
+    {
+      "state": "768 px · Comparador",
+      "violations": []
+    },
+    {
+      "state": "768 px · Más",
+      "violations": []
+    },
+    {
+      "state": "768 px · Configuración oscura",
+      "violations": []
+    },
+    {
+      "state": "768 px · Ventas",
+      "violations": []
+    },
+    {
+      "state": "1440 px · Receta",
+      "violations": []
+    },
+    {
+      "state": "1440 px · Calculadora",
+      "violations": []
+    },
+    {
+      "state": "1440 px · Comparador",
+      "violations": []
+    },
+    {
+      "state": "1440 px · Configuración oscura",
+      "violations": []
+    },
+    {
+      "state": "1440 px · Ventas",
+      "violations": []
+    }
+  ]
+}
