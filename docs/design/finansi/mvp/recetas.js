@@ -1,29 +1,30 @@
 import {
   addAmounts, comparePrices, decimalPrice, formatMargin, formatMoney, InputError,
-  laborCost, lotExpenses, materialCost, priceResult, ratio, recipeCost, recommendPrice,
+  laborCost, lotExpenses, materialCost, money, priceForMethod, priceResult, productPricing, ratio, recipeCost,
   requiredName, units, wholeUnits
 } from './precios.js';
 import { saveProduct } from './almacen.js';
+import { errorText, localize, numberText, t } from './idioma.js';
+import { linkPricingDraft } from './navegacion.js';
 import {
-  draftLink, draftTitle, forgetDraft, keepDraft, openDraft, query, revealDraftProblem,
+  bindCurrencyLabels, draftLink, draftTitle, forgetDraft, keepDraft, openDraft, query, revealDraftProblem,
   showError, showMessage, values
 } from './ui.js';
 
 const fieldNames = ['yieldUnits', 'minutes', 'hourlyRate', 'packaging', 'other'];
 const costKeys = ['materials', 'labor', 'packaging', 'other', 'lot', 'unit'];
 
-function costValues(cost) {
-  return Object.fromEntries(costKeys.map((key) => [key, formatMoney(cost[key])]));
+function costValues(cost, currency) {
+  return Object.fromEntries(costKeys.map((key) => [key, () => formatMoney(cost[key], currency)]));
 }
 
-function updateLinks(selector, href, label) {
+function updateLinks(selector, href) {
   for (const link of document.querySelectorAll(selector)) {
     link.href = href;
-    if (label) link.textContent = label;
   }
 }
 
-export async function mountRecipe() {
+export async function mountRecipe(workspace) {
   const form = document.querySelector('[data-recipe]');
   const dialog = document.querySelector('[data-material-dialog]');
   const materialForm = dialog.querySelector('form');
@@ -35,7 +36,7 @@ export async function mountRecipe() {
   let draft;
 
   try {
-    draft = await openDraft(true);
+    draft = await openDraft(workspace, true);
   } catch (error) {
     revealDraftProblem(error);
     return;
@@ -44,7 +45,10 @@ export async function mountRecipe() {
   form.elements.productName.value = draft.name;
   form.elements.category.value = draft.category;
   for (const name of fieldNames) form.elements[name].value = draft.recipe[name];
-  document.querySelector('[data-recipe-title]').textContent = draft.revision ? 'Editar producto' : 'Crear producto';
+  bindCurrencyLabels(form, draft.currency);
+  bindCurrencyLabels(dialog, draft.currency);
+  const amount = (value) => () => formatMoney(value, draft.currency);
+  localize(document.querySelector('[data-recipe-title]'), () => t(draft.revision ? 'recipe.edit' : 'recipe.create'));
   document.querySelector('[data-example-notice]').hidden = !draft.example;
   document.querySelector('[data-example-link]').hidden = draft.example || draft.revision > 0;
 
@@ -58,16 +62,16 @@ export async function mountRecipe() {
     const result = Object.fromEntries(costKeys.map((key) => [key, '—']));
     if (draft.recipe.materials.length) {
       const sum = draft.recipe.materials.map(materialCost).reduce(addAmounts, ratio(0n));
-      result.materials = formatMoney(sum);
+      result.materials = amount(sum);
     }
-    try { result.labor = formatMoney(laborCost(draft.recipe)); } catch (error) {
+    try { result.labor = amount(laborCost(draft.recipe)); } catch (error) {
       if (!(error instanceof InputError)) throw error;
     }
     try {
       const { packaging, other } = lotExpenses(draft.recipe);
-      result.packaging = formatMoney(packaging);
-      result.other = formatMoney(other);
-      Object.assign(result, costValues(recipeCost(draft.recipe)));
+      result.packaging = amount(packaging);
+      result.other = amount(other);
+      Object.assign(result, costValues(recipeCost(draft.recipe), draft.currency));
     } catch (error) {
       if (!(error instanceof InputError)) throw error;
     }
@@ -89,7 +93,7 @@ export async function mountRecipe() {
 
   function openMaterial(index = -1) {
     if (index === -1 && draft.recipe.materials.length >= 40) {
-      showError(form, new InputError('materials', 'Puedes usar hasta 40 materiales por receta.'));
+      showError(form, new InputError('materials', 'error.materialLimit'));
       return;
     }
     materialIndex = index;
@@ -101,7 +105,7 @@ export async function mountRecipe() {
         materialForm.elements[name].value = record[name];
       }
     }
-    dialog.querySelector('h2').textContent = record ? 'Editar material' : 'Añadir material';
+    localize(dialog.querySelector('h2'), () => t(record ? 'recipe.editMaterial' : 'recipe.addMaterial'));
     showError(materialForm);
     previewMaterial();
     dialog.showModal();
@@ -113,13 +117,14 @@ export async function mountRecipe() {
     draft.recipe.materials.forEach((material, index) => {
       const row = template.content.firstElementChild.cloneNode(true);
       row.querySelector('[data-material-name]').textContent = material.name;
-      row.querySelector('[data-material-quantity]').textContent =
-        material.used + ' ' + units[material.usedUnit].label + ' usados por lote';
-      row.querySelector('[data-material-cost]').textContent = formatMoney(materialCost(material));
+      localize(row.querySelector('[data-material-quantity]'), () => t('recipe.used', {
+        amount: material.used, unit: units[material.usedUnit].label ?? t('unit.plural')
+      }));
+      localize(row.querySelector('[data-material-cost]'), amount(materialCost(material)));
       const edit = row.querySelector('[data-edit-material]');
       const remove = row.querySelector('[data-remove-material]');
-      edit.setAttribute('aria-label', 'Editar ' + material.name);
-      remove.setAttribute('aria-label', 'Quitar ' + material.name);
+      localize(edit, () => t('recipe.editName', { name: material.name }), 'aria-label');
+      localize(remove, () => t('recipe.removeName', { name: material.name }), 'aria-label');
       edit.addEventListener('click', () => openMaterial(index));
       remove.addEventListener('click', () => {
         draft.recipe.materials.splice(index, 1);
@@ -139,10 +144,10 @@ export async function mountRecipe() {
 
   function previewMaterial() {
     let preview = '—';
-    try { preview = formatMoney(materialCost(materialFields())); } catch (error) {
+    try { preview = amount(materialCost(materialFields())); } catch (error) {
       if (!(error instanceof InputError)) throw error;
     }
-    dialog.querySelector('[data-material-preview]').textContent = preview;
+    showMessage(dialog.querySelector('[data-material-preview]'), preview);
   }
 
   function showStep(name, focus) {
@@ -168,7 +173,7 @@ export async function mountRecipe() {
       wholeUnits(draft.recipe.yieldUnits, 'yieldUnits', 'la cantidad producida');
     }
     if (activeStep === 'materiales' && !draft.recipe.materials.length) {
-      throw new InputError('materials', 'Añade al menos un material a la receta.');
+      throw new InputError('materials', 'error.noMaterials');
     }
   }
 
@@ -232,15 +237,15 @@ export async function mountRecipe() {
   document.querySelector('[data-ready]').hidden = false;
 }
 
-async function openPricing() {
+async function openPricing(workspace) {
   try {
-    const draft = await openDraft();
+    const draft = await openDraft(workspace);
     if (!draft) {
       document.querySelector('[data-missing]').hidden = false;
       return null;
     }
     const cost = recipeCost(draft.recipe);
-    document.querySelector('[data-product-context]').textContent = draftTitle(draft);
+    localize(document.querySelector('[data-product-context]'), () => draftTitle(draft));
     document.querySelector('[data-ready]').hidden = false;
     return { draft, cost };
   } catch (error) {
@@ -249,45 +254,93 @@ async function openPricing() {
   }
 }
 
-export async function mountPricing() {
-  const loaded = await openPricing();
+export async function mountPricing(workspace) {
+  const loaded = await openPricing(workspace);
   if (!loaded) return;
   const { draft, cost } = loaded;
   const section = document.querySelector('[data-pricing]');
   const form = section.querySelector('form');
-  const margin = form.elements.margin;
-  const submit = form.querySelector('[type="submit"]');
-  margin.value = draft.margin;
-  updateLinks('[data-edit-link]', draftLink('crear-producto.html?paso=materiales', draft), 'Editar receta');
-  values(section, { ...costValues(cost), count: String(cost.count) });
+  const fields = form.elements;
+  const submit = section.querySelector('[form="pricing-form"]');
+  const pricing = productPricing(draft);
+  const fieldNames = { margin: 'margin', markup: 'markup', manual: 'manualPrice' };
+  const inputValues = { margin: '', markup: '', manualPrice: draft.price, ...draft.pricingInput?.values };
+  if (!draft.pricingInput) inputValues[fieldNames[pricing.method]] = pricing.value;
+  for (const name of Object.values(fieldNames)) fields[name].value = inputValues[name];
+  fields.method.value = draft.pricingInput?.method ?? pricing.method;
+  fields.salesUnits.value = draft.pricingInput?.salesUnits ?? draft.comparison?.salesUnits ?? draft.recipe.yieldUnits;
+  bindCurrencyLabels(form, draft.currency);
+  updateLinks('[data-edit-link]', draftLink('crear-producto.html?paso=materiales', draft));
+  values(section, { ...costValues(cost, draft.currency), count: () => numberText(cost.count) });
+  showMessage(section.querySelector('[data-cost-notes]'),
+    () => cost.notices.map((notice) => t(notice)).join(' '));
+  const amount = (value) => () => formatMoney(value, draft.currency);
+  if (draft.revision) {
+    showMessage(form.querySelector('[data-stored-price]'), () =>
+      t('method.stored', { price: formatMoney(money(draft.price, 'price', true), draft.currency) }));
+  }
 
-  function update() {
+  function update(showMissing = false) {
+    const method = fields.method.value;
+    const value = fields[fieldNames[method]].value.trim();
+    for (const label of form.querySelectorAll('[data-method-field]')) {
+      label.hidden = label.dataset.methodField !== method;
+      label.querySelector('input').disabled = label.hidden;
+    }
+    localize(form.querySelector('#method-example'), () => t('method.example' +
+      { margin: 'Margin', markup: 'Markup', manual: 'Manual' }[method]));
+    localize(section.querySelector('[data-result-title]'), () =>
+      t(method === 'manual' ? 'method.chosen' : 'method.recommended'));
+    const zero = section.querySelector('[data-zero-cost]');
+    const loss = section.querySelector('[data-pricing-loss]');
+    zero.hidden = true;
+    loss.hidden = true;
     try {
-      const cents = recommendPrice(cost.unit, margin.value);
-      const estimate = cents > 0n ? priceResult(cost.unit, cents) : null;
+      const count = wholeUnits(fields.salesUnits.value, 'salesUnits', false);
+      const cents = priceForMethod(cost.unit, { method, value });
+      const estimate = cents > 0n ? priceResult(cost.unit, cents, count) : null;
       values(section, {
-        recommendation: formatMoney(cents), resultMargin: estimate ? formatMargin(estimate.margin) : '—',
-        profit: estimate ? formatMoney(estimate.profit) : '—'
+        recommendation: amount(cents),
+        resultMargin: () => formatMargin(estimate?.margin ?? null),
+        resultMarkup: () => formatMargin(estimate?.markup ?? null),
+        profit: estimate ? amount(estimate.profit) : '—',
+        totalProfit: estimate ? amount(estimate.total) : '—'
       });
-      section.querySelector('[data-zero-cost]').hidden = cents > 0n;
+      zero.hidden = !!estimate;
+      loss.hidden = !estimate?.belowCost;
       showError(form);
       submit.disabled = false;
-      return true;
+      return { method, value };
     } catch (error) {
-      values(section, { recommendation: '—', resultMargin: '—', profit: '—' });
-      section.querySelector('[data-zero-cost]').hidden = true;
-      showError(form, error);
+      values(section, { recommendation: '—', resultMargin: '—', resultMarkup: '—', profit: '—', totalProfit: '—' });
+      showError(form, !showMissing && !value && error.field === fieldNames[method] ? undefined : error);
       submit.disabled = true;
-      return false;
+      return null;
     }
   }
 
-  form.addEventListener('input', update);
+  form.addEventListener('input', (event) => {
+    update(event.target !== fields.method);
+    draft.pricingInput = {
+      method: fields.method.value, salesUnits: fields.salesUnits.value,
+      values: Object.fromEntries(Object.values(fieldNames).map((name) => [name, fields[name].value]))
+    };
+    try { keepDraft(draft); } catch (error) { showError(form, error); }
+  });
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    if (!update()) return;
+    const selection = update(true);
+    if (!selection) return;
     try {
-      draft.margin = margin.value.trim();
+      const before = pricing.value ? priceForMethod(cost.unit, pricing) : null;
+      const after = priceForMethod(cost.unit, selection);
+      const comparison = { ...draft.comparison, salesUnits: fields.salesUnits.value.trim() };
+      if (before !== after && after > 0n) {
+        comparison[draft.price ? 'priceB' : 'priceA'] = decimalPrice(after);
+        comparison.chosen = '';
+      }
+      draft.comparison = comparison;
+      draft.pricing = selection;
       keepDraft(draft);
       location.assign(draftLink('simulador.html', draft));
     } catch (error) {
@@ -297,23 +350,30 @@ export async function mountPricing() {
   update();
 }
 
-export async function mountComparison() {
-  const loaded = await openPricing();
+export async function mountComparison(workspace) {
+  const loaded = await openPricing(workspace);
   if (!loaded) return;
   const { draft, cost } = loaded;
   const form = document.querySelector('[data-comparison]');
   const submit = form.querySelector('[type="submit"]');
   const warning = form.querySelector('[data-loss-warning]');
   const explanation = form.querySelector('[data-explanation]');
-  const valueKeys = ['priceA', 'priceB', 'profitA', 'profitB', 'marginA', 'marginB',
+  const valueKeys = ['priceA', 'priceB', 'profitA', 'profitB', 'marginA', 'marginB', 'markupA', 'markupB',
     'totalA', 'totalB', 'difference', 'totalDifference'];
-  const suggestion = recommendPrice(cost.unit, draft.margin);
+  const suggestion = priceForMethod(cost.unit, productPricing(draft));
   const recommended = suggestion > 0n ? decimalPrice(suggestion) : '';
   form.elements.priceA.value = draft.comparison?.priceA ?? (draft.price || recommended);
   form.elements.priceB.value = draft.comparison?.priceB ?? (draft.price && draft.price !== recommended ? recommended : '');
   form.elements.salesUnits.value = draft.comparison?.salesUnits ?? draft.recipe.yieldUnits;
+  if (['A', 'B'].includes(draft.comparison?.chosen)) form.elements.chosen.value = draft.comparison.chosen;
+  bindCurrencyLabels(form, draft.currency);
   updateLinks('[data-calculator-link]', draftLink('calculadora.html', draft));
-  values(form, { unit: formatMoney(cost.unit) });
+  linkPricingDraft(draftLink, draft);
+  const amount = (value) => () => formatMoney(value, draft.currency);
+  values(form, { unit: amount(cost.unit) });
+  const foreignExample = draft.example && draft.currency !== workspace.currency;
+  if (foreignExample) showMessage(form.querySelector('[data-example-currency]'),
+    () => t('recipe.exampleCurrency', { currency: workspace.currency }));
   let busy = false;
 
   function update(showMissingPrice = true) {
@@ -322,27 +382,29 @@ export async function mountComparison() {
       const comparison = comparePrices(cost.unit, raw);
       const { a, b, difference, totalDifference } = comparison;
       values(form, {
-        priceA: formatMoney(a.price), priceB: formatMoney(b.price), profitA: formatMoney(a.profit),
-        profitB: formatMoney(b.profit), marginA: formatMargin(a.margin), marginB: formatMargin(b.margin),
-        totalA: formatMoney(a.total), totalB: formatMoney(b.total), difference: formatMoney(difference),
-        totalDifference: formatMoney(totalDifference)
+        priceA: amount(a.price), priceB: amount(b.price), profitA: amount(a.profit),
+        profitB: amount(b.profit), marginA: () => formatMargin(a.margin), marginB: () => formatMargin(b.margin),
+        markupA: () => formatMargin(a.markup), markupB: () => formatMargin(b.markup),
+        totalA: amount(a.total), totalB: amount(b.total), difference: amount(difference),
+        totalDifference: amount(totalDifference)
       });
       const losses = [a.belowCost && 'A', b.belowCost && 'B'].filter(Boolean);
-      showMessage(warning, losses.length ? 'Precio ' + losses.join(' y ') + ' por debajo del costo por unidad.' : '');
+      showMessage(warning, losses.length ? () => losses.length === 2 ? t('price.lossBoth') :
+        t('price.lossOne', { price: losses[0] }) : '');
       if (difference.numerator === 0n) {
-        explanation.textContent = 'Ambos precios dejan la misma ganancia por unidad.';
+        localize(explanation, () => t('price.equal'));
       } else {
         const better = difference.numerator > 0n ? 'B' : 'A';
         const amount = difference.numerator > 0n ? difference : ratio(-difference.numerator, difference.denominator);
-        explanation.textContent = 'El precio ' + better + ' deja ' + formatMoney(amount) + ' más por unidad.';
+        localize(explanation, () => t('price.better', { price: better, amount: formatMoney(amount, draft.currency) }));
       }
       showError(form);
-      submit.disabled = busy || !raw.chosen;
+      submit.disabled = busy || foreignExample || !raw.chosen;
       return { raw, comparison };
     } catch (error) {
       values(form, Object.fromEntries(valueKeys.map((key) => [key, '—'])));
       showMessage(warning, '');
-      explanation.textContent = 'Ingresa dos precios y la cantidad de ventas para comparar.';
+      localize(explanation, () => t('price.enter'));
       const waitingForPrice = !showMissingPrice && ['priceA', 'priceB'].includes(error.field) && !raw[error.field].trim();
       showError(form, waitingForPrice ? undefined : error);
       submit.disabled = true;
@@ -352,17 +414,16 @@ export async function mountComparison() {
 
   form.addEventListener('input', () => {
     showMessage(form.querySelector('[data-save-error]'), '');
-    const result = update();
-    if (result) {
-      const { priceA, priceB, salesUnits } = result.raw;
-      draft.comparison = { priceA, priceB, salesUnits };
-      try { keepDraft(draft); } catch (error) { showMessage(form.querySelector('[data-save-error]'), error.message); }
+    update();
+    draft.comparison = Object.fromEntries(new FormData(form));
+    try { keepDraft(draft); } catch (error) {
+      showMessage(form.querySelector('[data-save-error]'), () => errorText(error));
     }
   });
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const result = update();
-    if (busy || !result?.raw.chosen) return;
+    if (busy || foreignExample || !result?.raw.chosen) return;
     busy = true;
     submit.disabled = true;
     const selected = result.raw.chosen === 'A' ? result.comparison.a : result.comparison.b;
@@ -371,7 +432,7 @@ export async function mountComparison() {
       forgetDraft(draft.id);
       location.replace('productos.html?guardado=' + encodeURIComponent(product.id));
     } catch (error) {
-      showMessage(form.querySelector('[data-save-error]'), error.message);
+      showMessage(form.querySelector('[data-save-error]'), () => errorText(error));
       busy = false;
       update();
     }

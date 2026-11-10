@@ -2,8 +2,9 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   comparePrices, formatMargin, formatMoney, InputError, materialCost, priceResult,
-  recipeCost, recommendPrice, ratio
+  recipeCost, recommendPrice, ratio, priceForMethod, productPricing
 } from '../docs/design/finansi/mvp/precios.js';
+import { createBackup, validateBackup } from '../docs/design/finansi/mvp/respaldo.js';
 
 const material = (name, purchaseCost) => ({
   name, used: '1', usedUnit: 'unidad', bought: '1', boughtUnit: 'unidad', purchaseCost
@@ -38,6 +39,57 @@ test('compara S/ 25 y S/ 30 para tres ventas', () => {
   assert.equal(formatMoney(comparison.a.total), 'S/ 15.00');
   assert.equal(formatMoney(comparison.b.total), 'S/ 30.00');
   assert.equal(formatMargin(comparison.b.margin), '33.33 %');
+});
+
+test('distingue recargo, margen y precio manual para el mismo costo', () => {
+  const cost = ratio(2000n);
+  const price = priceForMethod(cost, { method: 'markup', value: '20' });
+  assert.equal(price, 2400n);
+  assert.equal(formatMoney(priceResult(cost, price).profit), 'S/ 4.00');
+  assert.equal(formatMargin(priceResult(cost, price).margin), '16.67 %');
+  const manual = priceForMethod(cost, { method: 'manual', value: '30,00' });
+  const result = priceResult(cost, manual, 3n);
+  assert.equal(manual, 3000n);
+  assert.equal(formatMoney(result.profit), 'S/ 10.00');
+  assert.equal(formatMargin(result.margin), '33.33 %');
+  assert.equal(formatMargin(result.markup), '50 %');
+  assert.equal(formatMoney(result.total), 'S/ 30.00');
+});
+
+test('valida recargo y precio manual y conserva los casos límite', () => {
+  for (const value of ['', '-20', '2.123']) {
+    assert.throws(() => priceForMethod(ratio(2000n), { method: 'markup', value }), { field: 'markup' });
+  }
+  for (const value of ['', '0', '-25', '1e2', '5.123']) {
+    assert.throws(() => priceForMethod(ratio(2000n), { method: 'manual', value }), { field: 'manualPrice' });
+  }
+  assert.equal(priceForMethod(ratio(6001n, 3n), { method: 'markup', value: '20' }), 2401n);
+  assert.equal(priceForMethod(ratio(2000n), { method: 'markup', value: '150' }), 5000n);
+  assert.equal(priceResult(ratio(0n), 3000n).markup, null);
+  assert.deepEqual(productPricing({ margin: '20', price: '30.00' }), { method: 'margin', value: '20' });
+});
+
+test('importa copias antiguas y conserva por separado el método y el precio elegido', () => {
+  const instant = '2026-01-01T00:00:00.000Z';
+  const business = { name: '', activity: '', country: 'PE', currency: 'PEN' };
+  const product = {
+    id: '35ada8ca-2321-4c26-b1bc-e7d06c012dad', name: 'Vela', category: '', margin: '20',
+    price: '30.00', currency: 'PEN', createdAt: instant, updatedAt: instant, recipe: recipe(), revision: 1
+  };
+  const legacy = validateBackup({
+    format: 'finansi', version: 1, exportedAt: instant, business,
+    products: [product], sales: [], archivedProducts: []
+  });
+  assert.deepEqual(legacy.products[0].pricing, { method: 'margin', value: '20' });
+  assert.equal(legacy.products[0].price, '30.00');
+
+  const pricing = { method: 'markup', value: '20' };
+  const backup = createBackup({ workspace: business, products: [{ ...product, pricing }], sales: [] });
+  assert.equal(backup.version, 2);
+  assert.deepEqual(backup.products[0].pricing, pricing);
+  assert.equal(backup.products[0].price, '30.00');
+  const malformed = { ...backup, products: [{ ...product, pricing: { method: 'markup', value: '-20' } }] };
+  assert.throws(() => validateBackup(malformed), { key: 'error.backupFormat' });
 });
 
 test('convierte la cantidad consumida y acepta la coma decimal', () => {

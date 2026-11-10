@@ -8,14 +8,14 @@
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../prototipo/estilos.css">
   <link rel="stylesheet" href="maqueta.css">
-  <script src="maqueta.js" defer></script>
+  <script type="module" src="mvp/app.js"></script>
 </head>
 <body class="b demo demo-entry showroom" data-page="pantallas">
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <a class="skip-link" href="#contenido" data-i18n="ui.skip">Saltar al contenido</a>
   <header class="demo-header entry-header">
     <div class="demo-header-inner"><a class="brand" href="index.html"><img src="../prototipo/img/marca.svg" width="36" height="36" alt=""><span>Finansi</span></a> <a class="action quiet" href="inicio.html"><span>Ver Inicio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
   </header>
-  <main class="demo-main" id="contenido">
+  <main class="demo-main" id="contenido" tabindex="-1">
     <div class="showroom-heading">
       <div><span class="tag demo-tag good"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Concepto B aprobado</span><h1>Finansi, pantalla por pantalla</h1><p>Las 12 capturas conservan el concepto B aprobado en la Fase 1. Los enlaces abren el MVP o el caso ficticio indicado.</p></div>
       <div class="showroom-actions">
@@ -48,7 +48,7 @@
         </article>
         <article class="screen-card card">
           <a href="productos.html" class="screen-cover" aria-label="Abrir Mis productos"><img loading="lazy" src="../mockups/b/productos-escritorio.png" width="1440" height="900" alt=""></a>
-          <div class="screen-copy"><h3>Mis productos</h3>
+          <div class="screen-copy"><h3 data-i18n="ui.myProducts">Mis productos</h3>
             <div><a class="action quiet" href="productos.html"><span>Abrir maqueta</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action quiet" href="../mockups/b/productos-escritorio.png"><span>PNG escritorio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a class="action quiet" href="../mockups/b/productos-movil.png"><span>PNG móvil</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
           </div>
         </article>
@@ -59,19 +59,19 @@
       <div class="screen-grid">
         <article class="screen-card card">
           <a href="crear-producto.html?ejemplo=cedro&amp;paso=materiales" class="screen-cover" aria-label="Abrir Crear producto"><img loading="lazy" src="../mockups/b/crear-producto-escritorio.png" width="1440" height="900" alt=""></a>
-          <div class="screen-copy"><h3>Crear producto</h3>
+          <div class="screen-copy"><h3 data-i18n="ui.create">Crear producto</h3>
             <div><a class="action quiet" href="crear-producto.html?ejemplo=cedro&amp;paso=materiales"><span>Abrir maqueta</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action quiet" href="../mockups/b/crear-producto-escritorio.png"><span>PNG escritorio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a class="action quiet" href="../mockups/b/crear-producto-movil.png"><span>PNG móvil</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
           </div>
         </article>
         <article class="screen-card card">
           <a href="calculadora.html?ejemplo=cedro" class="screen-cover" aria-label="Abrir Calculadora de precio"><img loading="lazy" src="../mockups/b/calculadora-escritorio.png" width="1440" height="900" alt=""></a>
-          <div class="screen-copy"><h3>Calculadora de precio</h3>
+          <div class="screen-copy"><h3 data-i18n="ui.calcTitle">Calculadora de precio</h3>
             <div><a class="action quiet" href="calculadora.html?ejemplo=cedro"><span>Abrir maqueta</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action quiet" href="../mockups/b/calculadora-escritorio.png"><span>PNG escritorio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a class="action quiet" href="../mockups/b/calculadora-movil.png"><span>PNG móvil</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
           </div>
         </article>
         <article class="screen-card card">
           <a href="simulador.html?ejemplo=cedro" class="screen-cover" aria-label="Abrir Simulador de precios"><img loading="lazy" src="../mockups/b/simulador-escritorio.png" width="1440" height="900" alt=""></a>
-          <div class="screen-copy"><h3>Simulador de precios</h3>
+          <div class="screen-copy"><h3 data-i18n="ui.simTitle">Simulador de precios</h3>
             <div><a class="action quiet" href="simulador.html?ejemplo=cedro"><span>Abrir maqueta</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action quiet" href="../mockups/b/simulador-escritorio.png"><span>PNG escritorio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a class="action quiet" href="../mockups/b/simulador-movil.png"><span>PNG móvil</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
           </div>
         </article>
@@ -94,25 +94,25 @@
         </article>
         <article class="screen-card card">
           <a href="ventas.html" class="screen-cover" aria-label="Abrir Ventas"><img loading="lazy" src="../mockups/b/ventas-escritorio.png" width="1440" height="900" alt=""></a>
-          <div class="screen-copy"><h3>Ventas</h3>
+          <div class="screen-copy"><h3 data-i18n="nav.sales">Ventas</h3>
             <div><a class="action quiet" href="ventas.html"><span>Abrir maqueta</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action quiet" href="../mockups/b/ventas-escritorio.png"><span>PNG escritorio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a class="action quiet" href="../mockups/b/ventas-movil.png"><span>PNG móvil</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
           </div>
         </article>
         <article class="screen-card card">
           <a href="inventario.html" class="screen-cover" aria-label="Abrir Inventario"><img loading="lazy" src="../mockups/b/inventario-escritorio.png" width="1440" height="900" alt=""></a>
-          <div class="screen-copy"><h3>Inventario</h3>
+          <div class="screen-copy"><h3 data-i18n="nav.inventory">Inventario</h3>
             <div><a class="action quiet" href="inventario.html"><span>Abrir maqueta</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action quiet" href="../mockups/b/inventario-escritorio.png"><span>PNG escritorio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a class="action quiet" href="../mockups/b/inventario-movil.png"><span>PNG móvil</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
           </div>
         </article>
         <article class="screen-card card">
           <a href="mi-dinero.html" class="screen-cover" aria-label="Abrir Mi dinero"><img loading="lazy" src="../mockups/b/mi-dinero-escritorio.png" width="1440" height="900" alt=""></a>
-          <div class="screen-copy"><h3>Mi dinero</h3>
+          <div class="screen-copy"><h3 data-i18n="nav.money">Mi dinero</h3>
             <div><a class="action quiet" href="mi-dinero.html"><span>Abrir maqueta</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action quiet" href="../mockups/b/mi-dinero-escritorio.png"><span>PNG escritorio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a class="action quiet" href="../mockups/b/mi-dinero-movil.png"><span>PNG móvil</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
           </div>
         </article>
         <article class="screen-card card">
           <a href="diagnostico.html" class="screen-cover" aria-label="Abrir Diagnóstico"><img loading="lazy" src="../mockups/b/diagnostico-escritorio.png" width="1440" height="900" alt=""></a>
-          <div class="screen-copy"><h3>Diagnóstico</h3>
+          <div class="screen-copy"><h3 data-i18n="nav.diagnosis">Diagnóstico</h3>
             <div><a class="action quiet" href="diagnostico.html"><span>Abrir maqueta</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action quiet" href="../mockups/b/diagnostico-escritorio.png"><span>PNG escritorio</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a class="action quiet" href="../mockups/b/diagnostico-movil.png"><span>PNG móvil</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
           </div>
         </article>
@@ -120,7 +120,7 @@
     </section>
     <section class="other-states card" aria-labelledby="states-title">
       <h2 id="states-title">Estados que puedes probar</h2>
-      <div><a class="action secondary" href="inicio.html?estado=nuevo"><span>Inicio sin ventas</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action secondary" href="ventas.html?modo=ejemplo&amp;ver=registro"><span>Registro de venta</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action secondary" href="inventario.html?ver=material"><span>Añadir material</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action secondary" href="asistente.html?pregunta=demanda"><span>Asistente con datos insuficientes</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a></div>
+      <div><a class="action secondary" href="inicio.html?estado=nuevo"><span>Inicio sin ventas</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action secondary" href="ventas.html?modo=ejemplo&amp;ver=registro"><span>Registro de venta</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action secondary" href="inventario.html?ver=material"><span data-i18n="ui.addMaterial">Añadir material</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a><a class="action secondary" href="asistente.html?pregunta=demanda"><span>Asistente con datos insuficientes</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 5 7 7-7 7m7-7H5"/></svg></a></div>
     </section>
   </main>
 

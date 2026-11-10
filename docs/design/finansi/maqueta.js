@@ -1,4 +1,4 @@
-'use strict';
+import { localize, t } from './mvp/idioma.js';
 
 const query = new URLSearchParams(window.location.search);
 
@@ -18,7 +18,7 @@ function mountCollection(section) {
     let visible = 0;
     for (const item of items) {
       const categoryMatches = selected.dataset.filter === 'todos' || selected.dataset.filter === item.dataset.item;
-      const textMatches = !term || normalizeText(item.dataset.searchText).includes(term);
+      const textMatches = !term || normalizeText(item.dataset.searchText + ' ' + item.textContent).includes(term);
       item.hidden = !categoryMatches || !textMatches;
       if (!item.hidden) visible += 1;
     }
@@ -53,27 +53,27 @@ let feedbackTimer;
 
 function showFeedback(message) {
   window.clearTimeout(feedbackTimer);
-  feedback.textContent = message;
-  feedbackTimer = window.setTimeout(() => { feedback.textContent = ''; }, 8000);
+  localize(feedback, message);
+  feedbackTimer = window.setTimeout(() => localize(feedback, () => ''), 8000);
 }
 
 function previewMessage(form) {
   const fields = new FormData(form);
   if (form.dataset.dialogPreview === 'venta') {
     if (fields.get('cobro') === 'pendiente') {
-      return 'Venta de ejemplo pendiente. Aparecería en Por cobrar y entraría en caja al recibir el pago.';
+      return 'sample.salePending';
     }
-    return 'Venta de ejemplo cobrada. El cobro aparecería en Mi dinero como una entrada del negocio.';
+    return 'sample.salePaid';
   }
   if (form.dataset.dialogPreview === 'dinero') {
     const messages = {
-      gasto: 'El gasto de ejemplo aparecería en las salidas del negocio.',
-      aporte: 'El aporte de ejemplo aparecería en las entradas de dinero personal.',
-      retiro: 'El retiro de ejemplo aparecería en las salidas de dinero personal.'
+      gasto: 'sample.expense',
+      aporte: 'sample.contribution',
+      retiro: 'sample.withdrawal'
     };
     return messages[fields.get('tipo')];
   }
-  return form.dataset.message;
+  return form.dataset.i18nMessage ?? form.dataset.message;
 }
 
 for (const opener of document.querySelectorAll('[data-open-dialog]')) {
@@ -86,7 +86,8 @@ for (const form of document.querySelectorAll('[data-dialog-form]')) {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     form.closest('dialog').close();
-    showFeedback(previewMessage(form));
+    const message = previewMessage(form);
+    showFeedback(() => t(message));
   });
 }
 

@@ -9,47 +9,38 @@
   <link rel="stylesheet" href="../prototipo/estilos.css">
   <link rel="stylesheet" href="maqueta.css">
   <link rel="stylesheet" href="mvp/flujo.css">
-  <script src="maqueta.js" defer></script>
   <script type="module" src="mvp/app.js"></script>
 </head>
 <body class="b demo demo-module " data-page="ventas">
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
-  <header class="demo-header">
-    <div class="demo-header-inner">
-      <a class="brand" href="inicio.html"><img src="../prototipo/img/marca.svg" width="36" height="36" alt=""><span>Finansi</span></a>
-      <nav class="demo-top-nav" aria-label="Navegación principal"><a href="inicio.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Inicio</span></a><a href="productos.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg><span>Productos</span></a><a href="ventas.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg><span>Ventas</span></a><a href="inventario.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg><span>Inventario</span></a><a href="mi-dinero.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg><span>Mi dinero</span></a></nav>
-      <div class="demo-header-tools">
-        <a class="assist-link" aria-label="Asistente Finansi" href="asistente.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg><span>Asistente</span></a>
-        <details class="demo-menu profile-menu">
-          <summary aria-label="Menú de Taller Bruma"><span class="profile-name">Taller Bruma</span><span class="avatar" aria-hidden="true">LT</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <div class="demo-menu-list"><a href="diagnostico.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Diagnóstico</span></a><a href="pantallas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Ver todas las pantallas</span></a><a href="index.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Bienvenida</span></a></div>
-        </details>
-      </div>
-    </div>
-  </header>
-  <main class="demo-main" id="contenido">
-    <noscript><p class="inline-note">Activa JavaScript para consultar tus datos guardados.</p></noscript>
+  <a class="skip-link" href="#contenido" data-i18n="ui.skip">Saltar al contenido</a>
+  <header data-shared-header></header>
+  <main class="demo-main" id="contenido" tabindex="-1">
+    <noscript><p class="inline-note" data-i18n="ui.noScriptLocal">Activa JavaScript para consultar tus datos guardados.</p></noscript>
     <p class="form-error" role="alert" data-load-error hidden></p>
     <section data-real-sales hidden>
       <div class="demo-heading">
-        <div><h1>Ventas</h1><p>Registra una venta con un producto de tu catálogo.</p></div>
+        <div><h1 data-i18n="nav.sales">Ventas</h1><p data-i18n="ui.salesIntro">Registra una venta con un producto de tu catálogo.</p></div>
         <div class="heading-actions">
-          <button class="action primary" type="button" data-start-sale>Registrar venta</button>
-          <a class="action secondary" href="?modo=ejemplo">Ver ventas de ejemplo</a>
+          <button class="action primary" type="button" data-start-sale data-i18n="ui.startSale">Registrar venta</button>
+          <a class="action secondary" href="?modo=ejemplo" data-i18n="ui.sampleSales">Ver ventas de ejemplo</a>
         </div>
       </div>
       <p class="inline-note" role="status" data-sales-status hidden></p>
       <dl class="metrics-strip mvp-kpis">
-        <div class="metric"><dt>Ventas registradas</dt><dd><span class="amount" data-value="sold">—</span></dd></div>
-        <div class="metric"><dt>Cobradas</dt><dd><span class="amount" data-value="received">—</span></dd></div>
-        <div class="metric"><dt>Por cobrar</dt><dd><span class="amount" data-value="pending">—</span></dd></div>
+        <div class="metric"><dt data-i18n="ui.sold">Ventas registradas</dt><dd><span class="amount" data-value="sold">—</span></dd></div>
+        <div class="metric"><dt data-i18n="ui.collected">Cobradas</dt><dd><span class="amount" data-value="received">—</span></dd></div>
+        <div class="metric"><dt data-i18n="ui.pending">Por cobrar</dt><dd><span class="amount" data-value="pending">—</span></dd></div>
       </dl>
+      <details class="explain-details sales-help">
+        <summary data-i18n="help.salesTitle">¿Qué significan ventas, cobros y pendientes?</summary>
+        <p data-i18n="help.sales"></p>
+      </details>
       <section class="record-panel card" aria-labelledby="real-sales-title">
-        <div class="record-header"><div><h2 id="real-sales-title">Tus ventas</h2><p>Guardadas en este navegador.</p></div></div>
-        <p class="empty-message" data-sales-empty hidden>Las ventas que registres aparecerán aquí.</p>
+        <div class="record-header"><div><h2 id="real-sales-title" data-i18n="ui.yourSales">Tus ventas</h2><p data-i18n="ui.storedHere">Guardadas en este navegador.</p></div></div>
+        <p class="empty-message" data-sales-empty hidden data-i18n="ui.salesEmpty">Las ventas que registres aparecerán aquí.</p>
         <table class="record-table sales-table">
-          <caption class="sr-only">Ventas guardadas</caption>
-          <thead><tr><th scope="col">Producto</th><th scope="col">Cantidad</th><th scope="col">Importe</th><th scope="col">Cobro</th></tr></thead>
+          <caption class="sr-only" data-i18n="ui.salesCaption">Ventas guardadas</caption>
+          <thead><tr><th scope="col" data-i18n="ui.product">Producto</th><th scope="col" data-i18n="ui.quantity">Cantidad</th><th scope="col" data-i18n="ui.amount">Importe</th><th scope="col" data-i18n="ui.paymentColumn">Cobro</th></tr></thead>
           <tbody data-sale-list></tbody>
         </table>
         <template data-sale-template>
@@ -57,32 +48,33 @@
             <th scope="row"><div class="record-name"><div><strong data-sold-name></strong><span data-sold-date></span></div></div></th>
             <td class="record-meta" data-sold-units></td>
             <td class="record-amount" data-sold-total></td>
-            <td class="record-status"><span class="tag demo-tag" data-payment></span><button type="button" class="action quiet" data-collect>Marcar cobrada</button></td>
+            <td class="record-status"><span class="tag demo-tag" data-payment></span><button type="button" class="action quiet" data-collect data-i18n="ui.collect">Marcar cobrada</button></td>
           </tr>
         </template>
       </section>
     </section>
     <dialog class="demo-dialog" data-real-sale-dialog aria-labelledby="real-sale-title">
-      <div class="dialog-head"><div><h2 id="real-sale-title">Registrar venta</h2><p>Elige un producto y confirma el importe que acordaste.</p></div></div>
+      <div class="dialog-head"><div><h2 id="real-sale-title" data-i18n="ui.startSale">Registrar venta</h2><p data-i18n="ui.salePrompt">Elige un producto y confirma el importe que acordaste.</p></div></div>
       <form novalidate>
-        <label class="form-field"><span>Producto guardado</span><select name="productId" required></select></label>
+        <label class="form-field"><span data-i18n="ui.selectProduct">Producto guardado</span><select name="productId" required autofocus></select></label>
         <div class="form-row">
-          <label class="form-field"><span>Unidades vendidas</span><input name="quantity" type="text" inputmode="numeric" value="1" maxlength="7" required></label>
-          <label class="form-field"><span>Precio por unidad en soles</span><input name="price" type="text" inputmode="decimal" maxlength="16" required></label>
+          <label class="form-field"><span data-i18n="ui.soldUnits">Unidades vendidas</span><input name="quantity" type="text" inputmode="numeric" value="1" maxlength="7" required></label>
+          <label class="form-field"><span data-currency-label="salePrice">Precio por unidad en soles</span><input name="price" type="text" inputmode="decimal" maxlength="43" required></label>
         </div>
-        <label class="form-field"><span>Estado del pago</span><select name="payment"><option value="paid">Cobrada</option><option value="pending">Pendiente</option></select></label>
+        <label class="form-field"><span data-i18n="ui.payment">Estado del pago</span><select name="payment"><option value="paid" data-i18n="ui.paid">Cobrada</option><option value="pending" data-i18n="ui.paymentPending">Pendiente</option></select></label>
         <p class="form-error" data-error role="alert" hidden></p>
+        <p class="inline-note warning" data-sale-loss role="status" hidden></p>
         <div class="form-actions">
-          <button type="button" class="action secondary" data-close-dialog>Cancelar</button>
-          <button type="submit" class="action primary">Guardar venta</button>
+          <button type="button" class="action secondary" data-close-dialog data-i18n="ui.cancel">Cancelar</button>
+          <button type="submit" class="action primary" data-i18n="ui.saveSale">Guardar venta</button>
         </div>
       </form>
     </dialog>
     <div data-example-sales hidden>
       <p class="inline-note example-view">Ventas ficticias de Taller Bruma. <a class="action quiet" href="ventas.html">Ver mis ventas</a></p>
     <div class="demo-heading">
-      <div><h1>Ventas</h1><p>Consulta lo que vendiste y qué cobros siguen pendientes.</p></div>
-      <div class="heading-actions"><span class="demo-date"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/></svg><span>1–28 oct 2026</span></span><button type="button" class="action primary" data-open-dialog="venta-dialog"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Registrar venta</span></button></div>
+      <div><h1 data-i18n="nav.sales">Ventas</h1><p>Consulta lo que vendiste y qué cobros siguen pendientes.</p></div>
+      <div class="heading-actions"><span class="demo-date"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/></svg><span>1–28 oct 2026</span></span><button type="button" class="action primary" data-open-dialog="venta-dialog"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="ui.startSale">Registrar venta</span></button></div>
     </div>
     <dl class="metrics-strip">
       <div class="metric">
@@ -94,19 +86,19 @@
       <dd><span class="amount"><span class="currency">S/</span> 3,320</span></dd><dd class="metric-detail">Dinero que ya entró</dd>
     </div>
       <div class="metric">
-      <dt><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span>Por cobrar</span></dt>
+      <dt><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span data-i18n="ui.pending">Por cobrar</span></dt>
       <dd><span class="amount"><span class="currency">S/</span> 160</span></dd><dd class="metric-detail">Un pedido para feria</dd>
     </div>
     </dl>
     <section class="record-panel card" data-collection aria-labelledby="sales-history">
       <div class="record-header"><div><h2 id="sales-history">Historial de ventas</h2><p>Muestra de los registros de octubre</p></div><div class="filter-group" role="group" aria-label="Estado de cobro">
           <button type="button" data-filter="todos" aria-pressed="true">Todas</button>
-          <button type="button" data-filter="cobrado" aria-pressed="false">Cobradas</button>
+          <button type="button" data-filter="cobrado" aria-pressed="false" data-i18n="ui.collected">Cobradas</button>
           <button type="button" data-filter="pendiente" aria-pressed="false">Pendientes</button>
         </div></div>
       <table class="record-table sales-table">
           <caption class="sr-only">Ventas recientes de Taller Bruma</caption>
-          <thead><tr><th scope="col">Venta</th><th scope="col">Medio de pago</th><th scope="col">Importe</th><th scope="col">Estado</th></tr></thead>
+          <thead><tr><th scope="col">Venta</th><th scope="col">Medio de pago</th><th scope="col" data-i18n="ui.amount">Importe</th><th scope="col">Estado</th></tr></thead>
           <tbody>
           <tr data-item="cobrado">
             <th scope="row"><div class="record-name"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg></span><div><strong>Vela Cedro × 2</strong><span>V-024 · 28 oct</span></div></div></th>
@@ -138,20 +130,14 @@
     <div class="inline-note"><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8v.1"/></svg></span><div><strong>¿Cuándo aparece una venta en caja?</strong><p>El dinero entra en Mi dinero cuando marcas el cobro como recibido.</p></div></div>
     </div>
   </main>
-  <nav class="demo-bottom" aria-label="Navegación móvil">
-    <a href="inicio.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Inicio</span></a><a href="productos.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg><span>Productos</span></a><a href="ventas.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg><span>Ventas</span></a>
-    <details class="demo-menu bottom-menu">
-      <summary><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Más</span></summary>
-      <div class="demo-menu-list"><a href="inventario.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg><span>Inventario</span></a><a href="mi-dinero.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg><span>Mi dinero</span></a><a href="diagnostico.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Diagnóstico</span></a><a href="asistente.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg><span>Asistente Finansi</span></a><a href="pantallas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Ver todas las pantallas</span></a></div>
-    </details>
-  </nav>
+  <nav data-shared-bottom></nav>
   <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
   <dialog class="demo-dialog" id="venta-dialog" aria-labelledby="venta-dialog-title">
-    <div class="dialog-head"><div><h2 id="venta-dialog-title">Registrar venta</h2><p>Revisa el producto y el estado de cobro en esta venta de ejemplo.</p></div><button class="icon-button" type="button" aria-label="Cerrar" data-close-dialog><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div class="dialog-head"><div><h2 id="venta-dialog-title" data-i18n="ui.startSale">Registrar venta</h2><p>Revisa el producto y el estado de cobro en esta venta de ejemplo.</p></div><button class="icon-button" type="button" aria-label="Cerrar" data-close-dialog><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
     <form data-dialog-form data-message="Vista previa lista." data-dialog-preview="venta">
-      <label class="form-field"><span>Producto</span><select name="producto"><option>Vela Cedro</option><option>Vela Lavanda</option><option>Vela Naranja</option></select></label><div class="form-row"><label class="form-field"><span>Cantidad</span><input name="cantidad" type="number" min="1" step="1" value="2" required></label><label class="form-field"><span>Precio unitario en soles</span><span class="input-with-unit"><span aria-hidden="true">S/</span><input name="precio" value="32.00" inputmode="decimal" type="number" min="0.01" step="0.01" required></span></label></div><label class="form-field"><span>Fecha</span><input name="fecha" type="date" value="2026-10-28" required></label><div class="form-row"><label class="form-field"><span>Medio de pago</span><select name="medio"><option>Billetera digital</option><option>Efectivo</option><option>Transferencia</option><option>Por definir</option></select></label><label class="form-field"><span>Estado de cobro</span><select name="cobro"><option value="cobrado">Cobrado</option><option value="pendiente">Pendiente</option></select></label></div>
+      <label class="form-field"><span data-i18n="ui.product">Producto</span><select name="producto"><option>Vela Cedro</option><option>Vela Lavanda</option><option>Vela Naranja</option></select></label><div class="form-row"><label class="form-field"><span data-i18n="ui.quantity">Cantidad</span><input name="cantidad" type="number" min="1" step="1" value="2" required></label><label class="form-field"><span>Precio unitario en soles</span><span class="input-with-unit"><span aria-hidden="true">S/</span><input name="precio" value="32.00" inputmode="decimal" type="number" min="0.01" step="0.01" required></span></label></div><label class="form-field"><span>Fecha</span><input name="fecha" type="date" value="2026-10-28" required></label><div class="form-row"><label class="form-field"><span>Medio de pago</span><select name="medio"><option>Billetera digital</option><option>Efectivo</option><option>Transferencia</option><option>Por definir</option></select></label><label class="form-field"><span>Estado de cobro</span><select name="cobro"><option value="cobrado">Cobrado</option><option value="pendiente" data-i18n="ui.paymentPending">Pendiente</option></select></label></div>
       <div class="form-actions">
-        <button type="button" class="action secondary" data-close-dialog><span>Cancelar</span></button>
+        <button type="button" class="action secondary" data-close-dialog><span data-i18n="ui.cancel">Cancelar</span></button>
         <button type="submit" class="action primary"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Ver resultado de ejemplo</span></button>
       </div>
     </form>

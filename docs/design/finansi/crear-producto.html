@@ -9,105 +9,92 @@
   <link rel="stylesheet" href="../prototipo/estilos.css">
   <link rel="stylesheet" href="maqueta.css">
   <link rel="stylesheet" href="mvp/flujo.css">
-  <script src="maqueta.js" defer></script>
   <script type="module" src="mvp/app.js"></script>
 </head>
 <body class="b demo demo-module " data-page="crear-producto">
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
-  <header class="demo-header">
-    <div class="demo-header-inner">
-      <a class="brand" href="inicio.html"><img src="../prototipo/img/marca.svg" width="36" height="36" alt=""><span>Finansi</span></a>
-      <nav class="demo-top-nav" aria-label="Navegación principal"><a href="inicio.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Inicio</span></a><a href="productos.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg><span>Productos</span></a><a href="ventas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg><span>Ventas</span></a><a href="inventario.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg><span>Inventario</span></a><a href="mi-dinero.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg><span>Mi dinero</span></a></nav>
-      <div class="demo-header-tools">
-        <a class="assist-link" aria-label="Asistente Finansi" href="asistente.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg><span>Asistente</span></a>
-        <details class="demo-menu profile-menu">
-          <summary aria-label="Menú de Taller Bruma"><span class="profile-name">Taller Bruma</span><span class="avatar" aria-hidden="true">LT</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <div class="demo-menu-list"><a href="diagnostico.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Diagnóstico</span></a><a href="pantallas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Ver todas las pantallas</span></a><a href="index.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Bienvenida</span></a></div>
-        </details>
-      </div>
-    </div>
-  </header>
-  <main class="demo-main" id="contenido">
-    <noscript><p class="inline-note">Activa JavaScript para usar el catálogo y calcular precios.</p></noscript>
-    <div class="page-trail"><a class="back-link" href="productos.html">← Mis productos</a></div>
+  <a class="skip-link" href="#contenido" data-i18n="ui.skip">Saltar al contenido</a>
+  <header data-shared-header></header>
+  <main class="demo-main" id="contenido" tabindex="-1">
+    <noscript><p class="inline-note" data-i18n="ui.noScript">Activa JavaScript para usar el catálogo y calcular precios.</p></noscript>
+    <div class="page-trail"><a class="back-link" href="productos.html" data-i18n="ui.backProducts">← Mis productos</a></div>
     <div class="demo-heading">
-      <div><h1 data-recipe-title>Crear producto</h1><p>Calcula cuánto cuesta cada unidad de tu lote.</p></div>
-      <div class="heading-actions"><a class="action secondary" href="crear-producto.html?ejemplo=cedro" data-example-link>Usar receta de ejemplo</a></div>
+      <div><h1 data-recipe-title data-i18n="ui.create">Crear producto</h1><p data-i18n="ui.recipeIntro">Calcula cuánto cuesta cada unidad de tu lote.</p></div>
+      <div class="heading-actions"><a class="action secondary" href="crear-producto.html?ejemplo=cedro" data-example-link data-i18n="ui.exampleLink">Usar receta de ejemplo</a></div>
     </div>
     <p class="form-error" data-load-error role="alert" hidden></p>
-    <p class="inline-note" data-example-notice hidden>Estás editando una copia de la receta de Taller Bruma. Se agrega a Mis productos al confirmar su precio.</p>
+    <p class="inline-note" data-example-notice hidden data-i18n="ui.exampleNotice">Estás editando una copia de la receta de Taller Bruma en PEN.</p>
     <div class="wizard-grid" data-ready hidden>
       <div>
-        <ol class="wizard-steps" aria-label="Pasos de la receta">
-          <li data-step-label="datos" aria-current="step"><span>1</span><b>Datos</b></li>
-          <li data-step-label="materiales"><span>2</span><b>Materiales</b></li>
-          <li data-step-label="trabajo"><span>3</span><b>Trabajo</b></li>
+        <ol class="wizard-steps" aria-label="Pasos de la receta" data-i18n-aria-label="ui.recipeSteps">
+          <li data-step-label="datos" aria-current="step"><span>1</span><b data-i18n="ui.details">Datos</b></li>
+          <li data-step-label="materiales"><span>2</span><b data-i18n="ui.materials">Materiales</b></li>
+          <li data-step-label="trabajo"><span>3</span><b data-i18n="ui.labor">Trabajo</b></li>
         </ol>
         <form class="wizard-form" data-recipe novalidate>
           <section class="wizard-panel card" data-step="datos" aria-labelledby="step-datos">
-            <h2 id="step-datos" tabindex="-1">Dale un nombre a tu producto</h2>
-            <p class="panel-lede">Define cuántas unidades quedan listas para vender en un lote.</p>
+            <h2 id="step-datos" tabindex="-1" data-i18n="ui.nameProduct">Dale un nombre a tu producto</h2>
+            <p class="panel-lede" data-i18n="ui.batchHelp">Define cuántas unidades quedan listas para vender en un lote.</p>
             <label class="form-field">
-              <span>Nombre del producto</span>
+              <span data-i18n="ui.productName">Nombre del producto</span>
               <input name="productName" type="text" required maxlength="60" placeholder="Ej. Vela Cedro">
             </label>
             <div class="form-row">
               <label class="form-field">
-                <span>Unidades por lote</span>
+                <span data-i18n="ui.batchUnits">Unidades por lote</span>
                 <input name="yieldUnits" type="text" inputmode="numeric" required maxlength="7">
               </label>
-              <label class="form-field"><span>Categoría (opcional)</span><input name="category" maxlength="40" placeholder="Ej. Velas"></label>
+              <label class="form-field"><span data-i18n="ui.category">Categoría (opcional)</span><input name="category" maxlength="40" placeholder="Ej. Velas"></label>
             </div>
-            <div class="form-actions"><button type="button" class="action primary" data-go-step="materiales">Continuar a materiales</button></div>
+            <div class="form-actions"><button type="button" class="action primary" data-go-step="materiales" data-i18n="ui.continueMaterials">Continuar a materiales</button></div>
           </section>
           <section class="wizard-panel card" data-step="materiales" aria-labelledby="step-materiales" hidden>
-            <h2 id="step-materiales" tabindex="-1">¿Qué lleva tu lote?</h2>
-            <p class="panel-lede">Indica cuánto usas y cuánto pagaste por la compra de cada material.</p>
-            <p class="empty-message" data-empty-materials>Añade un material para empezar.</p>
+            <h2 id="step-materiales" tabindex="-1" data-i18n="ui.whichMaterials">¿Qué lleva tu lote?</h2>
+            <p class="panel-lede" data-i18n="ui.materialsIntro">Indica cuánto usas y cuánto pagaste por la compra de cada material.</p>
+            <p class="empty-message" data-empty-materials data-i18n="ui.addMaterialHint">Añade un material para empezar.</p>
             <ul class="recipe-list editable-recipe" data-material-list></ul>
             <template data-material-template>
               <li>
                 <div><strong data-material-name></strong><span data-material-quantity></span></div>
                 <b data-material-cost></b>
                 <div class="material-actions">
-                  <button type="button" class="action quiet" data-edit-material>Editar</button>
-                  <button type="button" class="action quiet danger" data-remove-material>Quitar</button>
+                  <button type="button" class="action quiet" data-edit-material data-i18n="ui.edit">Editar</button>
+                  <button type="button" class="action quiet danger" data-remove-material data-i18n="ui.remove">Quitar</button>
                 </div>
               </li>
             </template>
-            <div class="recipe-total"><span>Total de materiales del lote</span><strong data-value="materials">—</strong></div>
-            <button type="button" class="action secondary" data-add-material>Añadir material</button>
+            <div class="recipe-total"><span data-i18n="ui.batchMaterialsTotal">Total de materiales del lote</span><strong data-value="materials">—</strong></div>
+            <button type="button" class="action secondary" data-add-material data-i18n="ui.addMaterial">Añadir material</button>
             <div class="form-actions">
-              <button type="button" class="action secondary" data-go-step="datos">Atrás</button>
-              <button type="button" class="action primary" data-go-step="trabajo">Continuar a trabajo</button>
+              <button type="button" class="action secondary" data-go-step="datos" data-i18n="ui.back">Atrás</button>
+              <button type="button" class="action primary" data-go-step="trabajo" data-i18n="ui.continueLabor">Continuar a trabajo</button>
             </div>
           </section>
           <section class="wizard-panel card" data-step="trabajo" aria-labelledby="step-trabajo" hidden>
-            <h2 id="step-trabajo" tabindex="-1">Cuenta tu tiempo y los gastos del lote</h2>
-            <p class="panel-lede">Escribe 0 en los costos que no apliquen.</p>
+            <h2 id="step-trabajo" tabindex="-1" data-i18n="ui.laborTitle">Cuenta tu tiempo y los gastos del lote</h2>
+            <p class="panel-lede" data-i18n="ui.laborIntro">Registra cada gasto una sola vez. Escribe 0 si un costo no aplica.</p>
             <div class="form-row">
               <label class="form-field">
-                <span>Minutos de trabajo por lote</span>
+                <span data-i18n="ui.laborMinutes">Minutos de trabajo por lote</span>
                 <input name="minutes" type="text" inputmode="numeric" value="0" required maxlength="7">
               </label>
               <label class="form-field">
-                <span>Valor de una hora en soles</span>
+                <span data-currency-label="hourlyRate">Valor de una hora en soles</span>
                 <input name="hourlyRate" type="text" inputmode="decimal" value="0" required maxlength="16">
               </label>
             </div>
             <div class="form-row">
               <label class="form-field">
-                <span>Empaques del lote en soles</span>
+                <span data-currency-label="packaging">Empaques del lote en soles</span>
                 <input name="packaging" type="text" inputmode="decimal" value="0" required maxlength="16">
               </label>
               <label class="form-field">
-                <span>Otros gastos del lote en soles</span>
+                <span data-currency-label="other">Otros gastos del lote en soles</span>
                 <input name="other" type="text" inputmode="decimal" value="0" required maxlength="16">
               </label>
             </div>
             <div class="form-actions">
-              <button type="button" class="action secondary" data-go-step="materiales">Atrás</button>
-              <button type="submit" class="action primary">Ver costo y precio</button>
+              <button type="button" class="action secondary" data-go-step="materiales" data-i18n="ui.back">Atrás</button>
+              <button type="submit" class="action primary" data-i18n="ui.viewPrice">Ver costo y precio</button>
             </div>
           </section>
           <p class="form-error" data-error role="alert" hidden></p>
@@ -115,60 +102,59 @@
       </div>
       <aside class="recipe-aside card" aria-labelledby="recipe-summary">
         <div class="recipe-aside-copy">
-          <span class="tag demo-tag neutral">Tu borrador</span>
-          <h2 id="recipe-summary">Resumen de la receta</h2>
+          <span class="tag demo-tag neutral" data-i18n="ui.draft">Tu borrador</span>
+          <h2 id="recipe-summary" data-i18n="ui.recipeSummary">Resumen de la receta</h2>
           <dl class="brief-list">
-            <div><dt>Materiales del lote</dt><dd data-value="materials">—</dd></div>
-            <div><dt>Mano de obra del lote</dt><dd data-value="labor">—</dd></div>
-            <div><dt>Empaques del lote</dt><dd data-value="packaging">—</dd></div>
-            <div><dt>Otros gastos del lote</dt><dd data-value="other">—</dd></div>
-            <div class="brief-total"><dt>Costo total del lote</dt><dd data-value="lot">—</dd></div>
-            <div class="brief-total"><dt>Costo por unidad</dt><dd data-value="unit">—</dd></div>
+            <div><dt data-i18n="ui.batchMaterials">Materiales del lote</dt><dd data-value="materials">—</dd></div>
+            <div><dt data-i18n="ui.batchLabor">Mano de obra del lote</dt><dd data-value="labor">—</dd></div>
+            <div><dt data-i18n="ui.batchPackaging">Empaques del lote</dt><dd data-value="packaging">—</dd></div>
+            <div><dt data-i18n="ui.batchOther">Otros gastos del lote</dt><dd data-value="other">—</dd></div>
+            <div class="brief-total"><dt data-i18n="ui.batchCost">Costo total del lote</dt><dd data-value="lot">—</dd></div>
+            <div class="brief-total"><dt data-i18n="ui.unitCost">Costo por unidad</dt><dd data-value="unit">—</dd></div>
           </dl>
+          <p class="inline-note warning" data-cost-notes hidden></p>
+          <details class="explain-details">
+            <summary data-i18n="help.costTitle">¿Cómo se calcula el costo?</summary>
+            <p data-i18n="help.cost"></p>
+          </details>
         </div>
       </aside>
     </div>
     <dialog class="demo-dialog" data-material-dialog aria-labelledby="mvp-material-title">
-      <div class="dialog-head"><div><h2 id="mvp-material-title">Añadir material</h2><p>Finansi prorratea el precio de compra según lo que usas en el lote.</p></div></div>
+      <div class="dialog-head"><div><h2 id="mvp-material-title" data-i18n="ui.addMaterial">Añadir material</h2><p data-i18n="ui.materialIntro">Finansi prorratea el precio de compra según lo que usas en el lote.</p></div></div>
       <form data-material-form novalidate>
         <label class="form-field">
-          <span>Nombre del material</span>
-          <input name="materialName" type="text" required maxlength="60" placeholder="Ej. Cera">
+          <span data-i18n="ui.materialName">Nombre del material</span>
+          <input name="materialName" type="text" required maxlength="60" placeholder="Ej. Cera" autofocus>
         </label>
         <div class="form-row">
           <label class="form-field">
-            <span>Cantidad usada en el lote</span>
+            <span data-i18n="ui.used">Cantidad usada en el lote</span>
             <input name="used" type="text" inputmode="decimal" value="1" required maxlength="15">
           </label>
-          <label class="form-field"><span>Unidad usada</span><select name="usedUnit"><option value="unidad">Unidades</option><option value="g">g</option><option value="kg">kg</option><option value="ml">ml</option><option value="l">L</option><option value="cm">cm</option><option value="m">m</option></select></label>
+          <label class="form-field"><span data-i18n="ui.usedUnit">Unidad usada</span><select name="usedUnit"><option value="unidad" data-i18n="ui.units">Unidades</option><option value="g">g</option><option value="kg">kg</option><option value="ml">ml</option><option value="l">L</option><option value="cm">cm</option><option value="m">m</option></select></label>
         </div>
         <div class="form-row">
           <label class="form-field">
-            <span>Cantidad comprada</span>
+            <span data-i18n="ui.bought">Cantidad comprada</span>
             <input name="bought" type="text" inputmode="decimal" value="1" required maxlength="15">
           </label>
-          <label class="form-field"><span>Unidad de compra</span><select name="boughtUnit"><option value="unidad">Unidades</option><option value="g">g</option><option value="kg">kg</option><option value="ml">ml</option><option value="l">L</option><option value="cm">cm</option><option value="m">m</option></select></label>
+          <label class="form-field"><span data-i18n="ui.boughtUnit">Unidad de compra</span><select name="boughtUnit"><option value="unidad" data-i18n="ui.units">Unidades</option><option value="g">g</option><option value="kg">kg</option><option value="ml">ml</option><option value="l">L</option><option value="cm">cm</option><option value="m">m</option></select></label>
         </div>
         <label class="form-field">
-          <span>Costo de la compra en soles</span>
+          <span data-currency-label="purchaseCost">Costo de la compra en soles</span>
           <input name="purchaseCost" type="text" inputmode="decimal" required maxlength="16">
         </label>
-        <p class="recipe-total"><span>Costo de este material en el lote</span><strong data-material-preview>—</strong></p>
+        <p class="recipe-total"><span data-i18n="ui.materialCost">Costo de este material en el lote</span><strong data-material-preview>—</strong></p>
         <p class="form-error" data-error role="alert" hidden></p>
         <div class="form-actions">
-          <button type="button" class="action secondary" data-close-dialog>Cancelar</button>
-          <button type="submit" class="action primary">Aplicar material</button>
+          <button type="button" class="action secondary" data-close-dialog data-i18n="ui.cancel">Cancelar</button>
+          <button type="submit" class="action primary" data-i18n="ui.applyMaterial">Aplicar material</button>
         </div>
       </form>
     </dialog>
   </main>
-  <nav class="demo-bottom" aria-label="Navegación móvil">
-    <a href="inicio.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Inicio</span></a><a href="productos.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg><span>Productos</span></a><a href="ventas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg><span>Ventas</span></a>
-    <details class="demo-menu bottom-menu">
-      <summary><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Más</span></summary>
-      <div class="demo-menu-list"><a href="inventario.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg><span>Inventario</span></a><a href="mi-dinero.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg><span>Mi dinero</span></a><a href="diagnostico.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Diagnóstico</span></a><a href="asistente.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg><span>Asistente Finansi</span></a><a href="pantallas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Ver todas las pantallas</span></a></div>
-    </details>
-  </nav>
+  <nav data-shared-bottom></nav>
   <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
 </body>
 </html>

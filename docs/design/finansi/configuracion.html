@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Configuración · Finansi</title>
+  <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../prototipo/estilos.css">
+  <link rel="stylesheet" href="maqueta.css">
+  <link rel="stylesheet" href="mvp/flujo.css">
+  <script type="module" src="mvp/app.js"></script>
+</head>
+<body class="b demo demo-module" data-page="configuracion">
+  <a class="skip-link" href="#contenido" data-i18n="ui.skip">Saltar al contenido</a>
+  <header data-shared-header></header>
+  <main class="demo-main" id="contenido" tabindex="-1">
+    <div class="demo-heading">
+      <div><h1 data-i18n="nav.settings">Configuración</h1><p data-i18n="ui.settingsIntro">Gestiona la moneda del negocio y guarda una copia de tus datos.</p></div>
+    </div>
+    <p class="form-error" data-load-error role="alert" hidden></p>
+    <div class="settings-grid" data-settings hidden>
+      <section class="card settings-card" aria-labelledby="settings-business">
+        <h2 id="settings-business" data-i18n="ui.business">Tu negocio</h2>
+        <form data-business-form novalidate>
+          <label class="form-field"><span data-i18n="ui.businessName">Nombre del negocio</span><input name="business" maxlength="60" autocomplete="organization"></label>
+          <label class="form-field"><span data-i18n="business.location">País y moneda</span><select name="country" aria-describedby="settings-currency-help"></select></label>
+          <p id="settings-currency-help" class="panel-lede" data-currency-help></p>
+          <p class="form-error" data-error role="alert" hidden></p>
+          <div class="form-actions"><button type="submit" class="action primary" data-i18n="ui.saveSettings">Guardar configuración</button></div>
+        </form>
+      </section>
+      <section class="card settings-card" aria-labelledby="settings-preferences">
+        <h2 id="settings-preferences" data-i18n="settings.preferences">Preferencias</h2>
+        <form data-preferences>
+          <label class="form-field">
+            <span id="settings-language-label" data-i18n="language.group">Idioma</span>
+            <select data-language-select aria-labelledby="settings-language-label"><option value="es" lang="es">Español</option><option value="en" lang="en">English</option></select>
+          </label>
+          <label class="form-field">
+            <span id="settings-appearance-label" data-i18n="settings.appearance">Apariencia</span>
+            <select name="appearance" aria-labelledby="settings-appearance-label">
+              <option value="system" data-i18n="settings.system">Del dispositivo</option>
+              <option value="light" data-i18n="settings.light">Clara</option>
+              <option value="dark" data-i18n="settings.dark">Oscura</option>
+            </select>
+          </label>
+          <label class="form-field">
+            <span id="settings-method-label" data-i18n="settings.method">Método de cálculo preferido</span>
+            <select name="method" aria-labelledby="settings-method-label" aria-describedby="preference-help">
+              <option value="margin" data-i18n="method.margin">Margen sobre el precio de venta</option>
+              <option value="markup" data-i18n="method.markup">Recargo sobre el costo</option>
+              <option value="manual" data-i18n="method.manual">Precio manual</option>
+            </select>
+          </label>
+          <p id="preference-help" class="panel-lede" data-i18n="settings.methodHelp">Se aplica al crear una receta. Los productos guardados conservan su método y precio.</p>
+          <details class="explain-details">
+            <summary data-i18n="method.help">Cómo funcionan los métodos</summary>
+            <p data-i18n="method.exampleMargin"></p>
+            <p data-i18n="method.exampleMarkup"></p>
+            <p data-i18n="method.exampleManual"></p>
+          </details>
+          <p class="form-error" data-error role="alert" hidden></p>
+        </form>
+      </section>
+      <section class="card settings-card" aria-labelledby="settings-backup">
+        <h2 id="settings-backup" data-i18n="ui.backups">Copias de seguridad</h2>
+        <p data-i18n="ui.backupIntro">Tus registros se guardan en este navegador. Si borras los datos del sitio o cambias de dispositivo, necesitarás una copia para recuperarlos.</p>
+        <div class="form-actions">
+          <button type="button" class="action primary" data-export data-i18n="ui.download">Descargar copia JSON</button>
+          <button type="button" class="action secondary" data-import data-i18n="ui.restore">Restaurar desde JSON</button>
+        </div>
+        <input type="file" accept=".json,application/json" data-import-file hidden>
+        <p class="form-error" data-backup-error role="alert" hidden></p>
+      </section>
+      <p class="inline-note settings-status" data-settings-status role="status" hidden></p>
+    </div>
+    <dialog class="demo-dialog" data-restore-dialog aria-labelledby="restore-title" aria-describedby="restore-detail">
+      <div class="dialog-head"><div><h2 id="restore-title" data-i18n="ui.replaceTitle">Reemplazar los datos guardados</h2><p data-restore-summary></p></div></div>
+      <p id="restore-detail" data-i18n="ui.restoreDetail">Se reemplazarán el negocio, los productos y las ventas de este navegador. Si quieres conservarlos, cancela y descarga una copia primero.</p>
+      <form data-restore-form>
+        <p class="form-error" data-error role="alert" hidden></p>
+        <div class="form-actions">
+          <button type="button" class="action secondary" data-close-dialog autofocus data-i18n="ui.cancel">Cancelar</button>
+          <button type="submit" class="action danger" data-i18n="ui.replace">Reemplazar datos</button>
+        </div>
+      </form>
+    </dialog>
+  </main>
+  <nav data-shared-bottom></nav>
+  <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
+</body>
+</html>

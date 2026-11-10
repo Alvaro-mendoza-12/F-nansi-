@@ -9,84 +9,101 @@
   <link rel="stylesheet" href="../prototipo/estilos.css">
   <link rel="stylesheet" href="maqueta.css">
   <link rel="stylesheet" href="mvp/flujo.css">
-  <script src="maqueta.js" defer></script>
   <script type="module" src="mvp/app.js"></script>
 </head>
 <body class="b demo demo-module " data-page="calculadora">
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
-  <header class="demo-header">
-    <div class="demo-header-inner">
-      <a class="brand" href="inicio.html"><img src="../prototipo/img/marca.svg" width="36" height="36" alt=""><span>Finansi</span></a>
-      <nav class="demo-top-nav" aria-label="Navegación principal"><a href="inicio.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Inicio</span></a><a href="productos.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg><span>Productos</span></a><a href="ventas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg><span>Ventas</span></a><a href="inventario.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg><span>Inventario</span></a><a href="mi-dinero.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg><span>Mi dinero</span></a></nav>
-      <div class="demo-header-tools">
-        <a class="assist-link" aria-label="Asistente Finansi" href="asistente.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg><span>Asistente</span></a>
-        <details class="demo-menu profile-menu">
-          <summary aria-label="Menú de Taller Bruma"><span class="profile-name">Taller Bruma</span><span class="avatar" aria-hidden="true">LT</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <div class="demo-menu-list"><a href="diagnostico.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Diagnóstico</span></a><a href="pantallas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Ver todas las pantallas</span></a><a href="index.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Bienvenida</span></a></div>
-        </details>
-      </div>
-    </div>
-  </header>
-  <main class="demo-main" id="contenido">
-    <noscript><p class="inline-note">Activa JavaScript para usar el catálogo y calcular precios.</p></noscript>
-    <div class="page-trail"><a class="back-link" href="productos.html" data-edit-link>← Mis productos</a></div>
+  <a class="skip-link" href="#contenido" data-i18n="ui.skip">Saltar al contenido</a>
+  <header data-shared-header></header>
+  <main class="demo-main" id="contenido" tabindex="-1">
+    <noscript><p class="inline-note" data-i18n="ui.noScript">Activa JavaScript para usar el catálogo y calcular precios.</p></noscript>
+    <div class="page-trail"><a class="back-link" href="productos.html" data-edit-link data-i18n="ui.backProducts">← Mis productos</a></div>
     <div class="demo-heading">
-      <div><h1>Calculadora de precio</h1><p data-product-context>De tu receta a un precio de venta.</p></div>
+      <div><h1 data-i18n="ui.calcTitle">Calculadora de precio</h1><p data-product-context>De tu receta a un precio de venta.</p></div>
     </div>
     <p class="form-error" data-load-error role="alert" hidden></p>
     <section class="card dashboard-empty" data-missing hidden>
-      <h2>Abre una receta para calcular su precio</h2>
-      <p>Elige un producto del catálogo, crea uno nuevo o prueba los datos de Taller Bruma.</p>
+      <h2 data-i18n="ui.chooseRecipe">Abre una receta para calcular su precio</h2>
+      <p data-i18n="ui.chooseRecipeIntro">Elige un producto del catálogo, crea uno nuevo o prueba los datos de Taller Bruma.</p>
       <div class="form-actions">
-        <a class="action primary" href="productos.html">Mis productos</a>
-        <a class="action secondary" href="crear-producto.html">Crear producto</a>
-        <a class="action secondary" data-try-example href="?ejemplo=cedro">Probar Vela Cedro</a>
+        <a class="action primary" href="productos.html" data-i18n="ui.myProducts">Mis productos</a>
+        <a class="action secondary" href="crear-producto.html" data-i18n="ui.create">Crear producto</a>
+        <a class="action secondary" data-try-example href="?ejemplo=cedro" data-i18n="ui.trySample">Probar Vela Cedro</a>
       </div>
     </section>
     <div class="calculator-grid" data-pricing data-ready hidden>
-      <section class="price-hero" aria-label="Resultado del cálculo">
-        <div class="price-top">Precio recomendado por unidad</div>
-        <strong class="price-amount"><span class="amount" data-value="recommendation">—</span></strong>
-        <p><strong data-value="resultMargin">—</strong> de margen al precio recomendado</p>
-        <div class="price-payoff"><span>Ganancia por unidad</span><strong data-value="profit">—</strong></div>
-      </section>
       <section class="cost-panel card" aria-labelledby="cost-title">
-        <h2 id="cost-title">Costo de la receta</h2>
+        <h2 id="cost-title" data-i18n="ui.costTitle">Costo de la receta</h2>
         <dl class="brief-list cost-list">
-          <div><dt>Materiales del lote</dt><dd data-value="materials">—</dd></div>
-          <div><dt>Mano de obra del lote</dt><dd data-value="labor">—</dd></div>
-          <div><dt>Empaques del lote</dt><dd data-value="packaging">—</dd></div>
-          <div><dt>Otros gastos del lote</dt><dd data-value="other">—</dd></div>
-          <div class="brief-total"><dt>Costo total del lote</dt><dd data-value="lot">—</dd></div>
-          <div><dt>Unidades producidas</dt><dd data-value="count">—</dd></div>
-          <div class="brief-total"><dt>Costo por unidad</dt><dd data-value="unit">—</dd></div>
+          <div class="brief-total"><dt data-i18n="ui.batchCost">Costo total del lote</dt><dd data-value="lot">—</dd></div>
+          <div><dt data-i18n="ui.made">Unidades producidas</dt><dd data-value="count">—</dd></div>
+          <div class="brief-total"><dt data-i18n="ui.unitCost">Costo por unidad</dt><dd data-value="unit">—</dd></div>
         </dl>
+        <p class="inline-note warning" data-cost-notes hidden></p>
+        <details class="explain-details">
+          <summary data-i18n="help.costTitle">¿Cómo se calcula el costo?</summary>
+          <p data-i18n="help.cost"></p>
+          <dl class="brief-list">
+            <div><dt data-i18n="ui.batchMaterials">Materiales del lote</dt><dd data-value="materials">—</dd></div>
+            <div><dt data-i18n="ui.batchLabor">Mano de obra del lote</dt><dd data-value="labor">—</dd></div>
+            <div><dt data-i18n="ui.batchPackaging">Empaques del lote</dt><dd data-value="packaging">—</dd></div>
+            <div><dt data-i18n="ui.batchOther">Otros gastos del lote</dt><dd data-value="other">—</dd></div>
+          </dl>
+        </details>
       </section>
       <section class="price-context card">
-        <form data-margin-form novalidate>
+        <form id="pricing-form" data-price-form novalidate>
           <label class="form-field">
-            <span>Margen objetivo (%)</span>
-            <input name="margin" type="text" inputmode="decimal" required maxlength="6">
-            <small>El margen es la ganancia como porcentaje del precio de venta.</small>
+            <span id="pricing-method-label" data-i18n="method.label">Método de cálculo</span>
+            <select name="method" aria-labelledby="pricing-method-label" aria-describedby="method-example">
+              <option value="margin" data-i18n="method.margin">Margen sobre el precio de venta</option>
+              <option value="markup" data-i18n="method.markup">Recargo sobre el costo</option>
+              <option value="manual" data-i18n="method.manual">Precio manual</option>
+            </select>
+          </label>
+          <p id="method-example" class="panel-lede"></p>
+          <label class="form-field" data-method-field="margin">
+            <span data-i18n="method.marginInput">Margen objetivo (%)</span>
+            <input name="margin" type="text" inputmode="decimal" maxlength="5" required>
+          </label>
+          <label class="form-field" data-method-field="markup" hidden>
+            <span data-i18n="method.markupInput">Recargo sobre el costo (%)</span>
+            <input name="markup" type="text" inputmode="decimal" maxlength="13" required disabled>
+          </label>
+          <label class="form-field" data-method-field="manual" hidden>
+            <span data-currency-label="manualPrice">Precio de venta en soles</span>
+            <input name="manualPrice" type="text" inputmode="decimal" maxlength="43" required disabled>
+          </label>
+          <label class="form-field">
+            <span data-i18n="method.quantity">Unidades que esperas vender</span>
+            <input name="salesUnits" type="text" inputmode="numeric" maxlength="7" required>
           </label>
           <p class="form-error" data-error role="alert" hidden></p>
-          <p>El mínimo se redondea hacia arriba al céntimo para alcanzar tu meta.</p>
-          <p class="inline-note" data-zero-cost hidden>Con costo cero, elige un precio positivo en el comparador para obtener el margen.</p>
-          <div class="form-actions">
-            <button type="submit" class="action primary">Comparar precios</button>
-            <a class="action quiet" href="crear-producto.html" data-edit-link>Editar receta</a>
-          </div>
+          <p class="inline-note" data-zero-cost data-i18n="method.zero" hidden></p>
+          <p class="inline-note" data-stored-price hidden></p>
         </form>
+      </section>
+      <section class="price-hero" data-i18n-aria-label="method.results" aria-label="Resultado del cálculo">
+        <div class="price-top" data-result-title></div>
+        <div role="status">
+          <strong class="price-amount"><span class="amount" data-value="recommendation">—</span></strong>
+          <div class="price-payoff"><span data-i18n="method.profit">Ganancia por unidad</span><strong data-value="profit">—</strong></div>
+          <div class="price-payoff"><span data-i18n="method.margin">Margen sobre el precio de venta</span><strong data-value="resultMargin">—</strong></div>
+          <div class="price-payoff"><span data-i18n="method.markup">Recargo sobre el costo</span><strong data-value="resultMarkup">—</strong></div>
+          <div class="price-payoff"><span data-i18n="method.total">Ganancia estimada por cantidad</span><strong data-value="totalProfit">—</strong></div>
+          <p data-pricing-loss hidden data-i18n="method.loss"></p>
+        </div>
+        <details class="explain-details">
+          <summary data-i18n="help.priceTitle">¿Cómo leo estos resultados?</summary>
+          <p data-i18n="help.price"></p>
+        </details>
+        <div class="form-actions">
+          <button type="submit" form="pricing-form" class="action primary" data-i18n="nav.compare">Comparar precios</button>
+          <a class="action secondary" href="crear-producto.html" data-edit-link data-i18n="recipe.editLink">Editar receta</a>
+        </div>
       </section>
     </div>
   </main>
-  <nav class="demo-bottom" aria-label="Navegación móvil">
-    <a href="inicio.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Inicio</span></a><a href="productos.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg><span>Productos</span></a><a href="ventas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg><span>Ventas</span></a>
-    <details class="demo-menu bottom-menu">
-      <summary><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Más</span></summary>
-      <div class="demo-menu-list"><a href="inventario.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg><span>Inventario</span></a><a href="mi-dinero.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg><span>Mi dinero</span></a><a href="diagnostico.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Diagnóstico</span></a><a href="asistente.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg><span>Asistente Finansi</span></a><a href="pantallas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Ver todas las pantallas</span></a></div>
-    </details>
-  </nav>
+  <nav data-shared-bottom></nav>
   <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
 
 </body>

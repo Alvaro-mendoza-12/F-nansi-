@@ -9,97 +9,81 @@
   <link rel="stylesheet" href="../prototipo/estilos.css">
   <link rel="stylesheet" href="maqueta.css">
   <link rel="stylesheet" href="mvp/flujo.css">
-  <script src="maqueta.js" defer></script>
   <script type="module" src="mvp/app.js"></script>
 </head>
 <body class="b demo demo-module " data-page="simulador">
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
-  <header class="demo-header">
-    <div class="demo-header-inner">
-      <a class="brand" href="inicio.html"><img src="../prototipo/img/marca.svg" width="36" height="36" alt=""><span>Finansi</span></a>
-      <nav class="demo-top-nav" aria-label="Navegación principal"><a href="inicio.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Inicio</span></a><a href="productos.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg><span>Productos</span></a><a href="ventas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg><span>Ventas</span></a><a href="inventario.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg><span>Inventario</span></a><a href="mi-dinero.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg><span>Mi dinero</span></a></nav>
-      <div class="demo-header-tools">
-        <a class="assist-link" aria-label="Asistente Finansi" href="asistente.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg><span>Asistente</span></a>
-        <details class="demo-menu profile-menu">
-          <summary aria-label="Menú de Taller Bruma"><span class="profile-name">Taller Bruma</span><span class="avatar" aria-hidden="true">LT</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <div class="demo-menu-list"><a href="diagnostico.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Diagnóstico</span></a><a href="pantallas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Ver todas las pantallas</span></a><a href="index.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Bienvenida</span></a></div>
-        </details>
-      </div>
-    </div>
-  </header>
-  <main class="demo-main" id="contenido">
-    <noscript><p class="inline-note">Activa JavaScript para usar el catálogo y calcular precios.</p></noscript>
-    <div class="page-trail"><a class="back-link" href="calculadora.html" data-calculator-link>← Calculadora</a></div>
+  <a class="skip-link" href="#contenido" data-i18n="ui.skip">Saltar al contenido</a>
+  <header data-shared-header></header>
+  <main class="demo-main" id="contenido" tabindex="-1">
+    <noscript><p class="inline-note" data-i18n="ui.noScript">Activa JavaScript para usar el catálogo y calcular precios.</p></noscript>
+    <div class="page-trail"><a class="back-link" href="calculadora.html" data-calculator-link data-i18n="ui.backCalc">← Calculadora</a></div>
     <div class="demo-heading">
-      <div><h1>Simulador de precios</h1><p data-product-context>Compara dos precios para el mismo producto.</p></div>
+      <div><h1 data-i18n="ui.simTitle">Simulador de precios</h1><p data-product-context data-i18n="ui.compareIntro">Compara dos precios para el mismo producto.</p></div>
     </div>
     <p class="form-error" data-load-error role="alert" hidden></p>
     <section class="card dashboard-empty" data-missing hidden>
-      <h2>Abre una receta para calcular su precio</h2>
-      <p>Elige un producto del catálogo, crea uno nuevo o prueba los datos de Taller Bruma.</p>
+      <h2 data-i18n="ui.chooseRecipe">Abre una receta para calcular su precio</h2>
+      <p data-i18n="ui.chooseRecipeIntro">Elige un producto del catálogo, crea uno nuevo o prueba los datos de Taller Bruma.</p>
       <div class="form-actions">
-        <a class="action primary" href="productos.html">Mis productos</a>
-        <a class="action secondary" href="crear-producto.html">Crear producto</a>
-        <a class="action secondary" data-try-example href="?ejemplo=cedro">Probar Vela Cedro</a>
+        <a class="action primary" href="productos.html" data-i18n="ui.myProducts">Mis productos</a>
+        <a class="action secondary" href="crear-producto.html" data-i18n="ui.create">Crear producto</a>
+        <a class="action secondary" data-try-example href="?ejemplo=cedro" data-i18n="ui.trySample">Probar Vela Cedro</a>
       </div>
     </section>
     <form class="scenario-grid" data-comparison data-ready novalidate hidden>
       <section class="scenario-controls card" aria-labelledby="compare-inputs">
-        <h2 id="compare-inputs">Prueba dos precios</h2>
+        <h2 id="compare-inputs" data-i18n="ui.testPrices">Prueba dos precios</h2>
         <p class="panel-lede">El costo por unidad es <strong data-value="unit">—</strong>.</p>
         <div class="form-row">
           <label class="form-field">
-            <span>Precio A en soles</span>
-            <input name="priceA" type="text" inputmode="decimal" required maxlength="16">
+            <span data-currency-label="priceA">Precio A en soles</span>
+            <input name="priceA" type="text" inputmode="decimal" required maxlength="43">
           </label>
           <label class="form-field">
-            <span>Precio B en soles</span>
-            <input name="priceB" type="text" inputmode="decimal" required maxlength="16">
+            <span data-currency-label="priceB">Precio B en soles</span>
+            <input name="priceB" type="text" inputmode="decimal" required maxlength="43">
           </label>
         </div>
         <label class="form-field">
-          <span>Unidades que esperas vender</span>
+          <span data-i18n="method.quantity">Unidades que esperas vender</span>
           <input name="salesUnits" type="text" inputmode="numeric" required maxlength="7">
         </label>
         <p class="form-error" data-error role="alert" hidden></p>
         <p class="inline-note warning" data-loss-warning role="status" hidden></p>
-        <p class="panel-lede">Cada escenario usa la misma cantidad de ventas.</p>
+        <p class="panel-lede" data-i18n="ui.sameUnits">Cada escenario usa la misma cantidad de ventas.</p>
       </section>
       <section class="scenario-result card" aria-labelledby="scenario-title">
-        <div class="scenario-result-head"><div><h2 id="scenario-title">Ganancia estimada</h2><p>Importes por unidad y para todas las ventas.</p></div></div>
+        <div class="scenario-result-head"><div><h2 id="scenario-title" data-i18n="ui.estProfit">Ganancia estimada</h2><p data-i18n="ui.profitIntro">Importes por unidad y para todas las ventas.</p></div></div>
         <table class="compare-table">
-          <caption class="sr-only">Comparación de precios</caption>
-          <thead><tr><th scope="col">Detalle</th><th scope="col">Precio A</th><th scope="col">Precio B</th></tr></thead>
+          <caption class="sr-only" data-i18n="ui.compareCaption">Comparación de precios</caption>
+          <thead><tr><th scope="col" data-i18n="ui.detail">Detalle</th><th scope="col" data-i18n="ui.a">Precio A</th><th scope="col" data-i18n="ui.b">Precio B</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Precio por unidad</th><td data-value="priceA">—</td><td data-value="priceB">—</td></tr>
-            <tr><th scope="row">Ganancia unitaria</th><td data-value="profitA">—</td><td data-value="profitB">—</td></tr>
-            <tr><th scope="row">Margen</th><td data-value="marginA">—</td><td data-value="marginB">—</td></tr>
-            <tr class="compare-total"><th scope="row">Ganancia total</th><td data-value="totalA">—</td><td data-value="totalB">—</td></tr>
+            <tr><th scope="row" data-i18n="ui.unitPrice">Precio por unidad</th><td data-value="priceA">—</td><td data-value="priceB">—</td></tr>
+            <tr><th scope="row" data-i18n="ui.unitProfit">Ganancia unitaria</th><td data-value="profitA">—</td><td data-value="profitB">—</td></tr>
+            <tr><th scope="row" data-i18n="ui.margin">Margen</th><td data-value="marginA">—</td><td data-value="marginB">—</td></tr>
+            <tr><th scope="row" data-i18n="method.markup">Recargo sobre el costo</th><td data-value="markupA">—</td><td data-value="markupB">—</td></tr>
+            <tr class="compare-total"><th scope="row" data-i18n="ui.totalProfit">Ganancia total</th><td data-value="totalA">—</td><td data-value="totalB">—</td></tr>
           </tbody>
         </table>
         <dl class="brief-list">
-          <div><dt>Diferencia por unidad (B − A)</dt><dd data-value="difference">—</dd></div>
-          <div><dt>Diferencia total (B − A)</dt><dd data-value="totalDifference">—</dd></div>
+          <div><dt data-i18n="ui.unitDiff">Diferencia por unidad (B − A)</dt><dd data-value="difference">—</dd></div>
+          <div><dt data-i18n="ui.totalDiff">Diferencia total (B − A)</dt><dd data-value="totalDifference">—</dd></div>
         </dl>
         <p class="scenario-note" data-explanation aria-live="polite">Ingresa dos precios para ver la diferencia.</p>
+        <p class="panel-lede" data-i18n="ui.compareMath">El margen divide la ganancia entre el precio. El recargo la divide entre el costo y solo se calcula si el costo es mayor que cero.</p>
         <fieldset class="price-choice">
-          <legend>Elige el precio que quieres guardar</legend>
-          <label><input type="radio" name="chosen" value="A"> Precio A</label>
-          <label><input type="radio" name="chosen" value="B"> Precio B</label>
+          <legend data-i18n="ui.saveChoice">Elige el precio que quieres guardar</legend>
+          <label><input type="radio" name="chosen" value="A"> <span data-i18n="ui.a">Precio A</span></label>
+          <label><input type="radio" name="chosen" value="B"> <span data-i18n="ui.b">Precio B</span></label>
         </fieldset>
-        <div class="form-actions"><button type="submit" class="action primary" disabled>Guardar producto</button></div>
-        <p class="panel-lede">Tu receta y el precio elegido se guardan en este navegador. Cada dispositivo tiene su propio catálogo.</p>
+        <div class="form-actions"><button type="submit" class="action primary" disabled data-i18n="ui.saveProduct">Guardar producto</button></div>
+        <p class="inline-note warning" data-example-currency hidden></p>
+        <p class="panel-lede" data-i18n="ui.saveProductHelp">Tu receta y el precio elegido se guardan en este navegador. Cada dispositivo tiene su propio catálogo.</p>
         <p class="form-error" data-save-error role="alert" hidden></p>
       </section>
     </form>
   </main>
-  <nav class="demo-bottom" aria-label="Navegación móvil">
-    <a href="inicio.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Inicio</span></a><a href="productos.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg><span>Productos</span></a><a href="ventas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg><span>Ventas</span></a>
-    <details class="demo-menu bottom-menu">
-      <summary><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Más</span></summary>
-      <div class="demo-menu-list"><a href="inventario.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg><span>Inventario</span></a><a href="mi-dinero.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg><span>Mi dinero</span></a><a href="diagnostico.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Diagnóstico</span></a><a href="asistente.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg><span>Asistente Finansi</span></a><a href="pantallas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Ver todas las pantallas</span></a></div>
-    </details>
-  </nav>
+  <nav data-shared-bottom></nav>
   <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
 
 </body>

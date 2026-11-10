@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { chromium } from 'playwright-core';
 import { serve } from '../scripts/serve.mjs';
 
@@ -8,6 +9,8 @@ const server = publicUrl ? null : await serve({ prefix: '/F-nansi-/' });
 const home = new URL(publicUrl ?? server.url);
 const app = new URL('docs/design/finansi/', home);
 const chrome = process.env.FINANSI_CHROME ?? 'C:/Program Files/Google/Chrome/Application/chrome.exe';
+const evidence = process.env.FINANSI_EVIDENCE;
+const axe = process.env.FINANSI_AXE;
 
 const button = (page, name) => page.getByRole('button', { name, exact: true });
 const link = (page, name) => page.getByRole('link', { name, exact: true });
@@ -20,6 +23,19 @@ async function noOverflow(page, stage) {
     content: document.documentElement.scrollWidth
   }));
   assert.ok(content <= viewport, stage + ' desborda por ' + (content - viewport) + ' px');
+}
+
+async function audit(page, stage) {
+  if (!axe) return;
+  await page.addScriptTag({ path: axe });
+  const violations = await page.evaluate(async () => {
+    const { violations } = await window.axe.run({
+      runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'] }
+    });
+    return violations.map(({ id, nodes }) => ({ id, targets: nodes.map(({ target }) => target) }));
+  });
+  console.log(stage + ' · axe: ' + JSON.stringify(violations));
+  assert.deepEqual(violations, [], stage);
 }
 
 async function addMaterial(page, { name, used = '1', usedUnit = 'unidad', boughtUnit = 'unidad', cost }) {
@@ -59,6 +75,7 @@ async function exercise(browser, viewport) {
     await page.getByLabel('Unidades por lote').fill('0');
     await button(page, 'Continuar a materiales').click();
     await page.getByText('Ingresa la cantidad producida mayor que cero.').waitFor();
+    assert.ok(await page.getByLabel('Unidades por lote').evaluate((input) => input === document.activeElement));
     await page.getByLabel('Unidades por lote').fill('2');
     await button(page, 'Continuar a materiales').click();
 
@@ -75,6 +92,7 @@ async function exercise(browser, viewport) {
     await button(await addMaterial(page, { name: 'Descartar', cost: '1' }), 'Aplicar material').click();
     await button(page, 'Quitar Descartar').click();
     await noOverflow(page, 'Receta');
+    await audit(page, viewport.width + ' px · Receta');
 
     await button(page, 'Continuar a trabajo').click();
     await page.getByLabel('Minutos de trabajo por lote').fill('60');
@@ -94,6 +112,31 @@ async function exercise(browser, viewport) {
     assert.equal(await value(page, 'recommendation'), 'S/ 25.00');
     assert.equal(await value(page, 'profit'), 'S/ 5.00');
     assert.equal(await value(page, 'resultMargin'), '20 %');
+    const method = page.getByLabel('Método de cálculo', { exact: true });
+    await method.selectOption('markup');
+    await page.getByLabel('Recargo sobre el costo (%)').fill('20');
+    assert.equal(await value(page, 'recommendation'), 'S/ 24.00');
+    assert.equal(await value(page, 'profit'), 'S/ 4.00');
+    await method.selectOption('manual');
+    const manual = page.getByLabel('Precio de venta en soles');
+    await manual.fill('0');
+    assert.ok(await button(page, 'Comparar precios').isDisabled());
+    await manual.fill('18');
+    await page.locator('[data-pricing-loss]').waitFor();
+    await manual.fill('30');
+    await page.getByLabel('Unidades que esperas vender').fill('3');
+    assert.equal(await value(page, 'profit'), 'S/ 10.00');
+    assert.equal(await value(page, 'resultMargin'), '33.33 %');
+    assert.equal(await value(page, 'resultMarkup'), '50 %');
+    assert.equal(await value(page, 'totalProfit'), 'S/ 30.00');
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.locator('[data-pricing]').waitFor();
+    assert.equal(await method.inputValue(), 'manual');
+    assert.equal(await manual.inputValue(), '30');
+    await audit(page, viewport.width + ' px · Calculadora');
+    if (evidence) await page.screenshot({ path: resolve(evidence, 'finansi-precio-' + viewport.width + '.png'), fullPage: true });
+    await method.selectOption('margin');
+    assert.equal(await page.getByLabel('Margen objetivo (%)').inputValue(), '20');
     await noOverflow(page, 'Calculadora');
 
     await button(page, 'Comparar precios').click();
@@ -114,6 +157,7 @@ async function exercise(browser, viewport) {
     await page.getByText('Precio A por debajo del costo por unidad.').waitFor();
     await page.getByLabel('Precio A en soles').fill('25');
     await noOverflow(page, 'Comparador');
+    await audit(page, viewport.width + ' px · Comparador');
     await page.getByRole('radio', { name: 'Precio B', exact: true }).check();
     await button(page, 'Guardar producto').click();
     await page.getByText('Guardaste «Producto de prueba» a S/ 30.00 por unidad.').waitFor();
@@ -123,6 +167,74 @@ async function exercise(browser, viewport) {
     assert.equal(await card.locator('[data-price]').innerText(), 'S/ 30.00');
     assert.equal(await card.locator('[data-cost]').innerText(), 'S/ 20.00');
     await noOverflow(page, 'Catálogo');
+
+    const compact = viewport.width < 1050;
+    if (compact) {
+      const more = button(page, 'Más');
+      await more.focus();
+      await page.keyboard.press('Enter');
+      const menu = page.getByRole('dialog', { name: 'Más' });
+      await menu.waitFor();
+      assert.equal(await page.evaluate(() => document.activeElement.textContent), 'Cerrar');
+      await audit(page, viewport.width + ' px · Más');
+      if (evidence) await page.screenshot({ path: resolve(evidence, 'finansi-menu-' + viewport.width + '.png') });
+      await page.keyboard.press('Escape');
+      assert.ok(await more.evaluate((element) => element === document.activeElement));
+      await page.keyboard.press('Enter');
+    }
+    await link(page, 'Configuración').click();
+    const preference = page.getByLabel('Método de cálculo preferido');
+    await preference.selectOption('markup');
+    await page.getByLabel('Apariencia').selectOption('dark');
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.locator('[data-settings]').waitFor();
+    assert.equal(await preference.inputValue(), 'markup');
+    assert.equal(await page.locator('html').getAttribute('data-appearance'), 'dark');
+    await noOverflow(page, 'Configuración oscura');
+    await audit(page, viewport.width + ' px · Configuración oscura');
+    await page.getByLabel('Apariencia').selectOption('light');
+    await page.getByRole('combobox', { name: 'Idioma', exact: true }).selectOption('en');
+    const nav = page.getByRole('navigation', { name: compact ? 'Mobile navigation' : 'Main navigation', exact: true });
+    await nav.getByRole('link', { name: 'Calculate price' }).waitFor();
+    await nav.getByRole('link', { name: 'Products', exact: true }).click();
+    await card.waitFor();
+    assert.match(await page.locator('html').getAttribute('lang'), /^en-/);
+    assert.equal(await card.locator('[data-price]').innerText(), 'PEN 30.00');
+    await button(page, 'Español').click();
+    await link(page, 'Calcular precio de Producto de prueba').click();
+    await page.locator('[data-pricing]').waitFor();
+    assert.equal(await method.inputValue(), 'margin');
+    assert.match(await page.locator('[data-stored-price]').innerText(), /S\/ 30\.00/);
+
+    await open(page, route('crear-producto.html'));
+    await page.getByLabel('Nombre del producto').fill('Nueva receta de prueba');
+    await page.getByLabel('Unidades por lote').fill('1');
+    await button(page, 'Continuar a materiales').click();
+    await button(await addMaterial(page, { name: 'Material', cost: '20' }), 'Aplicar material').click();
+    await button(page, 'Continuar a trabajo').click();
+    await button(page, 'Ver costo y precio').click();
+    await page.locator('[data-pricing]').waitFor();
+    assert.equal(await method.inputValue(), 'markup');
+    await page.getByLabel('Recargo sobre el costo (%)').fill('20');
+    assert.equal(await value(page, 'recommendation'), 'S/ 24.00');
+    await button(page, 'Comparar precios').click();
+    await page.locator('[data-comparison]').waitFor();
+    assert.equal(await page.getByLabel('Precio A en soles').inputValue(), '24.00');
+    await page.getByLabel('Precio B en soles').fill('29');
+    await page.getByRole('link', { name: '← Calculadora' }).click();
+    await page.locator('[data-pricing]').waitFor();
+    assert.equal(await method.inputValue(), 'markup');
+    await button(page, 'Comparar precios').click();
+    await page.locator('[data-comparison]').waitFor();
+    assert.equal(await page.getByLabel('Precio B en soles').inputValue(), '29');
+    await page.getByRole('radio', { name: 'Precio A', exact: true }).check();
+    await button(page, 'Guardar producto').click();
+    await page.getByText('Guardaste «Nueva receta de prueba» a S/ 24.00 por unidad.').waitFor();
+    const newProduct = card.filter({ hasText: 'Nueva receta de prueba' });
+    assert.equal(await newProduct.locator('[data-price]').innerText(), 'S/ 24.00');
+    await button(page, 'Eliminar Nueva receta de prueba').click();
+    await button(page.getByRole('dialog', { name: 'Eliminar producto' }), 'Confirmar eliminación').click();
+    await newProduct.waitFor({ state: 'detached' });
 
     await link(page, 'Ver catálogo de ejemplo').click();
     await page.getByText('Catálogo ficticio de Taller Bruma').first().waitFor();
@@ -151,6 +263,7 @@ async function exercise(browser, viewport) {
     assert.equal(await page.getByLabel('Empaques del lote en soles').inputValue(), '5');
     await button(page, 'Ver costo y precio').click();
     await page.locator('[data-pricing]').waitFor();
+    assert.equal(await method.inputValue(), 'margin');
     assert.equal(await value(page, 'lot'), 'S/ 42.00');
     assert.equal(await value(page, 'unit'), 'S/ 21.00');
     assert.equal(await value(page, 'recommendation'), 'S/ 26.25');
@@ -183,6 +296,7 @@ async function exercise(browser, viewport) {
     assert.equal(await value(page, 'received'), 'S/ 0.00');
     assert.equal(await value(page, 'pending'), 'S/ 60.00');
     await noOverflow(page, 'Ventas');
+    await audit(page, viewport.width + ' px · Ventas');
 
     await open(page, route('inicio.html'));
     await page.locator('[data-dashboard="real"]').waitFor();
@@ -191,6 +305,11 @@ async function exercise(browser, viewport) {
     assert.equal(await value(page, 'received'), 'S/ 0.00');
     assert.equal(await value(page, 'pending'), 'S/ 60.00');
     assert.equal(await value(page, 'grossProfit'), 'S/ 18.00');
+    for (const file of ['inventario', 'mi-dinero', 'diagnostico', 'asistente', 'pantallas']) {
+      await open(page, route(file + '.html'));
+      if (file !== 'pantallas') await page.locator('.demo-disclosure').waitFor();
+      await noOverflow(page, file);
+    }
     await noOverflow(page, 'Inicio');
 
     await open(page, route('ventas.html'));
@@ -222,7 +341,7 @@ async function exercise(browser, viewport) {
     assert.equal(await value(page, 'grossProfit'), 'S/ 18.00');
     assert.deepEqual(errors, []);
     console.log(viewport.width + ' px · receta recuperada en ' + recoverySeconds.toFixed(1) +
-      ' s de prueba automatizada · edición, ventas y estados vacíos verificados');
+      ' s de prueba automatizada · tres métodos, preferencias, navegación ES/EN, ventas y recuperación verificados');
   } finally {
     await context.close();
   }
@@ -235,7 +354,9 @@ try {
     headless: true,
     args: ['--disable-extensions']
   });
-  for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 }]) {
+  for (const viewport of [
+    { width: 390, height: 844 }, { width: 768, height: 1024 }, { width: 1440, height: 900 }
+  ]) {
     await exercise(browser, viewport);
   }
   console.log('Recorrido aprobado en ' + home.href);

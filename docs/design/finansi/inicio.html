@@ -9,26 +9,13 @@
   <link rel="stylesheet" href="../prototipo/estilos.css">
   <link rel="stylesheet" href="maqueta.css">
   <link rel="stylesheet" href="mvp/flujo.css">
-  <script src="maqueta.js" defer></script>
   <script type="module" src="mvp/app.js"></script>
 </head>
 <body class="b demo demo-module full-dashboard" data-page="inicio">
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
-  <header class="demo-header">
-    <div class="demo-header-inner">
-      <a class="brand" href="inicio.html"><img src="../prototipo/img/marca.svg" width="36" height="36" alt=""><span>Finansi</span></a>
-      <nav class="demo-top-nav" aria-label="Navegación principal"><a href="inicio.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Inicio</span></a><a href="productos.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg><span>Productos</span></a><a href="ventas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg><span>Ventas</span></a><a href="inventario.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg><span>Inventario</span></a><a href="mi-dinero.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg><span>Mi dinero</span></a></nav>
-      <div class="demo-header-tools">
-        <a class="assist-link" aria-label="Asistente Finansi" href="asistente.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg><span>Asistente</span></a>
-        <details class="demo-menu profile-menu">
-          <summary aria-label="Menú de Taller Bruma"><span class="profile-name">Taller Bruma</span><span class="avatar" aria-hidden="true">LT</span><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <div class="demo-menu-list"><a href="diagnostico.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Diagnóstico</span></a><a href="pantallas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Ver todas las pantallas</span></a><a href="index.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Bienvenida</span></a></div>
-        </details>
-      </div>
-    </div>
-  </header>
-  <main class="demo-main" id="contenido">
-    <noscript><p class="inline-note">Activa JavaScript para consultar tus datos guardados.</p></noscript>
+  <a class="skip-link" href="#contenido" data-i18n="ui.skip">Saltar al contenido</a>
+  <header data-shared-header></header>
+  <main class="demo-main" id="contenido" tabindex="-1">
+    <noscript><p class="inline-note" data-i18n="ui.noScriptLocal">Activa JavaScript para consultar tus datos guardados.</p></noscript>
     <p class="form-error" role="alert" data-load-error hidden></p>
     <section data-dashboard="real" hidden>
       <div class="page-heading">
@@ -46,15 +33,15 @@
           <img class="bruma-art" src="../prototipo/img/vela-cedro.svg" alt="" width="320" height="204">
         </section>
         <dl class="b-kpis mvp-kpis">
-          <div class="stat"><dt>Ventas registradas</dt><dd class="amount" data-value="sold">—</dd></div>
-          <div class="stat"><dt>Por cobrar</dt><dd class="amount" data-value="pending">—</dd></div>
+          <div class="stat"><dt data-i18n="ui.sold">Ventas registradas</dt><dd class="amount" data-value="sold">—</dd></div>
+          <div class="stat"><dt data-i18n="ui.pending">Por cobrar</dt><dd class="amount" data-value="pending">—</dd></div>
           <div class="stat"><dt>Ganancia bruta estimada</dt><dd class="amount" data-value="grossProfit">—</dd></div>
         </dl>
         <section class="b-diagnosis card" aria-labelledby="real-catalog-title">
-          <div class="b-note-label"><span>Mis productos</span></div>
+          <div class="b-note-label"><span data-i18n="ui.myProducts">Mis productos</span></div>
           <h2 id="real-catalog-title"><span data-value="products">0</span> en el catálogo</h2>
           <p>Calcula cuánto cuesta producir cada unidad y guarda un precio que cubra tu costo.</p>
-          <div class="b-note-end"><a class="action primary" href="crear-producto.html">Crear producto</a><a class="action quiet" href="productos.html">Abrir catálogo</a></div>
+          <div class="b-note-end"><a class="action primary" href="crear-producto.html" data-i18n="ui.create">Crear producto</a><a class="action quiet" href="productos.html">Abrir catálogo</a></div>
         </section>
       </div>
       <div class="inline-note real-dashboard-note" data-dashboard-empty hidden>Registra una venta de un producto guardado para ver tus primeros importes.</div>
@@ -86,7 +73,7 @@
       </div>
       <details class="chart-data">
         <summary aria-label="Ver datos del gráfico"><span>Ver datos<span class="chart-data-long"> del gráfico</span></span> <svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-        <table><caption class="sr-only">Ventas y costos y gastos por semana, en soles</caption><thead><tr><th scope="col">Semana</th><th scope="col">Ventas</th><th scope="col">Costos y gastos</th></tr></thead>
+        <table><caption class="sr-only">Ventas y costos y gastos por semana, en soles</caption><thead><tr><th scope="col">Semana</th><th scope="col" data-i18n="nav.sales">Ventas</th><th scope="col">Costos y gastos</th></tr></thead>
         <tbody><tr><th scope="row">1–7 oct</th><td>S/ 680</td><td>S/ 430</td></tr><tr><th scope="row">8–14 oct</th><td>S/ 810</td><td>S/ 530</td></tr><tr><th scope="row">15–21 oct</th><td>S/ 920</td><td>S/ 610</td></tr><tr><th scope="row">22–28 oct</th><td>S/ 1,070</td><td>S/ 740</td></tr></tbody></table>
       </details>
     </section>
@@ -103,7 +90,7 @@
         </nav>
     <section class="activity card" id="ventas" aria-labelledby="activity-title">
   <div class="card-head"><div><h2 id="activity-title">Actividad reciente</h2><p>Una muestra de los últimos movimientos</p></div><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-  <ul><li><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg></span><div><strong>Venta · Vela Cedro × 2</strong><small>28 oct · Billetera digital</small></div><div class="activity-amount positive"><strong>+ S/ 64.00</strong><small>Cobrado</small></div></li><li><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></span><div><strong>Compra de cera</strong><small>27 oct · Materiales</small></div><div class="activity-amount neutral"><strong>− S/ 84.00</strong><small>Pagado</small></div></li><li><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg></span><div><strong>Retiro personal</strong><small>26 oct · Dinero personal</small></div><div class="activity-amount neutral"><strong>− S/ 100.00</strong><small>Registrado</small></div></li><li><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><strong>Pedido para feria</strong><small>25 oct · Venta</small></div><div class="activity-amount pending"><strong>S/ 160.00</strong><small>Por cobrar</small></div></li></ul>
+  <ul><li><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg></span><div><strong>Venta · Vela Cedro × 2</strong><small>28 oct · Billetera digital</small></div><div class="activity-amount positive"><strong>+ S/ 64.00</strong><small>Cobrado</small></div></li><li><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></span><div><strong>Compra de cera</strong><small>27 oct · Materiales</small></div><div class="activity-amount neutral"><strong>− S/ 84.00</strong><small>Pagado</small></div></li><li><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg></span><div><strong>Retiro personal</strong><small>26 oct · Dinero personal</small></div><div class="activity-amount neutral"><strong>− S/ 100.00</strong><small>Registrado</small></div></li><li><span class="icon-badge"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><strong>Pedido para feria</strong><small>25 oct · Venta</small></div><div class="activity-amount pending"><strong>S/ 160.00</strong><small data-i18n="ui.pending">Por cobrar</small></div></li></ul>
 </section>
       </div>
     </div></div>
@@ -117,13 +104,7 @@
       </div>
     </section>
   </main>
-  <nav class="demo-bottom" aria-label="Navegación móvil">
-    <a href="inicio.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg><span>Inicio</span></a><a href="productos.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10m-4.5-16 9 4"/></svg><span>Productos</span></a><a href="ventas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l1 14H3z"/><path d="M8 9V7a4 4 0 1 1 8 0v2"/></svg><span>Ventas</span></a>
-    <details class="demo-menu bottom-menu">
-      <summary><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Más</span></summary>
-      <div class="demo-menu-list"><a href="inventario.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg><span>Inventario</span></a><a href="mi-dinero.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8V5H6a3 3 0 0 0 0 6h15v8H6a3 3 0 0 1-3-3V8m18 5h-5a2 2 0 0 0 0 4h5"/></svg><span>Mi dinero</span></a><a href="diagnostico.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Diagnóstico</span></a><a href="asistente.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8zm9 12v6m-3-3h6M19 3v4m-2-2h4"/></svg><span>Asistente Finansi</span></a><a href="pantallas.html"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg><span>Ver todas las pantallas</span></a></div>
-    </details>
-  </nav>
+  <nav data-shared-bottom></nav>
   <div class="preview-toast" role="status" aria-live="polite" data-toast></div>
 
 </body>

@@ -645,3 +645,74 @@
   .showcase-grid img { width: 350px; }
   .screen-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
 }
+.app-sidebar { display: none; }
+.app-shell .demo-header-inner { max-width: none; justify-content: space-between; }
+.app-shell .profile-name { max-width: clamp(58px, 22vw, 180px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.language-picker { display: inline-flex; gap: 3px; }
+.language-picker button {
+  min-width: 32px; min-height: 36px; border: 1px solid var(--line-strong); border-radius: 7px;
+  color: var(--text); background: var(--surface); font-weight: 700; font-size: 12px;
+}
+.language-picker button[aria-pressed="true"] { color: var(--accent); background: var(--accent-soft); border-color: var(--accent); }
+.app-bottom { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.app-bottom > a, .app-bottom > button {
+  display: flex; min-height: 51px; flex-direction: column; justify-content: center; align-items: center;
+  gap: 2px; padding: 2px; border: 0; border-radius: 8px; background: transparent; color: var(--muted);
+  font: 700 11px/1.15 var(--display); text-align: center;
+}
+.app-bottom > button:is(:hover, .more-active) { background: var(--accent-soft); color: var(--accent); }
+.app-nav-group + .app-nav-group { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 7px; }
+.app-nav-group > p { padding-inline: 8px; color: var(--muted); font-size: 11px; font-weight: 750; }
+.app-nav-group ul { padding: 0; list-style: none; }
+.app-nav-group a {
+  display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 4px 8px;
+  border-radius: 8px; color: var(--text); font-weight: 650; font-size: 13px;
+}
+.app-nav-group a:is(:hover, [aria-current]) { background: var(--accent-soft); color: var(--accent); }
+.app-nav-group a[aria-current] { box-shadow: inset 3px 0 var(--accent); }
+.app-nav-group .icon { flex: 0 0 20px; }
+.app-nav-group small { margin-inline-start: auto; color: var(--warning-ink); background: var(--warning-surface); padding: 2px 5px; border-radius: 5px; }
+.app-more { inset: auto 0 0; margin: 0 auto; max-height: 85dvh; }
+.app-more-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; }
+.app-more-head form { margin: 0; }
+.demo-disclosure, .sales-help { margin-bottom: 12px; }
+.demo .form-field :is(input, select) { color: var(--text); }
+.demo .wizard-steps li > span { color: var(--accent); background: var(--accent-soft); }
+.demo .wizard-steps li[aria-current] > span { color: var(--accent-text); background: var(--accent); }
+.demo .b-diagnosis { background: var(--panel); border-color: var(--line); }
+.demo .b-note-label .icon-badge { background: var(--accent-soft); }
+
+@media (min-width: 1050px) {
+  .app-shell { display: grid; grid-template-columns: 204px minmax(0, 1fr); grid-template-rows: auto 1fr; align-items: start; min-height: 100vh; }
+  .app-shell .demo-header { grid-column: 1 / -1; }
+  .app-shell .demo-main { grid-column: 2; }
+  .app-sidebar {
+    display: block; position: sticky; top: 0; max-height: 100vh; overflow-y: auto;
+    padding: 16px 10px; border-right: 1px solid var(--line); background: var(--surface);
+  }
+  .app-bottom { display: none; }
+}
+
+/* Mantiene el verde del concepto B y adapta el contraste al tema elegido. */
+html[data-appearance="light"], html[data-appearance="system"] { color-scheme: light; }
+html[data-appearance="dark"] { color-scheme: dark; }
+@media (prefers-color-scheme: dark) {
+  html[data-appearance="system"] { color-scheme: dark; }
+}
+.demo {
+  --canvas: light-dark(#f7f7f0, #18221d);
+  --surface: light-dark(#fff, #232f27);
+  --text: light-dark(#21392f, #f3f5ec);
+  --muted: light-dark(#4d6457, #bacbbc);
+  --soft: light-dark(#edf1e7, #303e33);
+  --line: light-dark(#dce5d9, #4b6051);
+  --line-strong: light-dark(#819584, #859d8b);
+  --accent: light-dark(#245444, #a6e2ba);
+  --accent-text: light-dark(#fff, #17281d);
+  --accent-soft: light-dark(#e6efe4, #324b3c);
+  --focus: light-dark(#095c80, #b9efb7);
+  --panel: light-dark(#f0f3e8, #2a3a2f);
+  --text-soft: light-dark(#4d6457, #c5d7c7);
+  --warning-surface: light-dark(#f8f0d8, #4a3b22);
+  --warning-ink: light-dark(#704a1a, #ffe6aa);
+}

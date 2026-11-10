@@ -3,16 +3,15 @@
   margin-block: 10px;
   border: 1px solid #ecc9bb;
   border-radius: 9px;
-  background: #fff3ec;
-  color: #7c3026;
+  background: light-dark(#fff3ec, #492e29);
+  color: light-dark(#7c3026, #ffd9ce);
   font-size: 13px;
   font-weight: 650;
 }
 
 .demo [aria-invalid="true"] { border-color: #a23d31; }
 .demo .action:disabled { opacity: .6; cursor: default; }
-.demo .action.danger { color: #8d392e; }
-.demo .profile-name { max-width: 116px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.demo .action.danger { color: light-dark(#8d392e, #ffc5b8); }
 .demo [data-example-notice], .demo [data-catalog-status], .demo [data-example-catalog] > .inline-note { margin-block: 0 14px; }
 .wizard-panel .empty-message { padding: 8px 0; font-size: 13px; }
 .editable-recipe li { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; }
@@ -44,7 +43,7 @@
 .saved-product { min-width: 0; padding: 15px; }
 .saved-product [data-name] { overflow-wrap: anywhere; }
 .saved-product .product-values dd { white-space: normal; overflow-wrap: anywhere; }
-.saved-product .product-foot { justify-content: flex-start; padding-top: 7px; }
+.saved-product .product-foot { flex-wrap: wrap; justify-content: flex-start; padding-top: 7px; }
 .saved-product .product-foot .action { font-size: 12px !important; padding-inline: 8px; }
 .saved-product .product-head p { overflow-wrap: anywhere; }
 .saved-product .product-head > div { min-width: 0; }
@@ -60,4 +59,22 @@
 @media (min-width: 700px) {
   .editable-recipe li { grid-template-columns: minmax(0, 1fr) auto auto; }
   .editable-recipe .material-actions { grid-column: auto; }
+}
+.settings-grid { display: grid; gap: 14px; align-items: start; }
+.settings-card { padding: 16px; }
+.settings-card h2 { margin-bottom: 10px; }
+.settings-card :is(form, .form-actions) { margin-top: 10px; }
+.settings-status { grid-column: 1 / -1; }
+.calculator-grid { grid-template-areas: "cost" "context" "hero"; }
+.price-hero .price-payoff { flex-wrap: wrap; overflow-wrap: anywhere; }
+.price-hero .explain-details :is(summary, p) { color: #fff; }
+.price-hero [data-pricing-loss] { color: #ffe4a0; font-weight: 750; }
+.price-hero :is(button, a, summary):focus-visible { outline-color: #ffe4a0; }
+.demo .price-hero .form-actions .primary { background: #f3e8c8; border-color: #f3e8c8; color: #263a2f; }
+.demo .price-hero .form-actions .secondary { background: transparent; color: #fff; border-color: #b9c9b7; }
+.demo .price-hero .form-actions .secondary:hover { background: #1b4435; }
+
+@media (min-width: 820px) {
+  .settings-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .calculator-grid { grid-template-areas: "cost context" "cost hero"; }
 }

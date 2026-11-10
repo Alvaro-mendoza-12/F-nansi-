@@ -1,19 +1,31 @@
-import { deleteProduct, getBusiness, listProducts, saveBusiness } from './almacen.js';
-import { formatMoney, money, priceResult, recipeCost } from './precios.js';
+import '../maqueta.js';
+import { deleteProduct, getWorkspace, listProducts, saveBusiness } from './almacen.js';
+import { mountSettings } from './configuracion.js';
+import { localize, mountLanguage, setBusinessLocale, t } from './idioma.js';
+import { mountNavigation } from './navegacion.js';
+import { applyAppearance } from './preferencias.js';
+import { formatMoney, money, priceResult, recipeCost, requiredName } from './precios.js';
 import { mountComparison, mountPricing, mountRecipe } from './recetas.js';
-import { query, revealDraftProblem, showError, showMessage } from './ui.js';
+import { fillCountrySelect, query, revealDraftProblem, showError, showMessage } from './ui.js';
 import { mountDashboard, mountSales } from './ventas.js';
 
-async function mountOnboarding() {
+function mountOnboarding(workspace) {
   const form = document.querySelector('[data-onboarding]');
   const input = form.elements.business;
   const button = form.querySelector('[type="submit"]');
-  input.value = await getBusiness();
+  input.value = workspace.name;
+  if ([...form.elements.actividad.options].some((option) => option.value === workspace.activity)) {
+    form.elements.actividad.value = workspace.activity;
+  }
+  fillCountrySelect(form.elements.country, workspace);
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     button.disabled = true;
     try {
-      await saveBusiness(input.value, form.elements.actividad.value);
+      await saveBusiness({
+        name: requiredName(input.value, 'business'), activity: form.elements.actividad.value,
+        country: form.elements.country.value
+      }, workspace);
       location.assign('crear-producto.html');
     } catch (error) {
       showError(form, error, { focus: true });
@@ -24,14 +36,14 @@ async function mountOnboarding() {
   button.disabled = false;
 }
 
-async function mountCatalog() {
+async function mountCatalog(workspace) {
   const toggle = document.querySelector('[data-catalog-switch]');
   if (query.get('modo') === 'ejemplo') {
     document.querySelector('[data-example-catalog]').hidden = false;
     document.querySelector('[data-saved-catalog]').hidden = true;
-    document.querySelector('[data-catalog-subtitle]').textContent = 'Catálogo ficticio de Taller Bruma.';
+    localize(document.querySelector('[data-catalog-subtitle]'), () => t('catalog.example'));
     toggle.href = 'productos.html';
-    toggle.textContent = 'Ver mis productos';
+    localize(toggle, () => t('catalog.mine'));
     return;
   }
 
@@ -45,37 +57,42 @@ async function mountCatalog() {
   let selected;
 
   async function render() {
-    const products = await listProducts();
+    const products = await listProducts(workspace);
     list.replaceChildren();
     empty.hidden = products.length > 0;
     for (const product of products) {
       const card = template.content.firstElementChild.cloneNode(true);
       const cost = recipeCost(product.recipe).unit;
-      const result = priceResult(cost, money(product.price, 'price', 'el precio', true));
+      const result = priceResult(cost, money(product.price, 'price', true));
       card.dataset.productId = product.id;
-      card.querySelector('[data-category]').textContent = product.category || 'Producto guardado';
+      localize(card.querySelector('[data-category]'), () => product.category || t('catalog.savedProduct'));
       card.querySelector('[data-name]').textContent = product.name;
-      card.querySelector('[data-cost]').textContent = formatMoney(cost);
-      card.querySelector('[data-price]').textContent = formatMoney(result.price);
-      card.querySelector('[data-profit]').textContent = formatMoney(result.profit);
+      localize(card.querySelector('[data-cost]'), () => formatMoney(cost, product.currency));
+      localize(card.querySelector('[data-price]'), () => formatMoney(result.price, product.currency));
+      localize(card.querySelector('[data-profit]'), () => formatMoney(result.profit, product.currency));
       const badge = card.querySelector('[data-price-status]');
-      badge.textContent = result.belowCost ? 'Precio bajo el costo' : 'Guardado';
+      localize(badge, () => t(result.belowCost ? 'catalog.below' : 'catalog.saved'));
       badge.classList.toggle('warning', result.belowCost);
+      const calculate = card.querySelector('[data-price-product]');
+      calculate.href = 'calculadora.html?id=' + encodeURIComponent(product.id);
+      localize(calculate, () => t('catalog.calculate', { name: product.name }), 'aria-label');
       const edit = card.querySelector('[data-open-product]');
       edit.href = 'crear-producto.html?id=' + encodeURIComponent(product.id);
-      edit.setAttribute('aria-label', 'Editar receta de ' + product.name);
+      localize(edit, () => t('recipe.editProduct', { name: product.name }), 'aria-label');
       const remove = card.querySelector('[data-delete-product]');
-      remove.setAttribute('aria-label', 'Eliminar ' + product.name);
+      localize(remove, () => t('catalog.removeName', { name: product.name }), 'aria-label');
       remove.addEventListener('click', () => {
         selected = product;
-        dialog.querySelector('[data-delete-description]').textContent =
-          'Se eliminará «' + product.name + '» del catálogo de este navegador.';
+        localize(dialog.querySelector('[data-delete-description]'),
+          () => t('catalog.deletePrompt', { name: product.name }));
         showError(deleteForm);
         dialog.showModal();
       });
       list.append(card);
       if (product.id === query.get('guardado')) {
-        showMessage(status, 'Guardaste «' + product.name + '» a ' + formatMoney(result.price) + ' por unidad.');
+        showMessage(status, () => t('catalog.savedMessage', {
+          name: product.name, price: formatMoney(result.price, product.currency)
+        }));
       }
     }
   }
@@ -84,10 +101,13 @@ async function mountCatalog() {
     event.preventDefault();
     confirm.disabled = true;
     try {
-      await deleteProduct(selected);
+      await deleteProduct(selected, workspace);
       dialog.close();
       await render();
-      showMessage(status, 'Producto eliminado del catálogo.');
+      showMessage(status, () => t('catalog.removed'));
+      const heading = document.querySelector('main h1');
+      heading.tabIndex = -1;
+      heading.focus();
     } catch (error) {
       showError(deleteForm, error);
     } finally {
@@ -105,27 +125,29 @@ const pages = {
   simulador: mountComparison,
   productos: mountCatalog,
   inicio: mountDashboard,
-  ventas: mountSales
+  ventas: mountSales,
+  configuracion: mountSettings
 };
 
+function updateProfile(workspace) {
+  const name = () => workspace.name || t('business.default');
+  for (const element of document.querySelectorAll('.profile-name')) {
+    localize(element, name);
+  }
+}
+
+applyAppearance();
+mountNavigation();
+mountLanguage();
 try {
-  if (pages[page]) await pages[page]();
+  if (Object.hasOwn(pages, page)) {
+    const workspace = await getWorkspace();
+    setBusinessLocale(workspace);
+    if (query.get('modo') !== 'ejemplo') updateProfile(workspace);
+    await pages[page](workspace, updateProfile);
+  }
 } catch (error) {
   const form = document.querySelector('[data-onboarding]');
   if (form) showError(form, error);
   else revealDraftProblem(error);
-}
-
-// El encabezado muestra el negocio local en las pantallas de trabajo.
-if (query.get('modo') !== 'ejemplo' && !['onboarding', 'index'].includes(page)) {
-  let business = '';
-  try { business = await getBusiness(); } catch { /* El formulario indica el error si requiere almacenamiento. */ }
-  for (const element of document.querySelectorAll('.profile-name')) {
-    element.textContent = business || 'Mi taller';
-    element.closest('summary').setAttribute('aria-label', 'Menú de ' + (business || 'Mi taller'));
-  }
-  for (const element of document.querySelectorAll('.profile-menu .avatar')) {
-    element.textContent = (business || 'Mi taller').split(/\s+/).slice(0, 2)
-      .map((word) => word[0]).join('').toUpperCase();
-  }
 }

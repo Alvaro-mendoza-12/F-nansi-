@@ -1,15 +1,16 @@
-import { collectSale, getBusiness, listProducts, listSales, recordSale } from './almacen.js';
-import { addAmounts, formatMoney, money, priceResult, ratio } from './precios.js';
-import { query, showError, showMessage, values } from './ui.js';
+import { collectSale, listProducts, listSales, recordSale } from './almacen.js';
+import { addAmounts, formatMoney, InputError, money, priceResult, ratio, recipeCost } from './precios.js';
+import { dateText, errorText, localize, numberText, t } from './idioma.js';
+import { bindCurrencyLabels, query, showError, showMessage, values } from './ui.js';
 
 function saleResult(sale) {
   const quantity = BigInt(sale.quantity);
-  const price = money(sale.price, 'price', 'el precio', true);
+  const price = money(sale.price, 'price', true);
   const cost = ratio(BigInt(sale.unitCost.numerator), BigInt(sale.unitCost.denominator));
   return { amount: price * quantity, gain: priceResult(cost, price, quantity).total };
 }
 
-function totals(records) {
+function totals(records, currency) {
   let sold = 0n;
   let received = 0n;
   let gain = ratio(0n);
@@ -20,28 +21,26 @@ function totals(records) {
     gain = addAmounts(gain, result.gain);
   }
   return {
-    sold: formatMoney(sold), received: formatMoney(received),
-    pending: formatMoney(sold - received), grossProfit: formatMoney(gain)
+    sold: () => formatMoney(sold, currency), received: () => formatMoney(received, currency),
+    pending: () => formatMoney(sold - received, currency), grossProfit: () => formatMoney(gain, currency)
   };
 }
 
-export async function mountDashboard() {
+export async function mountDashboard(workspace) {
   if (query.get('modo') === 'ejemplo' || query.get('estado') === 'nuevo') {
     const selected = query.get('modo') === 'ejemplo' ? 'ejemplo' : 'nuevo';
     document.querySelector('[data-dashboard="' + selected + '"]').hidden = false;
     return;
   }
   const section = document.querySelector('[data-dashboard="real"]');
-  const [records, products, business] = await Promise.all([listSales(), listProducts(), getBusiness()]);
-  values(section, { ...totals(records), products: String(products.length) });
-  section.querySelector('[data-business-title]').textContent = business || 'Mi taller';
+  const [records, products] = await Promise.all([listSales(workspace), listProducts(workspace)]);
+  values(section, { ...totals(records, workspace.currency), products: () => numberText(products.length) });
+  localize(section.querySelector('[data-business-title]'), () => workspace.name || t('business.default'));
   section.querySelector('[data-dashboard-empty]').hidden = records.length > 0;
   section.hidden = false;
 }
 
-const dateLabel = new Intl.DateTimeFormat('es-PE', { dateStyle: 'medium', timeStyle: 'short' });
-
-export async function mountSales() {
+export async function mountSales(workspace) {
   if (query.get('modo') === 'ejemplo') {
     document.querySelector('[data-example-sales]').hidden = false;
     return;
@@ -55,32 +54,35 @@ export async function mountSales() {
   const template = section.querySelector('[data-sale-template]');
   const status = section.querySelector('[data-sales-status]');
   let products = [];
+  bindCurrencyLabels(form, workspace.currency);
 
   async function render() {
-    const records = await listSales();
-    values(section, totals(records));
+    const records = await listSales(workspace);
+    values(section, totals(records, workspace.currency));
     list.replaceChildren();
     section.querySelector('[data-sales-empty]').hidden = records.length > 0;
     for (const sale of records) {
       const row = template.content.firstElementChild.cloneNode(true);
       row.querySelector('[data-sold-name]').textContent = sale.name;
-      row.querySelector('[data-sold-date]').textContent = dateLabel.format(new Date(sale.recordedAt));
-      row.querySelector('[data-sold-units]').textContent = sale.quantity + ' unid.';
-      row.querySelector('[data-sold-total]').textContent = formatMoney(saleResult(sale).amount);
+      localize(row.querySelector('[data-sold-date]'), () => dateText(sale.recordedAt));
+      localize(row.querySelector('[data-sold-units]'), () => t('sale.units', { amount: numberText(BigInt(sale.quantity)) }));
+      localize(row.querySelector('[data-sold-total]'), () => formatMoney(saleResult(sale).amount, sale.currency));
       const badge = row.querySelector('[data-payment]');
       const paid = sale.payment === 'paid';
-      badge.textContent = paid ? 'Cobrada' : 'Por cobrar';
+      localize(badge, () => t(paid ? 'sale.paid' : 'sale.pending'));
       badge.classList.add(paid ? 'good' : 'warning');
       const collect = row.querySelector('[data-collect]');
       collect.hidden = paid;
       collect.addEventListener('click', async () => {
         collect.disabled = true;
         try {
-          const updated = await collectSale(sale.id);
+          const updated = await collectSale(sale.id, workspace);
           await render();
-          showMessage(status, 'Registraste un cobro de ' + formatMoney(saleResult(updated).amount) + '.');
+          showMessage(status, () => t('sale.collected', { amount: formatMoney(saleResult(updated).amount, sale.currency) }));
+          status.tabIndex = -1;
+          status.focus();
         } catch (error) {
-          showMessage(status, error.message);
+          showMessage(status, () => errorText(error));
           collect.disabled = false;
         }
       });
@@ -88,16 +90,39 @@ export async function mountSales() {
     }
   }
 
+  function selectedProduct() {
+    return products.find((product) => product.id === form.elements.productId.value);
+  }
+
+  function previewLoss() {
+    const warning = form.querySelector('[data-sale-loss]');
+    const product = selectedProduct();
+    if (product) {
+      const cost = recipeCost(product.recipe).unit;
+      try {
+        const price = money(form.elements.price.value, 'price', true);
+        if (priceResult(cost, price).belowCost) {
+          showMessage(warning, () => t('sale.loss', { cost: formatMoney(cost, product.currency) }));
+          return;
+        }
+      } catch (error) {
+        if (!(error instanceof InputError)) throw error;
+      }
+    }
+    showMessage(warning, '');
+  }
+
   function fillPrice() {
-    form.elements.price.value = products.find((product) => product.id === form.elements.productId.value)?.price ?? '';
+    form.elements.price.value = selectedProduct()?.price ?? '';
+    previewLoss();
   }
 
   opener.addEventListener('click', async () => {
     opener.disabled = true;
     try {
-      products = await listProducts();
+      products = await listProducts(workspace);
       if (!products.length) {
-        showMessage(status, 'Guarda un producto en el catálogo para registrar una venta.');
+        showMessage(status, () => t('sale.needsProduct'));
         return;
       }
       form.reset();
@@ -106,21 +131,24 @@ export async function mountSales() {
       showError(form);
       dialog.showModal();
     } catch (error) {
-      showMessage(status, error.message);
+      showMessage(status, () => errorText(error));
     } finally {
       opener.disabled = false;
     }
   });
   form.elements.productId.addEventListener('change', fillPrice);
+  form.elements.price.addEventListener('input', previewLoss);
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (submit.disabled) return;
     submit.disabled = true;
     try {
-      const sale = await recordSale(Object.fromEntries(new FormData(form)));
+      const sale = await recordSale({
+        ...Object.fromEntries(new FormData(form)), revision: selectedProduct()?.revision
+      }, workspace);
       dialog.close();
       await render();
-      showMessage(status, sale.payment === 'paid' ? 'Venta y cobro registrados.' : 'Venta pendiente de cobro registrada.');
+      showMessage(status, () => t(sale.payment === 'paid' ? 'sale.savedPaid' : 'sale.savedPending'));
     } catch (error) {
       showError(form, error, { focus: true });
     } finally {
