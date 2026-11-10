@@ -59,7 +59,7 @@ async function audit(page, state) {
 async function exercise(browser, width) {
   const context = await browser.newContext({ viewport: { width, height: width < 700 ? 844 : 900 } });
   const page = await context.newPage();
-  page.setDefaultTimeout(10000);
+  page.setDefaultTimeout(publicUrl ? 30000 : 10000);
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
@@ -68,10 +68,11 @@ async function exercise(browser, width) {
   });
   const compact = width < 1050;
   try {
-    await page.goto(new URL('configuracion.html', app).href);
+    await page.goto(new URL('configuracion.html', app).href, { waitUntil: 'domcontentloaded' });
+    await page.locator('[data-settings]').waitFor();
     await page.getByLabel('Método de cálculo preferido').selectOption('manual');
     await page.getByRole('combobox', { name: 'Idioma', exact: true }).selectOption('en');
-    await page.reload();
+    await page.reload({ waitUntil: 'domcontentloaded' });
     await page.locator('[data-settings]').waitFor();
     assert.equal(await page.getByLabel('Preferred pricing method').inputValue(), 'manual');
     const countrySelect = page.locator('[data-business-form] [name="country"]');
@@ -94,7 +95,7 @@ async function exercise(browser, width) {
         }
       }
     }
-    await page.goto(new URL('crear-producto.html', app).href);
+    await page.goto(new URL('crear-producto.html', app).href, { waitUntil: 'domcontentloaded' });
     await page.getByLabel('Product name').fill('Keyboard candle');
     const draft = new URL(page.url()).searchParams.get('borrador');
 
@@ -172,7 +173,7 @@ async function exercise(browser, width) {
     await page.getByText('Sale recorded as pending payment.', { exact: true }).waitFor();
     assert.equal(await value(page, 'pending'), 'PEN 60.00');
 
-    await page.goto(new URL('configuracion.html', app).href);
+    await page.goto(new URL('configuracion.html', app).href, { waitUntil: 'domcontentloaded' });
     await page.locator('[data-settings]').waitFor();
     assert.ok(await countrySelect.isDisabled(), 'La moneda queda fija después de guardar un producto');
     assert.equal(await countrySelect.inputValue(), 'PE');
@@ -185,7 +186,8 @@ async function exercise(browser, width) {
     assert.equal(backup.products[0].price, '30.00');
     assert.deepEqual(backup.sales[0].unitCost, { numerator: '2000', denominator: '1' });
     await page.getByLabel('Preferred pricing method').selectOption('markup');
-    await page.reload();
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.locator('[data-settings]').waitFor();
     assert.equal(await page.getByLabel('Preferred pricing method').inputValue(), 'markup');
 
     // Restaurar conserva los valores del producto y no sustituye preferencias del dispositivo.
