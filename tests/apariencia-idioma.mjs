@@ -38,14 +38,24 @@ try {
     page.on('pageerror', error => report.errors.push(error.message));
     page.on('console', message => { if (message.type() === 'error') report.errors.push(message.text()); });
     page.on('response', response => { if (response.status() >= 400) report.errors.push(response.status() + ' ' + response.url()); });
-    await page.goto(new URL('index.html', base).href);
+    await page.goto(new URL('index.html', base).href, { waitUntil: 'domcontentloaded' });
+    await page.getByRole('button', { name: 'Modo claro', exact: true }).waitFor();
     assert.equal(await page.locator('html').getAttribute('data-appearance'), 'light', 'El modo inicial debe ser claro incluso con el dispositivo en oscuro');
     assert.equal(await page.locator('body').evaluate(el => getComputedStyle(el).backgroundColor), 'rgb(255, 255, 255)');
     await page.setViewportSize({ width: 320, height: 900 });
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'La cabecera desborda a 320 px');
     await page.setViewportSize({ width, height: 900 });
     for (const file of targets) {
-      await page.goto(new URL(file, base).href);
+      await page.goto(new URL(file, base).href, { waitUntil: 'domcontentloaded' });
+      await page.getByRole('button', { name: 'Español', exact: true }).waitFor();
+      if (await page.locator('[data-ready]').count()) await page.locator('[data-ready]').waitFor();
+      const loaded = {
+        'productos.html': '[data-catalog-empty]', 'productos.html?modo=ejemplo': '[data-example-catalog]',
+        'ventas.html': '[data-real-sales]', 'ventas.html?modo=ejemplo': '[data-example-sales]',
+        'inicio.html': '[data-dashboard="real"]', 'inicio.html?modo=ejemplo': '[data-dashboard="ejemplo"]',
+        'inicio.html?estado=nuevo': '[data-dashboard="nuevo"]'
+      }[file];
+      if (loaded) await page.locator(loaded).waitFor();
       if (file === 'onboarding.html') await page.locator('[name="business"]').fill('Cera de soya');
       for (const language of ['en', 'es']) {
         await page.getByRole('button', { name: language === 'en' ? 'English' : 'Español', exact: true }).click();
@@ -86,7 +96,7 @@ try {
       console.log(width + ' px · ES/EN · claro/oscuro · ' + file);
     }
     // Los controles de cabecera y Configuración comparten la misma preferencia.
-    await page.goto(new URL('configuracion.html', base).href);
+    await page.goto(new URL('configuracion.html', base).href, { waitUntil: 'domcontentloaded' });
     await page.locator('[data-settings]').waitFor();
     await page.getByRole('button', { name: 'Modo claro', exact: true }).click();
     assert.equal(await page.getByLabel('Apariencia', { exact: true }).inputValue(), 'light');

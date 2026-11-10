@@ -37,3 +37,5 @@ Ejecución: `npm test`, `npm run test:e2e`, `npm run test:navigation` y `npm run
 Se revisaron visualmente las capturas de la portada en ambos tamaños y temas. La auditoría automática y las pruebas de teclado no acreditan conformidad integral WCAG. Siguen pendientes una revisión con lector de pantalla y sesiones de usabilidad con emprendedores. Los textos impresos dentro de la fotografía del envase son parte de la imagen; los nombres y registros del usuario se conservan como fueron escritos. El video aprobado permanece intacto.
 
 Demo: [Finansi](https://alvaro-mendoza-12.github.io/F-nansi-/).
+
+La misma revisión de 160 estados se ejecutó sobre la demo pública después del [despliegue satisfactorio del código](https://github.com/Alvaro-mendoza-12/F-nansi-/actions/runs/42824708447), con cero infracciones y sin errores de consola o red. [Resultados públicos](evidencia/idioma-tema/resultados-publicos.json). La prueba espera a que cada módulo esté visible para auditarlo y evita depender de la carga completa de imágenes secundarias.
