@@ -1,4 +1,7 @@
 export const copy = {
+  "theme.group": ["Tema de color","Color theme"],
+  "theme.light": ["Modo claro","Light mode"],
+  "theme.dark": ["Modo oscuro","Dark mode"],
   "title.recipe": ["Receta del producto · Finansi","Product recipe · Finansi"],
   "title.calculator": ["Calculadora de precio · Finansi","Price calculator · Finansi"],
   "title.comparison": ["Simulador de precios · Finansi","Price comparison · Finansi"],

@@ -4,6 +4,7 @@ import { mountSettings } from './configuracion.js';
 import { localize, mountLanguage, setBusinessLocale, t } from './idioma.js';
 import { mountNavigation } from './navegacion.js';
 import { applyAppearance } from './preferencias.js';
+import { mountAppearance } from './apariencia.js';
 import { formatMoney, money, priceResult, recipeCost, requiredName } from './precios.js';
 import { mountComparison, mountPricing, mountRecipe } from './recetas.js';
 import { fillCountrySelect, query, revealDraftProblem, showError, showMessage } from './ui.js';
@@ -139,6 +140,7 @@ function updateProfile(workspace) {
 applyAppearance();
 mountNavigation();
 mountLanguage();
+mountAppearance();
 try {
   if (Object.hasOwn(pages, page)) {
     const workspace = await getWorkspace();

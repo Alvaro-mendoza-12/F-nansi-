@@ -52,7 +52,7 @@ Ambos comandos de navegador aceptan como argumento `https://alvaro-mendoza-12.gi
 
 WCAG 2.2 AA es el objetivo de revisión. Axe y el recorrido de teclado no acreditan conformidad completa. Quedan pendientes lector de pantalla, pruebas de usabilidad con emprendedores y una base de regresión visual equivalente. ISO 9241-110 se usa como referencia, sin afirmar certificación.
 
-Las preferencias son del navegador y no forman parte de la copia del negocio. Los datos requieren exportación para trasladarse a otro dispositivo. Algunas pantallas históricas de demostración continúan en español. Inventario, Mi dinero, Diagnóstico y Asistente siguen identificados como demostraciones.
+Las preferencias son del navegador y no forman parte de la copia del negocio. Los datos requieren exportación para trasladarse a otro dispositivo. Las traducciones pendientes de las demostraciones se completaron en la [revisión posterior de idioma y temas](../../07-idioma-y-temas.md). Inventario, Mi dinero, Diagnóstico y Asistente siguen identificados como demostraciones.
 
 La investigación, fórmulas, estructura de navegación y evaluación de las diez heurísticas se encuentran en el [informe de Fase 4](../../06-fase-4-navegacion-y-precios.md).
 

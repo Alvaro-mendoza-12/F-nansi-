@@ -193,6 +193,14 @@ async function exercise(browser, viewport) {
     await page.locator('[data-settings]').waitFor();
     const preference = page.getByLabel('Método de cálculo preferido');
     await preference.selectOption('markup');
+    const preferenceState = await page.evaluate(() => ({
+      value: document.querySelector('[data-preferences] [name="method"]').value,
+      stored: localStorage.getItem('finansi:pricing-method'),
+      status: document.querySelector('[data-settings-status]').textContent,
+      error: document.querySelector('[data-preferences] [data-error]').textContent,
+      language: document.documentElement.lang
+    }));
+    assert.equal(preferenceState.stored, 'markup', JSON.stringify(preferenceState));
     await page.getByText('Configuración guardada.', { exact: true }).waitFor();
     assert.equal(await page.evaluate(() => localStorage.getItem('finansi:pricing-method')), 'markup');
     await page.getByLabel('Apariencia').selectOption('dark');

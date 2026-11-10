@@ -1,0 +1,1151 @@
+{
+  "url": "http://127.0.0.1:50389/F-nansi-/docs/design/finansi/",
+  "axe": true,
+  "states": [
+    {
+      "width": 390,
+      "file": "index.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "index.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "index.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "index.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "onboarding.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "onboarding.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "onboarding.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "onboarding.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "crear-producto.html?ejemplo=cedro",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "crear-producto.html?ejemplo=cedro",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "crear-producto.html?ejemplo=cedro",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "crear-producto.html?ejemplo=cedro",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "calculadora.html?ejemplo=cedro",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "calculadora.html?ejemplo=cedro",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "calculadora.html?ejemplo=cedro",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "calculadora.html?ejemplo=cedro",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "simulador.html?ejemplo=cedro",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "simulador.html?ejemplo=cedro",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "simulador.html?ejemplo=cedro",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "simulador.html?ejemplo=cedro",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "productos.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "productos.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "productos.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "productos.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "productos.html?modo=ejemplo",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "productos.html?modo=ejemplo",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "productos.html?modo=ejemplo",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "productos.html?modo=ejemplo",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "ventas.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "ventas.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "ventas.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "ventas.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "en",
+      "mode": "light",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 390,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "en",
+      "mode": "dark",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 390,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "es",
+      "mode": "light",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 390,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "es",
+      "mode": "dark",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 390,
+      "file": "inicio.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inicio.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inicio.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inicio.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inicio.html?modo=ejemplo",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inicio.html?modo=ejemplo",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inicio.html?modo=ejemplo",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inicio.html?modo=ejemplo",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inicio.html?estado=nuevo",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inicio.html?estado=nuevo",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inicio.html?estado=nuevo",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inicio.html?estado=nuevo",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inventario.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inventario.html",
+      "language": "en",
+      "mode": "light",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 390,
+      "file": "inventario.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inventario.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 390,
+      "file": "inventario.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inventario.html",
+      "language": "es",
+      "mode": "light",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 390,
+      "file": "inventario.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "inventario.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 390,
+      "file": "mi-dinero.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "mi-dinero.html",
+      "language": "en",
+      "mode": "light",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 390,
+      "file": "mi-dinero.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "mi-dinero.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 390,
+      "file": "mi-dinero.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "mi-dinero.html",
+      "language": "es",
+      "mode": "light",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 390,
+      "file": "mi-dinero.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "mi-dinero.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 390,
+      "file": "diagnostico.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "diagnostico.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "diagnostico.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "diagnostico.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "asistente.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "asistente.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "asistente.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "asistente.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "pantallas.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "pantallas.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "pantallas.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "file": "pantallas.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "index.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "index.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "index.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "index.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "onboarding.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "onboarding.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "onboarding.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "onboarding.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "crear-producto.html?ejemplo=cedro",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "crear-producto.html?ejemplo=cedro",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "crear-producto.html?ejemplo=cedro",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "crear-producto.html?ejemplo=cedro",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "calculadora.html?ejemplo=cedro",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "calculadora.html?ejemplo=cedro",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "calculadora.html?ejemplo=cedro",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "calculadora.html?ejemplo=cedro",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "simulador.html?ejemplo=cedro",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "simulador.html?ejemplo=cedro",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "simulador.html?ejemplo=cedro",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "simulador.html?ejemplo=cedro",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "productos.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "productos.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "productos.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "productos.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "productos.html?modo=ejemplo",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "productos.html?modo=ejemplo",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "productos.html?modo=ejemplo",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "productos.html?modo=ejemplo",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "ventas.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "ventas.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "ventas.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "ventas.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "en",
+      "mode": "light",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 1440,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "en",
+      "mode": "dark",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 1440,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "es",
+      "mode": "light",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 1440,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "ventas.html?modo=ejemplo",
+      "language": "es",
+      "mode": "dark",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 1440,
+      "file": "inicio.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inicio.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inicio.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inicio.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inicio.html?modo=ejemplo",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inicio.html?modo=ejemplo",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inicio.html?modo=ejemplo",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inicio.html?modo=ejemplo",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inicio.html?estado=nuevo",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inicio.html?estado=nuevo",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inicio.html?estado=nuevo",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inicio.html?estado=nuevo",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inventario.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inventario.html",
+      "language": "en",
+      "mode": "light",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 1440,
+      "file": "inventario.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inventario.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 1440,
+      "file": "inventario.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inventario.html",
+      "language": "es",
+      "mode": "light",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 1440,
+      "file": "inventario.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "inventario.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 1440,
+      "file": "mi-dinero.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "mi-dinero.html",
+      "language": "en",
+      "mode": "light",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 1440,
+      "file": "mi-dinero.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "mi-dinero.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 1440,
+      "file": "mi-dinero.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "mi-dinero.html",
+      "language": "es",
+      "mode": "light",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 1440,
+      "file": "mi-dinero.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "mi-dinero.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": [],
+      "dialog": true
+    },
+    {
+      "width": 1440,
+      "file": "diagnostico.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "diagnostico.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "diagnostico.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "diagnostico.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "asistente.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "asistente.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "asistente.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "asistente.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "pantallas.html",
+      "language": "en",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "pantallas.html",
+      "language": "en",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "pantallas.html",
+      "language": "es",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "file": "pantallas.html",
+      "language": "es",
+      "mode": "dark",
+      "violations": []
+    }
+  ],
+  "errors": []
+}

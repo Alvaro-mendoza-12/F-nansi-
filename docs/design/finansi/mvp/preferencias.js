@@ -3,7 +3,7 @@ import { pricingMethods } from './precios.js';
 
 const methodKey = 'finansi:pricing-method';
 const appearanceKey = 'finansi:appearance';
-const appearances = ['system', 'light', 'dark'];
+const appearances = ['light', 'dark', 'system'];
 
 function read(key, options) {
   try {
@@ -24,6 +24,7 @@ export const appearance = () => read(appearanceKey, appearances);
 
 export function applyAppearance() {
   document.documentElement.dataset.appearance = appearance();
+  window.dispatchEvent(new Event('finansi:appearance-change'));
 }
 
 export function saveAppearance(value) {

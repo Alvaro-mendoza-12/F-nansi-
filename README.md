@@ -39,6 +39,7 @@ Abre [la demo local](http://127.0.0.1:4173/). Para las pruebas en navegador, usa
 npm test
 npm run test:e2e
 npm run test:navigation
+npm run test:display
 npm run test:e2e -- https://alvaro-mendoza-12.github.io/F-nansi-/
 npm run test:navigation -- https://alvaro-mendoza-12.github.io/F-nansi-/
 ```
@@ -46,6 +47,8 @@ npm run test:navigation -- https://alvaro-mendoza-12.github.io/F-nansi-/
 Las pruebas de navegador usan perfiles temporales. En PowerShell puedes usar `npm.cmd` y `npx.cmd`.
 
 El recorrido de navegación comprueba también el flujo completo en inglés, el teclado, la continuidad del borrador desde el menú y la exportación/restauración sin sustituir precios ni métodos históricos. Para auditar accesibilidad, configura `FINANSI_AXE` con una copia local de `axe.min.js`; sin esa variable, axe se omite. `FINANSI_EVIDENCE` guarda capturas y resultados JSON. [Evidencia y límites de la revisión de Fase 4](docs/design/evidencia/fase4/README.md).
+
+La cabecera permite cambiar ES/EN y elegir tema con el sol o la luna. La traducción incluye las 14 pantallas, sus demostraciones, diálogos y capturas de galería. El modo inicial tiene fondo blanco; el oscuro usa fondos neutros y acentos verdes. Idioma y tema se conservan al navegar y recargar. `npm run test:display` verifica ambos idiomas y temas en 160 estados a 390 y 1440 px, además de la cabecera a 320 px. [Revisión de idioma y temas](docs/design/07-idioma-y-temas.md).
 
 ## Investigación y diseño
 

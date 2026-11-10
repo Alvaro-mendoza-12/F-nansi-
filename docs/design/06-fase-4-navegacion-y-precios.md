@@ -60,7 +60,7 @@ Los controles de navegación miden al menos 44 px de alto (51 px en la barra inf
 - `npm run test:e2e` usa Chromium en perfiles temporales a 390, 768 y 1440 px. Verifica los métodos A, B y C, preferencia tras recargar, precio histórico, persistencia de borradores, navegación ES/EN y regresión de ventas, cobros y catálogo.
 - `npm run test:navigation` verifica el recorrido en inglés, Tab/Enter/Espacio, errores desde el menú, continuidad del borrador, exportación JSON, cancelación y confirmación de restauración, método preferido persistente y método/precio históricos.
 - Ambos recorridos aceptan una URL pública como argumento y usan perfiles temporales, sin acceder a datos de otros perfiles. `FINANSI_AXE` señala una copia local de `axe.min.js` para ejecutar las reglas WCAG. Si se omite, se omite axe; el resto de las pruebas sigue ejecutándose. `FINANSI_EVIDENCE` guarda capturas y los informes `recorrido-resultados.json` y `navegacion-resultados.json`. [Evidencia de esta revisión](evidencia/fase4/README.md).
-- Los datos y las preferencias permanecen en el navegador. La copia JSON traslada registros. El texto de algunas vistas históricas de demostración sigue en español. Quedan pendientes las sesiones de usabilidad con emprendedores y una revisión manual con lector de pantalla.
+- Los datos y las preferencias permanecen en el navegador. La copia JSON traslada registros. La [revisión posterior de idioma y temas](07-idioma-y-temas.md) completa la traducción de las demostraciones y añade los controles de tema a la cabecera. Quedan pendientes las sesiones de usabilidad con emprendedores y una revisión manual con lector de pantalla.
 
 ## Problemas corregidos en la revisión
 
