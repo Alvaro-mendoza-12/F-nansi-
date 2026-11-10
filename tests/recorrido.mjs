@@ -60,7 +60,7 @@ async function open(page, url) {
 async function exercise(browser, viewport) {
   const context = await browser.newContext({ viewport });
   const page = await context.newPage();
-  page.setDefaultTimeout(12000);
+  page.setDefaultTimeout(publicUrl ? 30000 : 12000);
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
@@ -72,6 +72,8 @@ async function exercise(browser, viewport) {
   try {
     const started = performance.now();
     await open(page, home.href);
+    await page.waitForURL(route('index.html'), { waitUntil: 'domcontentloaded' });
+    await button(page, 'Modo claro').waitFor();
     await link(page, 'Calcular mi primer precio').click();
     await page.getByLabel('Nombre del negocio').fill('Taller de prueba');
     await button(page, 'Ir a mi primer producto').click();
