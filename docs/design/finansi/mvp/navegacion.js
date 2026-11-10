@@ -53,7 +53,16 @@ export function mountNavigation() {
   bottom.innerHTML = links(groups.principal).join('') + '<button type="button" aria-haspopup="dialog" aria-controls="more-nav">' +
     icon('M4 12h1m6.5 0h1m6.5 0h1') + label('more') + '</button>';
   const button = bottom.querySelector('button');
-  if (!groups.principal.some(([route]) => route === current)) button.classList.add('more-active');
+  const activeSecondary = secondary.flatMap(([, items]) => items).find(([route]) => route === current);
+  if (activeSecondary) {
+    button.classList.add('more-active');
+    button.setAttribute('aria-describedby', 'more-current');
+    const description = document.createElement('span');
+    description.id = 'more-current';
+    description.className = 'sr-only';
+    description.dataset.i18n = 'nav.' + activeSecondary[1];
+    bottom.append(description);
+  }
   const dialog = document.createElement('dialog');
   dialog.id = 'more-nav';
   dialog.className = 'demo-dialog app-more';

@@ -25,8 +25,12 @@
     <section class="card dashboard-empty" data-missing hidden>
       <h2 data-i18n="ui.chooseRecipe">Abre una receta para calcular su precio</h2>
       <p data-i18n="ui.chooseRecipeIntro">Elige un producto del catálogo, crea uno nuevo o prueba los datos de Taller Bruma.</p>
+      <form class="pricing-picker" action="simulador.html" data-pricing-picker hidden>
+        <label class="form-field"><span data-i18n="ui.chooseSavedProduct">Producto guardado</span><select name="id" required></select></label>
+        <button class="action primary" type="submit" data-i18n="ui.openComparison">Abrir comparación</button>
+      </form>
       <div class="form-actions">
-        <a class="action primary" href="productos.html" data-i18n="ui.myProducts">Mis productos</a>
+        <a class="action primary" href="productos.html" data-catalog-fallback data-i18n="ui.myProducts">Mis productos</a>
         <a class="action secondary" href="crear-producto.html" data-i18n="ui.create">Crear producto</a>
         <a class="action secondary" data-try-example href="?ejemplo=cedro" data-i18n="ui.trySample">Probar Vela Cedro</a>
       </div>

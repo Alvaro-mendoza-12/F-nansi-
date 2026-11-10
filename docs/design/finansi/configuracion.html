@@ -56,9 +56,9 @@
           <p id="preference-help" class="panel-lede" data-i18n="settings.methodHelp">Se aplica al crear una receta. Los productos guardados conservan su método y precio.</p>
           <details class="explain-details">
             <summary data-i18n="method.help">Cómo funcionan los métodos</summary>
-            <p data-i18n="method.exampleMargin"></p>
-            <p data-i18n="method.exampleMarkup"></p>
-            <p data-i18n="method.exampleManual"></p>
+            <p data-pricing-example="margin"></p>
+            <p data-pricing-example="markup"></p>
+            <p data-pricing-example="manual"></p>
           </details>
           <p class="form-error" data-error role="alert" hidden></p>
         </form>
@@ -75,9 +75,10 @@
       </section>
       <p class="inline-note settings-status" data-settings-status role="status" hidden></p>
     </div>
-    <dialog class="demo-dialog" data-restore-dialog aria-labelledby="restore-title" aria-describedby="restore-detail">
+    <dialog class="demo-dialog" data-restore-dialog aria-labelledby="restore-title" aria-describedby="restore-detail restore-currency">
       <div class="dialog-head"><div><h2 id="restore-title" data-i18n="ui.replaceTitle">Reemplazar los datos guardados</h2><p data-restore-summary></p></div></div>
       <p id="restore-detail" data-i18n="ui.restoreDetail">Se reemplazarán el negocio, los productos y las ventas de este navegador. Si quieres conservarlos, cancela y descarga una copia primero.</p>
+      <p id="restore-currency" class="inline-note warning" data-restore-currency hidden></p>
       <form data-restore-form>
         <p class="form-error" data-error role="alert" hidden></p>
         <div class="form-actions">

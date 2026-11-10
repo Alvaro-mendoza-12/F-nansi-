@@ -3,11 +3,11 @@ import {
   laborCost, lotExpenses, materialCost, money, priceForMethod, priceResult, productPricing, ratio, recipeCost,
   requiredName, units, wholeUnits
 } from './precios.js';
-import { saveProduct } from './almacen.js';
+import { listProducts, saveProduct } from './almacen.js';
 import { errorText, localize, numberText, t } from './idioma.js';
 import { linkPricingDraft } from './navegacion.js';
 import {
-  bindCurrencyLabels, draftLink, draftTitle, forgetDraft, keepDraft, openDraft, query, revealDraftProblem,
+  bindCurrencyLabels, draftLink, draftTitle, forgetDraft, keepDraft, openDraft, pricingExample, query, revealDraftProblem,
   showError, showMessage, values
 } from './ui.js';
 
@@ -248,18 +248,36 @@ export async function mountRecipe(workspace) {
 async function openPricing(workspace) {
   try {
     const draft = await openDraft(workspace);
-    if (!draft) {
-      document.querySelector('[data-missing]').hidden = false;
-      return null;
+    if (draft) {
+      const cost = recipeCost(draft.recipe);
+      localize(document.querySelector('[data-product-context]'), () => draftTitle(draft));
+      document.querySelector('[data-ready]').hidden = false;
+      return { draft, cost };
     }
-    const cost = recipeCost(draft.recipe);
-    localize(document.querySelector('[data-product-context]'), () => draftTitle(draft));
-    document.querySelector('[data-ready]').hidden = false;
-    return { draft, cost };
   } catch (error) {
     revealDraftProblem(error);
-    return null;
   }
+  try { await showProductPicker(workspace); } catch (error) {
+    if (document.querySelector('[data-load-error]').hidden) revealDraftProblem(error);
+  }
+  return null;
+}
+
+async function showProductPicker(workspace) {
+  const section = document.querySelector('[data-missing]');
+  const products = await listProducts(workspace);
+  if (products.length) {
+    const form = section.querySelector('[data-pricing-picker]');
+    const placeholder = new Option('', '');
+    placeholder.disabled = true;
+    form.elements.id.replaceChildren(placeholder);
+    localize(placeholder, () => t('ui.selectProductPrompt'));
+    for (const product of products) form.elements.id.add(new Option(product.name, product.id));
+    form.elements.id.value = '';
+    form.hidden = false;
+    section.querySelector('[data-catalog-fallback]').hidden = true;
+  }
+  section.hidden = false;
 }
 
 export async function mountPricing(workspace) {
@@ -278,7 +296,9 @@ export async function mountPricing(workspace) {
   fields.method.value = draft.pricingInput?.method ?? pricing.method;
   fields.salesUnits.value = draft.pricingInput?.salesUnits ?? draft.comparison?.salesUnits ?? draft.recipe.yieldUnits;
   bindCurrencyLabels(form, draft.currency);
-  updateLinks('[data-edit-link]', draftLink('crear-producto.html?paso=materiales', draft));
+  const editLink = draftLink('crear-producto.html?paso=materiales', draft);
+  updateLinks('[data-edit-link], [data-pricing-back]', editLink);
+  localize(document.querySelector('[data-pricing-back]'), () => t('ui.backRecipe'));
   values(section, { ...costValues(cost, draft.currency), count: () => numberText(cost.count) });
   showMessage(section.querySelector('[data-cost-notes]'),
     () => cost.notices.map((notice) => t(notice)).join(' '));
@@ -296,8 +316,7 @@ export async function mountPricing(workspace) {
       label.hidden = label.dataset.methodField !== method;
       label.querySelector('input').disabled = label.hidden;
     }
-    localize(form.querySelector('#method-example'), () => t('method.example' +
-      { margin: 'Margin', markup: 'Markup', manual: 'Manual' }[method]));
+    localize(form.querySelector('#method-example'), () => pricingExample(method, draft.currency));
     localize(section.querySelector('[data-result-title]'), () =>
       t(method === 'manual' ? 'method.chosen' : 'method.recommended'));
     const zero = section.querySelector('[data-zero-cost]');
@@ -341,12 +360,16 @@ export async function mountPricing(workspace) {
     const selection = update(true, true);
     if (!selection) return;
     try {
-      const before = pricing.value ? priceForMethod(cost.unit, pricing) : null;
       const after = priceForMethod(cost.unit, selection);
+      const suggested = after > 0n ? decimalPrice(after) : '';
+      let previous = draft.comparisonSuggestion;
+      if (previous === undefined && pricing.value) previous = decimalPrice(priceForMethod(cost.unit, pricing));
       const comparison = { ...draft.comparison, salesUnits: fields.salesUnits.value.trim() };
-      if (before !== after && after > 0n) {
-        comparison[draft.price ? 'priceB' : 'priceA'] = decimalPrice(after);
+      const field = draft.price ? 'priceB' : 'priceA';
+      if (suggested !== previous && (comparison[field] === undefined || comparison[field] === previous)) {
+        comparison[field] = suggested;
         comparison.chosen = '';
+        draft.comparisonSuggestion = suggested;
       }
       draft.comparison = comparison;
       draft.pricing = selection;
@@ -421,9 +444,11 @@ export async function mountComparison(workspace) {
     }
   }
 
-  form.addEventListener('input', () => {
+  form.addEventListener('input', (event) => {
     showMessage(form.querySelector('[data-save-error]'), '');
     update();
+    // Un precio escrito en el comparador se conserva aunque coincida con una sugerencia anterior.
+    if (event.target.name === (draft.price ? 'priceB' : 'priceA')) draft.comparisonSuggestion = null;
     draft.comparison = Object.fromEntries(new FormData(form));
     try { keepDraft(draft); } catch (error) {
       showMessage(form.querySelector('[data-save-error]'), () => errorText(error));

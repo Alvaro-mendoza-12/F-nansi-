@@ -1,6 +1,7 @@
 import { StorageError, getProduct } from './almacen.js';
 import { countries, currencyLabel, defaultCurrency, errorText, localize, t } from './idioma.js';
 import { preferredMethod } from './preferencias.js';
+import { formatMargin, formatMoney, ratio } from './precios.js';
 
 export const query = new URLSearchParams(location.search);
 
@@ -48,6 +49,16 @@ export function bindCurrencyLabels(root, currency) {
   for (const element of root.querySelectorAll('[data-currency-label]')) {
     localize(element, () => t('label.' + element.dataset.currencyLabel, { currency: currencyLabel(currency) }));
   }
+}
+
+export function pricingExample(method, currency) {
+  const keys = { margin: 'Margin', markup: 'Markup', manual: 'Manual' };
+  const amounts = { margin: [2500n, 500n], markup: [2400n, 400n], manual: [3000n, 1000n] };
+  const [price, profit] = amounts[method];
+  return t('method.example' + keys[method], {
+    cost: formatMoney(2000n, currency), price: formatMoney(price, currency), profit: formatMoney(profit, currency),
+    twenty: formatMargin(ratio(2000n)), realizedMargin: formatMargin(ratio(3333n)), realizedMarkup: formatMargin(ratio(5000n))
+  });
 }
 
 export function fillCountrySelect(select, workspace) {

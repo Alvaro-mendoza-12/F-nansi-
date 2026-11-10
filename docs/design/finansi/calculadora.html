@@ -17,7 +17,7 @@
   <header data-shared-header></header>
   <main class="demo-main" id="contenido" tabindex="-1">
     <noscript><p class="inline-note" data-i18n="ui.noScript">Activa JavaScript para usar el catálogo y calcular precios.</p></noscript>
-    <div class="page-trail"><a class="back-link" href="productos.html" data-edit-link data-i18n="ui.backProducts">← Mis productos</a></div>
+    <div class="page-trail"><a class="back-link" href="productos.html" data-pricing-back data-i18n="ui.backProducts">← Mis productos</a></div>
     <div class="demo-heading">
       <div><h1 data-i18n="ui.calcTitle">Calculadora de precio</h1><p data-product-context>De tu receta a un precio de venta.</p></div>
     </div>
@@ -25,8 +25,12 @@
     <section class="card dashboard-empty" data-missing hidden>
       <h2 data-i18n="ui.chooseRecipe">Abre una receta para calcular su precio</h2>
       <p data-i18n="ui.chooseRecipeIntro">Elige un producto del catálogo, crea uno nuevo o prueba los datos de Taller Bruma.</p>
+      <form class="pricing-picker" action="calculadora.html" data-pricing-picker hidden>
+        <label class="form-field"><span data-i18n="ui.chooseSavedProduct">Producto guardado</span><select name="id" required></select></label>
+        <button class="action primary" type="submit" data-i18n="ui.openCalculation">Abrir cálculo</button>
+      </form>
       <div class="form-actions">
-        <a class="action primary" href="productos.html" data-i18n="ui.myProducts">Mis productos</a>
+        <a class="action primary" href="productos.html" data-catalog-fallback data-i18n="ui.myProducts">Mis productos</a>
         <a class="action secondary" href="crear-producto.html" data-i18n="ui.create">Crear producto</a>
         <a class="action secondary" data-try-example href="?ejemplo=cedro" data-i18n="ui.trySample">Probar Vela Cedro</a>
       </div>

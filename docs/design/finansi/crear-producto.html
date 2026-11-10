@@ -31,6 +31,10 @@
           <li data-step-label="materiales"><span>2</span><b data-i18n="ui.materials">Materiales</b></li>
           <li data-step-label="trabajo"><span>3</span><b data-i18n="ui.labor">Trabajo</b></li>
         </ol>
+        <dl class="mobile-cost-summary" data-mobile-cost-summary>
+          <div><dt data-i18n="ui.batchCost">Costo total del lote</dt><dd data-value="lot">—</dd></div>
+          <div><dt data-i18n="ui.unitCost">Costo por unidad</dt><dd data-value="unit">—</dd></div>
+        </dl>
         <form class="wizard-form" data-recipe novalidate>
           <section class="wizard-panel card" data-step="datos" aria-labelledby="step-datos">
             <h2 id="step-datos" tabindex="-1" data-i18n="ui.nameProduct">Dale un nombre a tu producto</h2>
@@ -73,26 +77,32 @@
           <section class="wizard-panel card" data-step="trabajo" aria-labelledby="step-trabajo" hidden>
             <h2 id="step-trabajo" tabindex="-1" data-i18n="ui.laborTitle">Cuenta tu tiempo y los gastos del lote</h2>
             <p class="panel-lede" data-i18n="ui.laborIntro">Registra cada gasto una sola vez. Escribe 0 si un costo no aplica.</p>
-            <div class="form-row">
-              <label class="form-field">
-                <span data-i18n="ui.laborMinutes">Minutos de trabajo por lote</span>
-                <input name="minutes" type="text" inputmode="numeric" value="0" required maxlength="7">
-              </label>
-              <label class="form-field">
-                <span data-currency-label="hourlyRate">Valor de una hora en soles</span>
-                <input name="hourlyRate" type="text" inputmode="decimal" value="0" required maxlength="16">
-              </label>
-            </div>
-            <div class="form-row">
-              <label class="form-field">
-                <span data-currency-label="packaging">Empaques del lote en soles</span>
-                <input name="packaging" type="text" inputmode="decimal" value="0" required maxlength="16">
-              </label>
-              <label class="form-field">
-                <span data-currency-label="other">Otros gastos del lote en soles</span>
-                <input name="other" type="text" inputmode="decimal" value="0" required maxlength="16">
-              </label>
-            </div>
+            <fieldset class="recipe-cost-group">
+              <legend data-i18n="recipe.laborGroup">Mano de obra</legend>
+              <div class="form-row">
+                <label class="form-field">
+                  <span data-i18n="ui.laborMinutes">Minutos de trabajo por lote</span>
+                  <input name="minutes" type="text" inputmode="numeric" value="0" required maxlength="7">
+                </label>
+                <label class="form-field">
+                  <span data-currency-label="hourlyRate">Valor de una hora en soles</span>
+                  <input name="hourlyRate" type="text" inputmode="decimal" value="0" required maxlength="16">
+                </label>
+              </div>
+            </fieldset>
+            <fieldset class="recipe-cost-group">
+              <legend data-i18n="recipe.additionalGroup">Costos adicionales</legend>
+              <div class="form-row">
+                <label class="form-field">
+                  <span data-currency-label="packaging">Empaques del lote en soles</span>
+                  <input name="packaging" type="text" inputmode="decimal" value="0" required maxlength="16">
+                </label>
+                <label class="form-field">
+                  <span data-currency-label="other">Otros gastos del lote en soles</span>
+                  <input name="other" type="text" inputmode="decimal" value="0" required maxlength="16">
+                </label>
+              </div>
+            </fieldset>
             <div class="form-actions">
               <button type="button" class="action secondary" data-go-step="materiales" data-i18n="ui.back">Atrás</button>
               <button type="submit" class="action primary" data-i18n="ui.viewPrice">Ver costo y precio</button>

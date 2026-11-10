@@ -1,7 +1,7 @@
 import { readData, restoreData, saveBusiness } from './almacen.js';
 import { createBackup, parseBackup } from './respaldo.js';
-import { errorText, numberText, setBusinessLocale, t } from './idioma.js';
-import { fillCountrySelect, showError, showMessage } from './ui.js';
+import { errorText, localize, numberText, setBusinessLocale, t } from './idioma.js';
+import { fillCountrySelect, pricingExample, showError, showMessage } from './ui.js';
 import { appearance, preferredMethod, saveAppearance, savePreferredMethod } from './preferencias.js';
 
 export function mountSettings(initial, updateProfile) {
@@ -44,6 +44,9 @@ export function mountSettings(initial, updateProfile) {
     updateProfile(profile);
     form.elements.business.value = profile.name;
     fillCountrySelect(form.elements.country, profile);
+    for (const example of preferences.querySelectorAll('[data-pricing-example]')) {
+      localize(example, () => pricingExample(example.dataset.pricingExample, profile.currency));
+    }
   }
 
   form.addEventListener('submit', async (event) => {
@@ -98,10 +101,13 @@ export function mountSettings(initial, updateProfile) {
     try {
       const backup = parseBackup(await file.text());
       pending = { backup, expected: workspace };
+      const currentCurrency = workspace.currency;
       showMessage(dialog.querySelector('[data-restore-summary]'), () => t('settings.preview', {
         products: numberText(backup.products.length), sales: numberText(backup.sales.length),
         currency: backup.business.currency
       }));
+      showMessage(dialog.querySelector('[data-restore-currency]'), backup.business.currency !== currentCurrency
+        ? () => t('settings.restoreCurrency', { current: currentCurrency, incoming: backup.business.currency }) : '');
       showError(restoreForm);
       dialog.showModal();
     } catch (error) {

@@ -3,6 +3,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { chromium } from 'playwright-core';
 import { serve } from '../scripts/serve.mjs';
+import { countries } from '../docs/design/finansi/mvp/idioma.js';
 
 const publicUrl = process.argv[2];
 const server = publicUrl ? null : await serve({ prefix: '/F-nansi-/' });
@@ -71,7 +72,28 @@ async function exercise(browser, width) {
     await page.getByLabel('Método de cálculo preferido').selectOption('manual');
     await page.getByRole('combobox', { name: 'Idioma', exact: true }).selectOption('en');
     await page.reload();
+    await page.locator('[data-settings]').waitFor();
     assert.equal(await page.getByLabel('Preferred pricing method').inputValue(), 'manual');
+    const countrySelect = page.locator('[data-business-form] [name="country"]');
+    let otherCurrencyBackup;
+    if (width === 390) {
+      await page.getByText('How the methods work', { exact: true }).click();
+      for (const country of ['US', 'MX', 'CO', 'ES', 'PE']) {
+        const currency = countries[country];
+        await countrySelect.selectOption(country);
+        await button(page, 'Save settings').click();
+        await page.getByText('Settings saved.', { exact: true }).waitFor();
+        assert.equal(await page.locator('html').getAttribute('lang'), 'en-' + country);
+        const amount = new Intl.NumberFormat('en-' + country, { style: 'currency', currency,
+          currencyDisplay: currency === 'PEN' ? 'symbol' : 'code' }).format(25).replace(/[\u00a0\u202f]/g, ' ');
+        assert.ok((await page.locator('[data-pricing-example="margin"]').innerText()).includes(amount), currency);
+        if (country === 'US') {
+          const event = page.waitForEvent('download');
+          await button(page, 'Download JSON backup').click();
+          otherCurrencyBackup = readFileSync(await (await event).path());
+        }
+      }
+    }
     await page.goto(new URL('crear-producto.html', app).href);
     await page.getByLabel('Product name').fill('Keyboard candle');
     const draft = new URL(page.url()).searchParams.get('borrador');
@@ -91,6 +113,11 @@ async function exercise(browser, width) {
     await modal.getByLabel('Purchase cost in PEN').fill('20');
     await audit(page, width + ' px · EN · Material dialog');
     await activate(page, button(modal, 'Apply material'));
+    if (width < 700) {
+      const summary = page.locator('[data-mobile-cost-summary]');
+      assert.ok(await summary.isVisible());
+      assert.equal(await summary.locator('[data-value="unit"]').innerText(), 'PEN 20.00');
+    }
     await activate(page, button(page, 'Continue to labor'));
     await page.getByLabel('Batch packaging in PEN').fill('-5');
     await activate(page, button(page, 'Back'));
@@ -135,6 +162,9 @@ async function exercise(browser, width) {
     assert.equal(await card.locator('[data-price]').innerText(), 'PEN 30.00');
 
     await page.goto(new URL('configuracion.html', app).href);
+    await page.locator('[data-settings]').waitFor();
+    assert.ok(await countrySelect.isDisabled(), 'La moneda queda fija después de guardar un producto');
+    assert.equal(await countrySelect.inputValue(), 'PE');
     const downloadEvent = page.waitForEvent('download');
     await activate(page, button(page, 'Download JSON backup'));
     const download = await downloadEvent;
@@ -147,8 +177,15 @@ async function exercise(browser, width) {
     assert.equal(await page.getByLabel('Preferred pricing method').inputValue(), 'markup');
 
     // Restaurar conserva los valores del producto y no sustituye preferencias del dispositivo.
-    await page.locator('[data-import-file]').setInputFiles({ name: 'finansi-test.json', mimeType: 'application/json', buffer: Buffer.from(backupText) });
     const restore = page.getByRole('dialog', { name: 'Replace saved data' });
+    if (otherCurrencyBackup) {
+      await page.locator('[data-import-file]').setInputFiles({ name: 'finansi-us.json', mimeType: 'application/json', buffer: otherCurrencyBackup });
+      await restore.getByText(/The backup uses USD and your current business uses PEN/).waitFor();
+      await audit(page, width + ' px · EN · Cross-currency backup');
+      await activate(page, button(restore, 'Cancel'));
+      assert.equal(await countrySelect.inputValue(), 'PE');
+    }
+    await page.locator('[data-import-file]').setInputFiles({ name: 'finansi-test.json', mimeType: 'application/json', buffer: Buffer.from(backupText) });
     await restore.waitFor();
     await activate(page, button(restore, 'Cancel'));
     await page.locator('[data-import-file]').setInputFiles({ name: 'finansi-test.json', mimeType: 'application/json', buffer: Buffer.from(backupText) });
@@ -160,15 +197,35 @@ async function exercise(browser, width) {
     await destination(page, 'productos', compact);
     await card.waitFor();
     assert.equal(await card.locator('[data-price]').innerText(), 'PEN 30.00');
-    await activate(page, card.getByRole('link', { name: 'Calculate price for Keyboard candle' }));
+    await destination(page, 'simulador', compact);
+    await page.getByRole('combobox', { name: 'Saved product' }).selectOption({ label: 'Keyboard candle' });
+    await audit(page, width + ' px · EN · Saved product picker');
+    await activate(page, button(page, 'Open comparison'));
+    await page.locator('[data-comparison]').waitFor();
+    assert.equal(await page.getByLabel('Price A in PEN').inputValue(), '30.00');
+    await page.getByLabel('Price B in PEN').fill('27');
+    await destination(page, 'calculadora', compact);
     await page.locator('[data-pricing]').waitFor();
     assert.equal(await page.getByLabel('Pricing method', { exact: true }).inputValue(), 'manual');
+    assert.match(await page.locator('[data-stored-price]').innerText(), /PEN 30\.00/);
+    await page.getByLabel('Selling price in PEN').fill('32');
+    await destination(page, 'simulador', compact);
+    await page.locator('[data-comparison]').waitFor();
+    assert.equal(await page.getByLabel('Price B in PEN').inputValue(), '27', 'Debe conservar la alternativa escrita por el usuario');
+    await destination(page, 'productos', compact);
+    await card.waitFor();
+    await destination(page, 'calculadora', compact);
+    await page.getByRole('combobox', { name: 'Saved product' }).selectOption({ label: 'Keyboard candle' });
+    await activate(page, button(page, 'Open calculation'));
+    await page.locator('[data-pricing]').waitFor();
     assert.match(await page.locator('[data-stored-price]').innerText(), /PEN 30\.00/);
     assert.deepEqual(errors, []);
     results.push({ width, language: 'en', passed: true, errors, checks: [
       'keyboard navigation and visible focus', 'recipe validation from primary navigation',
       'draft continuity through calculator and comparison', 'manual price, margin and markup',
-      'preferred method after reload', 'JSON export and confirmed restore', 'historical method and price'
+      'preferred method after reload', 'JSON export and confirmed restore', 'historical method and price',
+      'open a saved product from both pricing tools', 'keep the manually entered alternative price',
+      ...(width === 390 ? ['PEN, USD, MXN, COP and EUR formatting in settings', 'cross-currency backup warning and cancellation'] : [])
     ] });
     console.log(width + ' px · EN · teclado, borrador, método histórico y copia JSON verificados');
   } finally { await context.close(); }

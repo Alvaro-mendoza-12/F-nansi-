@@ -192,18 +192,12 @@ async function exercise(browser, viewport) {
     await link(page, 'Configuración').click();
     await page.locator('[data-settings]').waitFor();
     const preference = page.getByLabel('Método de cálculo preferido');
-    await preference.selectOption('markup');
-    const preferenceState = await page.evaluate(() => ({
-      value: document.querySelector('[data-preferences] [name="method"]').value,
-      stored: localStorage.getItem('finansi:pricing-method'),
-      status: document.querySelector('[data-settings-status]').textContent,
-      error: document.querySelector('[data-preferences] [data-error]').textContent,
-      language: document.documentElement.lang
-    }));
-    assert.equal(preferenceState.stored, 'markup', JSON.stringify(preferenceState));
+    assert.equal(await preference.inputValue(), 'margin');
+    await preference.focus();
+    await preference.press('ArrowDown');
     await page.getByText('Configuración guardada.', { exact: true }).waitFor();
-    assert.equal(await page.evaluate(() => localStorage.getItem('finansi:pricing-method')), 'markup');
-    await page.getByLabel('Apariencia').selectOption('dark');
+    assert.equal(await preference.inputValue(), 'markup');
+    await button(page, 'Modo oscuro').click();
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.locator('[data-settings]').waitFor();
     assert.equal(await preference.inputValue(), 'markup');
@@ -211,7 +205,7 @@ async function exercise(browser, viewport) {
     await noOverflow(page, 'Configuración oscura');
     await audit(page, viewport.width + ' px · Configuración oscura');
     if (evidence) await page.screenshot({ path: resolve(evidence, 'finansi-preferencias-' + viewport.width + '.png'), fullPage: true });
-    await page.getByLabel('Apariencia').selectOption('light');
+    await button(page, 'Modo claro').click();
     await page.getByRole('combobox', { name: 'Idioma', exact: true }).selectOption('en');
     const nav = page.getByRole('navigation', { name: compact ? 'Mobile navigation' : 'Main navigation', exact: true });
     await nav.getByRole('link', { name: 'Calculate price' }).waitFor();
