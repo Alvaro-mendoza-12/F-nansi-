@@ -2,7 +2,7 @@
 
 Finansi ayuda a quienes fabrican en lotes pequeños a calcular lo que cuesta producir cada unidad, probar precios de venta y guardar el precio que elijan. La aplicación conserva el concepto visual **B · Emprendedor Moderno**.
 
-[Probar Finansi en GitHub Pages](https://alvaro-mendoza-12.github.io/F-nansi-/) · [Video de la demo](https://alvaro-mendoza-12.github.io/F-nansi-/docs/icehacks/finansi-demo.mp4) · [Entrega para IceHacks](docs/icehacks/entrega.md)
+[Probar Finansi en GitHub Pages](https://alvaro-mendoza-12.github.io/F-nansi-/) · [Video narrado en inglés](https://alvaro-mendoza-12.github.io/F-nansi-/docs/icehacks/finansi-demo.mp4?v=3) · [Entrega para IceHacks](docs/icehacks/entrega.md)
 
 ## Prueba de tres minutos
 
@@ -21,6 +21,8 @@ Para empezar con datos ya cargados, elige **Abrir la receta de ejemplo** en la p
 - IndexedDB guarda negocio, catálogo y ventas en transacciones del navegador. Cada venta conserva el costo por unidad de su receta al registrarla. Inicio distingue ventas registradas, cobros, pendientes y ganancia bruta estimada.
 - Los datos pertenecen al perfil y al sitio donde se guardaron. Borrar los datos del sitio también borra su catálogo. La sincronización y la exportación quedan pendientes. La moneda del MVP es el sol peruano.
 - Inventario, Mi dinero, Diagnóstico y el Asistente Finansi muestran ejemplos de Taller Bruma. La conversación del asistente tiene respuestas preparadas. OpenRouter queda para una fase posterior.
+
+Codex ayudó a implementar y probar el MVP. Las imágenes ilustrativas se generaron con OpenAI y la voz en inglés del video se sintetizó localmente con Kokoro. El motor de costos y las explicaciones del comparador usan reglas deterministas. [Guion en español](docs/icehacks/guion-es.md) · [Subtítulos en inglés](docs/icehacks/finansi-en.srt) · [Materiales de edición](docs/icehacks/produccion-video.md).
 
 ## Desarrollo y pruebas
 

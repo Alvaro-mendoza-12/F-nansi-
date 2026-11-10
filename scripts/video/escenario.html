@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Finansi · IceHacks film stage</title>
+<style>
+@font-face { font-family: Inter; src: url(docs/design/prototipo/fonts/inter.woff2) format("woff2"); }
+@font-face { font-family: Fraunces; src: url(docs/design/prototipo/fonts/fraunces.woff2) format("woff2"); }
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body {
+  background: radial-gradient(ellipse at 70% 22%, #345c4b 0%, #15372e 55%, #0f2a24 100%);
+  color: #fbf8ec;
+  font: 500 21px/1.36 Inter, sans-serif;
+}
+header {
+  position: absolute; top: 20px; left: 80px; right: 80px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand { display: flex; align-items: center; gap: 11px; font-size: 22px; font-weight: 760; }
+.brand img { width: 34px; height: 34px; border-radius: 9px; }
+#chapter { display: flex; gap: 16px; align-items: center; }
+#step { color: #f5dba1; font-size: 14px; font-weight: 750; letter-spacing: .12em; }
+#chapter-title { font-weight: 640; font-size: 20px; }
+#live, .card {
+  position: absolute; inset: 76px 80px 108px; border: 1px solid #ffffff33;
+  border-radius: 22px; overflow: hidden; box-shadow: 0 25px 65px #0b201c55;
+}
+#live { background: #f6f5ed; }
+iframe {
+  display: block; border: 0; width: 100%; height: 100%;
+  transform-origin: top left; transition: transform 520ms ease-in-out;
+}
+body.zoom iframe { transform: translateX(-46px) scale(1.032); }
+.card {
+  display: grid; grid-template-columns: 1fr .94fr; align-items: center; gap: 44px;
+  padding: 48px; background: #f5f2e5; color: #1b392d; opacity: 0;
+  visibility: hidden; pointer-events: none; transition: opacity 420ms ease, visibility 420ms;
+}
+.card.active { opacity: 1; visibility: visible; }
+.card picture { overflow: hidden; display: block; border-radius: 20px; background: #c5b791; }
+.card picture img { width: 100%; height: 530px; object-fit: cover; display: block; }
+.card .copy { padding-left: 18px; }
+.eyebrow { font-size: 15px; letter-spacing: .16em; text-transform: uppercase; color: #476050; font-weight: 800; }
+h1 { font: 630 129px/.99 Fraunces, Georgia, serif; letter-spacing: -.07em; margin: 16px 0 18px; }
+h2 { font: 600 74px/1.03 Fraunces, Georgia, serif; letter-spacing: -.055em; margin: 17px 0 22px; }
+.subtitle { font-size: 32px; margin: 0 0 24px; line-height: 1.23; max-width: 520px; }
+.pills { display: flex; flex-wrap: wrap; gap: 9px; }
+.pills span {
+  color: #254a3a; border: 1px solid #adc2ad; background: #e9eddd; border-radius: 999px;
+  padding: 6px 14px; font-weight: 650; font-size: 15px;
+}
+#closing { background: #dce5d7; }
+.address { border-top: 1px solid #a3b7a9; padding-top: 18px; font-size: 21px; font-weight: 710; }
+#pointer {
+  position: absolute; top: 0; left: 0; width: 30px; height: 30px;
+  opacity: 0; pointer-events: none; transition: transform 180ms cubic-bezier(.17,.68,.32,1), opacity 180ms;
+  filter: drop-shadow(0 1px 3px #0005);
+}
+#pointer svg { display: block; }
+#halo {
+  position: absolute; opacity: 0; pointer-events: none; border: 3px solid #b17932;
+  border-radius: 12px; box-shadow: 0 0 0 5px #e9b86450; transition: opacity 220ms;
+}
+#readout {
+  position: absolute; top: 112px; right: 100px; max-width: 470px;
+  opacity: 0; pointer-events: none; transition: opacity 220ms, transform 260ms;
+  transform: translateY(-6px); color: #fff9e8; background: #1a3f33;
+  border-radius: 14px; border: 1px solid #76a085; padding: 11px 19px;
+  box-shadow: 0 10px 24px #12382c36;
+}
+#readout.visible { opacity: 1; transform: translateY(0); }
+#readout span { display: block; color: #f3d99c; font-size: 13px; font-weight: 770; letter-spacing: .06em; text-transform: uppercase; }
+#readout b { display: block; font-size: 31px; letter-spacing: -.025em; }
+#rule { position: absolute; top: 808px; left: 80px; right: 80px; height: 1px; background: #f6f7e340; }
+#progress { height: 2px; width: 10%; background: #ead29a; transition: width 420ms ease; }
+</style>
+<body>
+<header>
+  <div class="brand"><img src="docs/design/prototipo/img/marca.svg" alt=""> Finansi</div>
+  <div id="chapter"><span id="step">01 / 10</span><span id="chapter-title"></span></div>
+</header>
+<div id="live"><iframe id="app" src="index.html" title="Live Finansi app in Spanish"></iframe></div>
+<section class="card active" id="opening">
+  <div class="copy">
+    <div class="eyebrow">IceHacks 2026</div>
+    <h1>Finansi</h1>
+    <p class="subtitle">Pricing for small-batch makers</p>
+    <div class="pills"><span>Materials</span><span>Time</span><span>Packaging</span></div>
+  </div>
+  <picture><img src="docs/design/finansi/img/cedro.webp" alt=""></picture>
+</section>
+<section class="card" id="closing">
+  <div class="copy">
+    <div class="eyebrow">Finansi · Live demo</div>
+    <h2>Know what each unit costs.</h2>
+    <p class="subtitle">Choose a price you can explain before the first sale.</p>
+    <p class="address">alvaro-mendoza-12.github.io/F-nansi-/</p>
+  </div>
+  <picture><img src="docs/design/finansi/img/cedro.webp" alt=""></picture>
+</section>
+<div id="halo" aria-hidden="true"></div>
+<div id="readout" aria-hidden="true"><span></span><b></b></div>
+<div id="pointer" aria-hidden="true">
+  <svg width="30" height="30" viewBox="0 0 30 30"><path d="M4 3v20l5.2-5.4 4 7.8 4-2-4-7.7h7.4Z" fill="#163c30" stroke="#fff8e5" stroke-width="1.8" stroke-linejoin="round"/></svg>
+</div>
+<div id="rule"><div id="progress"></div></div>
+</body>
+</html>

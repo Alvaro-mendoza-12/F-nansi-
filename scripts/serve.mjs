@@ -7,7 +7,7 @@ const root = resolve(fileURLToPath(new URL('../', import.meta.url)));
 const contentTypes = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
   '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png',
-  '.woff2': 'font/woff2', '.mp4': 'video/mp4'
+  '.woff2': 'font/woff2', '.webp': 'image/webp', '.mp4': 'video/mp4'
 };
 
 export async function serve({ port = 0, prefix = '/' } = {}) {

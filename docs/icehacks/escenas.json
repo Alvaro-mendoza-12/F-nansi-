@@ -1,0 +1,180 @@
+[
+  {
+    "id": "opening",
+    "title": "The cost behind the sale",
+    "minimum": 12,
+    "lines": [
+      [
+        "A maker can sell an entire batch and barely cover the cost.",
+        "Un taller puede vender un lote entero y apenas cubrir lo que cuesta producirlo."
+      ],
+      [
+        "A missing hour of work or a package can change the numbers.",
+        "Olvidar una hora de trabajo o un empaque puede cambiar los números."
+      ],
+      [
+        "Finansi makes the cost visible before the first sale.",
+        "Finansi muestra ese costo antes de la primera venta."
+      ]
+    ]
+  },
+  {
+    "id": "setup",
+    "title": "Start with a recipe",
+    "minimum": 9,
+    "lines": [
+      [
+        "Here's a new workshop in the Spanish-language app.",
+        "Este es un taller nuevo en la aplicación en español."
+      ],
+      [
+        "I'll price a batch of two handmade candles in Peruvian soles.",
+        "Voy a ponerle precio a un lote de dos velas artesanales en soles peruanos."
+      ]
+    ]
+  },
+  {
+    "id": "materials",
+    "title": "Count what you actually use",
+    "minimum": 16,
+    "lines": [
+      [
+        "I use five hundred grams from a kilogram of wax.",
+        "Uso quinientos gramos de un kilo de cera."
+      ],
+      [
+        "The kilogram costs twenty-four soles. The wax I use costs twelve.",
+        "El kilo cuesta veinticuatro soles. La cera que uso cuesta doce."
+      ],
+      [
+        "Jars and wicks add eight soles to the batch.",
+        "Los frascos y las mechas suman ocho soles al lote."
+      ]
+    ]
+  },
+  {
+    "id": "cost",
+    "title": "Calculate the cost per candle",
+    "minimum": 13,
+    "lines": [
+      [
+        "One hour of work adds fifteen soles, and packaging adds five.",
+        "Una hora de trabajo suma quince soles, y los empaques suman cinco."
+      ],
+      [
+        "The batch costs forty soles.",
+        "El lote cuesta cuarenta soles."
+      ],
+      [
+        "That's twenty soles per candle.",
+        "Son veinte soles por vela."
+      ]
+    ]
+  },
+  {
+    "id": "margin",
+    "title": "Set a target margin",
+    "minimum": 10,
+    "lines": [
+      [
+        "I set a target margin of twenty percent.",
+        "Fijo un margen objetivo del veinte por ciento."
+      ],
+      [
+        "Finansi recommends twenty-five soles, leaving five per candle.",
+        "Finansi recomienda veinticinco soles, con cinco de ganancia por vela."
+      ]
+    ]
+  },
+  {
+    "id": "comparison",
+    "title": "Compare two selling prices",
+    "minimum": 17,
+    "lines": [
+      [
+        "At eighteen soles, Finansi warns me that each sale would lose money.",
+        "A dieciocho soles, Finansi me advierte que perdería dinero con cada venta."
+      ],
+      [
+        "Now I compare twenty-five and thirty soles for three sales.",
+        "Ahora comparo veinticinco y treinta soles para tres ventas."
+      ],
+      [
+        "Estimated profit is fifteen soles at the first price and thirty at the second.",
+        "La ganancia estimada es de quince soles con el primer precio y treinta con el segundo."
+      ]
+    ]
+  },
+  {
+    "id": "save",
+    "title": "Save and reopen",
+    "minimum": 13,
+    "lines": [
+      [
+        "I choose the thirty-sol price and save the product.",
+        "Elijo el precio de treinta soles y guardo el producto."
+      ],
+      [
+        "After a reload, the catalog still has my recipe and chosen price.",
+        "Después de recargar, el catálogo conserva la receta y el precio elegido."
+      ],
+      [
+        "I can open the recipe again in this browser.",
+        "Puedo volver a abrir la receta en este navegador."
+      ]
+    ]
+  },
+  {
+    "id": "edit",
+    "title": "Update a material cost",
+    "minimum": 18,
+    "lines": [
+      [
+        "I change the price of a kilogram of wax from twenty-four to twenty-eight soles.",
+        "Cambio el precio de un kilo de cera de veinticuatro a veintiocho soles."
+      ],
+      [
+        "The batch now costs forty-two soles, or twenty-one per candle.",
+        "El lote ahora cuesta cuarenta y dos soles, o veintiuno por vela."
+      ],
+      [
+        "Finansi updates the recommended price to twenty-six soles and twenty-five cents.",
+        "Finansi actualiza el precio recomendado a veintiséis soles con veinticinco céntimos."
+      ]
+    ]
+  },
+  {
+    "id": "sales",
+    "title": "Separate sales from cash",
+    "minimum": 14,
+    "lines": [
+      [
+        "I keep the thirty-sol price and record a demo sale of two candles.",
+        "Conservo el precio de treinta soles y registro una venta de prueba de dos velas."
+      ],
+      [
+        "I can see sixty soles to collect and eighteen in estimated gross profit.",
+        "Puedo ver sesenta soles por cobrar y dieciocho de ganancia bruta estimada."
+      ]
+    ]
+  },
+  {
+    "id": "closing",
+    "title": "Try Finansi",
+    "minimum": 13,
+    "lines": [
+      [
+        "JavaScript calculates each price, and IndexedDB saves the work in your browser.",
+        "JavaScript calcula cada precio e IndexedDB guarda el trabajo en el navegador."
+      ],
+      [
+        "Try Finansi with something you make.",
+        "Prueba Finansi con algo que fabriques."
+      ],
+      [
+        "Before the first sale, know what every unit costs.",
+        "Antes de la primera venta, averigua cuánto cuesta cada unidad."
+      ]
+    ]
+  }
+]

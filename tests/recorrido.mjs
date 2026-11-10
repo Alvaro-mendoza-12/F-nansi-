@@ -50,6 +50,7 @@ async function exercise(browser, viewport) {
     }
   });
   try {
+    const started = performance.now();
     await open(page, home.href);
     await link(page, 'Calcular mi primer precio').click();
     await page.getByLabel('Nombre del negocio').fill('Taller de prueba');
@@ -96,6 +97,10 @@ async function exercise(browser, viewport) {
     await noOverflow(page, 'Calculadora');
 
     await button(page, 'Comparar precios').click();
+    await page.locator('[data-comparison]').waitFor();
+    assert.equal(await page.locator('[data-comparison] [data-error]').isVisible(), false);
+    await page.getByLabel('Precio B en soles').fill('0');
+    await page.getByText('Ingresa el precio B mayor que cero.').waitFor();
     await page.getByLabel('Precio A en soles').fill('25');
     await page.getByLabel('Precio B en soles').fill('30');
     await page.getByLabel('Unidades que esperas vender').fill('3');
@@ -125,6 +130,8 @@ async function exercise(browser, viewport) {
     await link(page, 'Ver mis productos').click();
     await link(page, 'Editar receta de Producto de prueba').click();
     await page.getByRole('heading', { name: 'Editar producto' }).waitFor();
+    const recoverySeconds = (performance.now() - started) / 1000;
+    assert.ok(recoverySeconds < 180, 'El recorrido hasta recuperar el producto superó tres minutos');
     assert.equal(await page.getByLabel('Unidades por lote').inputValue(), '2');
     await button(page, 'Continuar a materiales').click();
     await button(page, 'Editar Material B').click();
@@ -202,13 +209,20 @@ async function exercise(browser, viewport) {
     await page.getByText('Producto eliminado del catálogo.').waitFor();
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.getByRole('heading', { name: 'Tu catálogo empieza con una receta' }).waitFor();
+    for (const file of ['calculadora.html', 'simulador.html']) {
+      await open(page, route(file));
+      await page.getByRole('heading', { name: 'Abre una receta para calcular su precio' }).waitFor();
+      await link(page, 'Mis productos').click();
+      await page.getByRole('heading', { name: 'Tu catálogo empieza con una receta' }).waitFor();
+    }
     await open(page, route('inicio.html'));
     await page.locator('[data-dashboard="real"]').waitFor();
     assert.equal(await value(page, 'products'), '0');
     assert.equal(await value(page, 'received'), 'S/ 60.00');
     assert.equal(await value(page, 'grossProfit'), 'S/ 18.00');
     assert.deepEqual(errors, []);
-    console.log(viewport.width + ' px · costos, precios, edición, persistencia, venta, cobro y borrado verificados');
+    console.log(viewport.width + ' px · receta recuperada en ' + recoverySeconds.toFixed(1) +
+      ' s de prueba automatizada · edición, ventas y estados vacíos verificados');
   } finally {
     await context.close();
   }

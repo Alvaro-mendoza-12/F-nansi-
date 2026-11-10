@@ -316,7 +316,7 @@ export async function mountComparison() {
   values(form, { unit: formatMoney(cost.unit) });
   let busy = false;
 
-  function update() {
+  function update(showMissingPrice = true) {
     const raw = Object.fromEntries(new FormData(form));
     try {
       const comparison = comparePrices(cost.unit, raw);
@@ -343,7 +343,8 @@ export async function mountComparison() {
       values(form, Object.fromEntries(valueKeys.map((key) => [key, '—'])));
       showMessage(warning, '');
       explanation.textContent = 'Ingresa dos precios y la cantidad de ventas para comparar.';
-      showError(form, error);
+      const waitingForPrice = !showMissingPrice && ['priceA', 'priceB'].includes(error.field) && !raw[error.field].trim();
+      showError(form, waitingForPrice ? undefined : error);
       submit.disabled = true;
       return null;
     }
@@ -375,5 +376,5 @@ export async function mountComparison() {
       update();
     }
   });
-  update();
+  update(false);
 }

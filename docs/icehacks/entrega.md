@@ -1,6 +1,6 @@
 # Finansi en IceHacks 2026
 
-[Demo pública](https://alvaro-mendoza-12.github.io/F-nansi-/) · [Repositorio público](https://github.com/Alvaro-mendoza-12/F-nansi-) · [Video MP4 para subir](https://alvaro-mendoza-12.github.io/F-nansi-/docs/icehacks/finansi-demo.mp4)
+[Demo pública](https://alvaro-mendoza-12.github.io/F-nansi-/) · [Repositorio público](https://github.com/Alvaro-mendoza-12/F-nansi-) · [Video MP4 narrado](https://alvaro-mendoza-12.github.io/F-nansi-/docs/icehacks/finansi-demo.mp4?v=3) · [Guion y materiales de edición](produccion-video.md)
 
 ## Texto para Devpost
 
@@ -34,11 +34,11 @@ The interface is in Spanish and uses Peruvian soles. Records are stored in the c
 
 ### Built with and AI disclosure
 
-HTML, CSS, JavaScript, IndexedDB, GitHub Pages, Node.js and Playwright. OpenAI Codex assisted with design implementation, application code, testing and documentation. The illustrative candle images were made with OpenAI image generation. The pricing engine and profitability explanations use deterministic rules.
+HTML, CSS, JavaScript, IndexedDB, GitHub Pages, Node.js and Playwright. OpenAI Codex assisted with design implementation, application code, testing and documentation. The illustrative candle images were made with OpenAI image generation. Kokoro generated the English voiceover locally, and FFmpeg assembled the film. The pricing engine and profitability explanations use deterministic rules.
 
 ### Try it as a judge
 
-Open the live demo and choose **Calcular mi primer precio** to start with your own inputs. On the setup screen, **Abrir la receta de ejemplo** opens a prepared candle recipe you can edit. Compare two prices, explicitly select one, save, reload **Productos** and reopen the recipe. The demo video shows the Spanish interface with English captions.
+Open the live demo and choose **Calcular mi primer precio** to start with your own inputs. On the setup screen, **Abrir la receta de ejemplo** opens a prepared candle recipe you can edit. Compare two prices, explicitly select one, save, reload **Productos** and reopen the recipe. The video shows a fresh browser using the live Spanish interface with English narration and synchronized captions. The workshop and sale in the recording are demonstration entries created during the take.
 
 ## Verificación de la demo
 
@@ -54,9 +54,9 @@ npm run test:e2e -- https://alvaro-mendoza-12.github.io/F-nansi-/
 | Costo del lote y precio | La receta de aceptación da S/ 40 por lote, S/ 20 por unidad y S/ 25 para 20 % de margen. |
 | Comparación y pérdidas | A S/ 25 y B S/ 30 dejan S/ 5 y S/ 10 por unidad. Tres ventas dejan S/ 15 y S/ 30. Un precio de S/ 18 muestra una advertencia. |
 | Guardado y edición | Selección explícita, recarga, recuperación de dos materiales y precio B. Cambiar el costo de compra de S/ 24 a S/ 28 lleva el lote a S/ 42 y la unidad a S/ 21. |
-| Datos inválidos | Se prueban cero unidades, cantidades negativas, unidades incompatibles, empaque vacío y margen de 100 %. |
+| Datos inválidos y estados vacíos | Se prueban cero unidades, cantidades negativas, unidades incompatibles, empaque vacío, margen de 100 % y precio de cero. Calculadora y Comparador sin receta ofrecen una ruta al catálogo vacío. |
 | Venta y cobro | Dos unidades a S/ 30 se reflejan como S/ 60 pendientes. Al cobrar, los S/ 60 pasan al indicador de cobros. El historial conserva su costo al borrar el producto. |
-| Móvil, escritorio y sitio público | El recorrido automatizado usa Chromium a 390 y 1440 px, comprueba que las pantallas no se desborden y permite usar la misma prueba sobre GitHub Pages. |
+| Móvil, escritorio y sitio público | El recorrido automatizado usa un perfil nuevo en Chromium a 390 y 1440 px, comprueba que las pantallas no se desborden y mide el tiempo hasta recuperar la receta guardada. Se puede ejecutar tanto en local como sobre GitHub Pages. |
 
 En la inspección visual local a 390 px se revisaron las cantidades y costos del editor, el botón **Guardar producto** al desplazar el comparador y el estado del cobro en Ventas e Inicio. Puedes repetirla con las herramientas del navegador. El video recoge el recorrido en escritorio.
 
