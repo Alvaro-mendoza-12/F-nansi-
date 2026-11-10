@@ -218,6 +218,10 @@ export async function mountRecipe(workspace) {
       advance(stepNames[stepNames.indexOf(activeStep) + 1]);
       return;
     }
+    finishRecipe();
+  });
+
+  function finishRecipe() {
     if (!retain()) return;
     try {
       requiredName(draft.name, 'productName', 'el nombre del producto');
@@ -226,9 +230,13 @@ export async function mountRecipe(workspace) {
     } catch (error) {
       if (['productName', 'yieldUnits'].includes(error.field)) showStep('datos', false);
       if (error.field === 'materials') showStep('materiales', false);
+      if (['minutes', 'hourlyRate', 'packaging', 'other'].includes(error.field)) showStep('trabajo', false);
       showError(form, error, { focus: true });
     }
-  });
+  }
+
+  // Los accesos de la navegación principal siguen el mismo flujo validado que el formulario.
+  linkPricingDraft(draftLink, draft, { calculadora: finishRecipe, simulador: finishRecipe });
 
   const requested = query.get('paso');
   showStep(stepNames.includes(requested) ? requested : 'datos', false);
@@ -279,8 +287,9 @@ export async function mountPricing(workspace) {
     showMessage(form.querySelector('[data-stored-price]'), () =>
       t('method.stored', { price: formatMoney(money(draft.price, 'price', true), draft.currency) }));
   }
+  linkPricingDraft(draftLink, draft, { simulador: () => form.requestSubmit() });
 
-  function update(showMissing = false) {
+  function update(showMissing = false, focus = false) {
     const method = fields.method.value;
     const value = fields[fieldNames[method]].value.trim();
     for (const label of form.querySelectorAll('[data-method-field]')) {
@@ -313,7 +322,7 @@ export async function mountPricing(workspace) {
       return { method, value };
     } catch (error) {
       values(section, { recommendation: '—', resultMargin: '—', resultMarkup: '—', profit: '—', totalProfit: '—' });
-      showError(form, !showMissing && !value && error.field === fieldNames[method] ? undefined : error);
+      showError(form, !showMissing && !value && error.field === fieldNames[method] ? undefined : error, { focus });
       submit.disabled = true;
       return null;
     }
@@ -329,7 +338,7 @@ export async function mountPricing(workspace) {
   });
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    const selection = update(true);
+    const selection = update(true, true);
     if (!selection) return;
     try {
       const before = pricing.value ? priceForMethod(cost.unit, pricing) : null;

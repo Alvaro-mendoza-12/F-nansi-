@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { existsSync } from 'node:fs';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { chromium } from 'playwright-core';
 import { serve } from '../scripts/serve.mjs';
@@ -11,6 +11,8 @@ const app = new URL('docs/design/finansi/', home);
 const chrome = process.env.FINANSI_CHROME ?? 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const evidence = process.env.FINANSI_EVIDENCE;
 const axe = process.env.FINANSI_AXE;
+const audits = [];
+const journeys = [];
 
 const button = (page, name) => page.getByRole('button', { name, exact: true });
 const link = (page, name) => page.getByRole('link', { name, exact: true });
@@ -35,6 +37,7 @@ async function audit(page, stage) {
     return violations.map(({ id, nodes }) => ({ id, targets: nodes.map(({ target }) => target) }));
   });
   console.log(stage + ' · axe: ' + JSON.stringify(violations));
+  audits.push({ state: stage, violations });
   assert.deepEqual(violations, [], stage);
 }
 
@@ -60,6 +63,7 @@ async function exercise(browser, viewport) {
   page.setDefaultTimeout(12000);
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
+  page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
   page.on('response', (response) => {
     if (response.url().startsWith(home.href) && response.status() >= 400) {
       errors.push(response.status() + ' ' + response.url());
@@ -134,7 +138,10 @@ async function exercise(browser, viewport) {
     assert.equal(await method.inputValue(), 'manual');
     assert.equal(await manual.inputValue(), '30');
     await audit(page, viewport.width + ' px · Calculadora');
-    if (evidence) await page.screenshot({ path: resolve(evidence, 'finansi-precio-' + viewport.width + '.png'), fullPage: true });
+    if (evidence) {
+      await page.screenshot({ path: resolve(evidence, 'finansi-precio-' + viewport.width + '.png'), fullPage: true });
+      await page.locator('.price-hero').screenshot({ path: resolve(evidence, 'finansi-resultado-' + viewport.width + '.png') });
+    }
     await method.selectOption('margin');
     assert.equal(await page.getByLabel('Margen objetivo (%)').inputValue(), '20');
     await noOverflow(page, 'Calculadora');
@@ -183,8 +190,11 @@ async function exercise(browser, viewport) {
       await page.keyboard.press('Enter');
     }
     await link(page, 'Configuración').click();
+    await page.locator('[data-settings]').waitFor();
     const preference = page.getByLabel('Método de cálculo preferido');
     await preference.selectOption('markup');
+    await page.getByText('Configuración guardada.', { exact: true }).waitFor();
+    assert.equal(await page.evaluate(() => localStorage.getItem('finansi:pricing-method')), 'markup');
     await page.getByLabel('Apariencia').selectOption('dark');
     await page.reload({ waitUntil: 'domcontentloaded' });
     await page.locator('[data-settings]').waitFor();
@@ -192,6 +202,7 @@ async function exercise(browser, viewport) {
     assert.equal(await page.locator('html').getAttribute('data-appearance'), 'dark');
     await noOverflow(page, 'Configuración oscura');
     await audit(page, viewport.width + ' px · Configuración oscura');
+    if (evidence) await page.screenshot({ path: resolve(evidence, 'finansi-preferencias-' + viewport.width + '.png'), fullPage: true });
     await page.getByLabel('Apariencia').selectOption('light');
     await page.getByRole('combobox', { name: 'Idioma', exact: true }).selectOption('en');
     const nav = page.getByRole('navigation', { name: compact ? 'Mobile navigation' : 'Main navigation', exact: true });
@@ -340,6 +351,13 @@ async function exercise(browser, viewport) {
     assert.equal(await value(page, 'received'), 'S/ 60.00');
     assert.equal(await value(page, 'grossProfit'), 'S/ 18.00');
     assert.deepEqual(errors, []);
+    journeys.push({ width: viewport.width, passed: true, errors, checks: [
+      'A: cost 20, margin 20%, price 25, profit 5', 'B: cost 20, markup 20%, price 24, profit 4',
+      'C: cost 20, manual price 30, profit 10, margin 33.33%, markup 50%',
+      'D: preference persists after reload', 'E: historical method and price preserved',
+      'F: responsive journey without horizontal overflow', 'G: Spanish and English navigation',
+      'invalid inputs, loss warning, comparison, save and recover', 'sales and payment collection'
+    ] });
     console.log(viewport.width + ' px · receta recuperada en ' + recoverySeconds.toFixed(1) +
       ' s de prueba automatizada · tres métodos, preferencias, navegación ES/EN, ventas y recuperación verificados');
   } finally {
@@ -360,6 +378,10 @@ try {
     await exercise(browser, viewport);
   }
   console.log('Recorrido aprobado en ' + home.href);
+  if (evidence) {
+    mkdirSync(evidence, { recursive: true });
+    writeFileSync(resolve(evidence, 'recorrido-resultados.json'), JSON.stringify({ url: home.href, journeys, audits }, null, 2) + '\n');
+  }
 } finally {
   await browser?.close();
   await server?.close();

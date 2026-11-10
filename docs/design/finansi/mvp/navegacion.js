@@ -68,8 +68,16 @@ export function mountNavigation() {
   document.body.classList.add('app-shell');
 }
 
-export function linkPricingDraft(draftLink, draft) {
+export function linkPricingDraft(draftLink, draft, actions = {}) {
   for (const link of document.querySelectorAll('[data-destination="simulador"], [data-destination="calculadora"]')) {
     link.href = draftLink(link.dataset.destination + '.html', draft);
+    const navigate = actions[link.dataset.destination];
+    if (navigate) link.addEventListener('click', (event) => {
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      // Cierra Más antes de validar para que el campo con error pueda recibir el foco.
+      link.closest('dialog')?.close();
+      navigate();
+    });
   }
 }

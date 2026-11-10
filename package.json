@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "test": "node --test tests/precios.test.mjs",
-    "test:e2e": "node tests/recorrido.mjs"
+    "test:e2e": "node tests/recorrido.mjs",
+    "test:navigation": "node tests/navegacion.mjs"
   },
   "devDependencies": {
     "playwright-core": "1.65.0"

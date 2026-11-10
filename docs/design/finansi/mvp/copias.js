@@ -1,4 +1,13 @@
 export const copy = {
+  "title.recipe": ["Receta del producto · Finansi","Product recipe · Finansi"],
+  "title.calculator": ["Calculadora de precio · Finansi","Price calculator · Finansi"],
+  "title.comparison": ["Simulador de precios · Finansi","Price comparison · Finansi"],
+  "title.products": ["Mis productos · Finansi","My products · Finansi"],
+  "title.settings": ["Configuración · Finansi","Settings · Finansi"],
+  "ui.productExample": ["Ej. Vela Cedro","e.g. Cedar candle"],
+  "ui.categoryExample": ["Ej. Velas","e.g. Candles"],
+  "ui.materialExample": ["Ej. Cera","e.g. Wax"],
+  "ui.compareUnitCost": ["Costo por unidad:","Cost per unit:"],
   "catalog.intro": ["Tus recetas y precios guardados en este navegador.","Your recipes and prices saved in this browser."],
   "catalog.savedProducts": ["Productos guardados","Saved products"],
   "catalog.empty": ["Guarda un producto después de comparar precios y lo encontrarás aquí al volver.","Save a product after comparing prices and find it here when you return."],

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Crear producto de Finansi con datos de ejemplo de Taller Bruma.">
-  <title>Crear producto · Finansi</title>
+  <title data-i18n="title.recipe">Receta del producto · Finansi</title>
   <link rel="icon" href="../prototipo/img/marca.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../prototipo/estilos.css">
   <link rel="stylesheet" href="maqueta.css">
@@ -36,14 +36,14 @@
             <p class="panel-lede" data-i18n="ui.batchHelp">Define cuántas unidades quedan listas para vender en un lote.</p>
             <label class="form-field">
               <span data-i18n="ui.productName">Nombre del producto</span>
-              <input name="productName" type="text" required maxlength="60" placeholder="Ej. Vela Cedro">
+              <input name="productName" type="text" required maxlength="60" placeholder="Ej. Vela Cedro" data-i18n-placeholder="ui.productExample">
             </label>
             <div class="form-row">
               <label class="form-field">
                 <span data-i18n="ui.batchUnits">Unidades por lote</span>
                 <input name="yieldUnits" type="text" inputmode="numeric" required maxlength="7">
               </label>
-              <label class="form-field"><span data-i18n="ui.category">Categoría (opcional)</span><input name="category" maxlength="40" placeholder="Ej. Velas"></label>
+              <label class="form-field"><span data-i18n="ui.category">Categoría (opcional)</span><input name="category" maxlength="40" placeholder="Ej. Velas" data-i18n-placeholder="ui.categoryExample"></label>
             </div>
             <div class="form-actions"><button type="button" class="action primary" data-go-step="materiales" data-i18n="ui.continueMaterials">Continuar a materiales</button></div>
           </section>
@@ -125,7 +125,7 @@
       <form data-material-form novalidate>
         <label class="form-field">
           <span data-i18n="ui.materialName">Nombre del material</span>
-          <input name="materialName" type="text" required maxlength="60" placeholder="Ej. Cera" autofocus>
+          <input name="materialName" type="text" required maxlength="60" placeholder="Ej. Cera" data-i18n-placeholder="ui.materialExample" autofocus>
         </label>
         <div class="form-row">
           <label class="form-field">

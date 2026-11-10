@@ -38,10 +38,14 @@ Abre [la demo local](http://127.0.0.1:4173/). Para las pruebas en navegador, usa
 ```sh
 npm test
 npm run test:e2e
+npm run test:navigation
 npm run test:e2e -- https://alvaro-mendoza-12.github.io/F-nansi-/
+npm run test:navigation -- https://alvaro-mendoza-12.github.io/F-nansi-/
 ```
 
 Las pruebas de navegador usan perfiles temporales. En PowerShell puedes usar `npm.cmd` y `npx.cmd`.
+
+El recorrido de navegación comprueba también el flujo completo en inglés, el teclado, la continuidad del borrador desde el menú y la exportación/restauración sin sustituir precios ni métodos históricos. Para auditar accesibilidad, configura `FINANSI_AXE` con una copia local de `axe.min.js`; sin esa variable, axe se omite. `FINANSI_EVIDENCE` guarda capturas y resultados JSON. [Evidencia y límites de la revisión de Fase 4](docs/design/evidencia/fase4/README.md).
 
 ## Investigación y diseño
 
